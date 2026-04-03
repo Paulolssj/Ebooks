@@ -1,0 +1,24 @@
+# Vercel Deployment Ignore File
+# Prevents unnecessary files from being uploaded to production
+
+# Development & Editor Folders
+.vscode/
+node_modules/
+.git/
+.github/
+
+# Project Folders (Internal/Development)
+remotion-project/
+Ebook/
+Ebook2/
+
+# Documentation & Scratch Files
+GEMINI-Construtor-de-Sites.md.txt
+Guia Completo de Copywriting Persuasivo_ Dores, Desejos e os 7 Pecados Capitais.md
+video_script_30s_pt.md
+video_script_pt.md
+video_script_resumido_pt.md
+
+# Misc
+README.md
+.gitignore

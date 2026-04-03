@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bio-Otimização Pélvica Masculina | eBook Premium</title>
+  <meta name="description" content="Descubra como reverter a perda de virilidade com a ciência da Bio-Otimização Pélvica Masculina. eBook completo e baseado em evidências." />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #12121a;
+      --surface2: #1a1a26;
+      --accent: #e07b2a;
+      --accent2: #f5a623;
+      --gold: #d4a04a;
+      --red: #c0392b;
+      --text: #e8e4df;
+      --muted: #8a8097;
+      --border: rgba(224, 123, 42, 0.2);
+      --glow: rgba(224, 123, 42, 0.15);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.8;
+      font-size: 17px;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      background: rgba(10, 10, 15, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 40px;
+    }
+    .nav-logo { font-family: 'Playfair Display', serif; color: var(--accent); font-size: 1.1rem; font-weight: 700; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.3s; }
+    .nav-links a:hover { color: var(--accent); }
+    .btn-nav {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #fff; text-decoration: none; font-weight: 700;
+      padding: 10px 22px; border-radius: 8px; font-size: 0.85rem;
+      letter-spacing: 0.04em; text-transform: uppercase;
+      box-shadow: 0 0 20px var(--glow); transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-nav:hover { transform: translateY(-2px); box-shadow: 0 0 35px rgba(224,123,42,0.4); }
+    .btn-download {
+      background: linear-gradient(135deg, #1a6fd4, #2196f3);
+      color: #fff; text-decoration: none; font-weight: 700;
+      padding: 10px 18px; border-radius: 8px; font-size: 0.85rem;
+      letter-spacing: 0.04em; text-transform: uppercase;
+      box-shadow: 0 0 20px rgba(33,150,243,0.4); transition: transform 0.2s, box-shadow 0.2s;
+      display: flex; align-items: center; gap: 7px; border: none; cursor: pointer;
+    }
+    .btn-download:hover { transform: translateY(-2px); box-shadow: 0 0 35px rgba(33,150,243,0.7); }
+    .btn-download svg { flex-shrink: 0; }
+
+    /* ─── COVER ─── */
+    #cover {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden; text-align: center;
+      padding: 120px 40px 80px;
+    }
+    .cover-bg {
+      position: absolute; inset: 0;
+      background: url('assets/bio_cover.png') center/cover no-repeat;
+      filter: brightness(0.35) saturate(0.8);
+      transform: scale(1.04);
+      animation: slow-zoom 20s ease-in-out infinite alternate;
+    }
+    @keyframes slow-zoom { from { transform: scale(1); } to { transform: scale(1.08); } }
+    .cover-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(10,10,15,0.1) 0%, rgba(10,10,15,0.9) 100%);
+    }
+    .cover-content { position: relative; z-index: 2; max-width: 800px; }
+    .cover-eyebrow {
+      display: inline-block; background: rgba(224,123,42,0.15);
+      border: 1px solid var(--border); color: var(--accent);
+      font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.15em;
+      padding: 6px 16px; border-radius: 20px; margin-bottom: 28px;
+    }
+    .cover-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      font-weight: 900; line-height: 1.15;
+      background: linear-gradient(135deg, #fff 30%, var(--accent), var(--accent2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; margin-bottom: 24px;
+    }
+    .cover-subtitle { font-size: 1.2rem; color: rgba(232,228,223,0.75); max-width: 600px; margin: 0 auto 44px; line-height: 1.7; }
+    .btn-primary {
+      display: inline-block; padding: 18px 48px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #fff; text-decoration: none; font-weight: 700; font-size: 1rem;
+      letter-spacing: 0.06em; text-transform: uppercase; border-radius: 50px;
+      box-shadow: 0 0 50px rgba(224,123,42,0.5), 0 8px 30px rgba(0,0,0,0.4);
+      transition: all 0.3s; border: none; cursor: pointer;
+    }
+    .btn-primary:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 0 70px rgba(224,123,42,0.7), 0 12px 40px rgba(0,0,0,0.5); }
+    .cover-stats { display: flex; gap: 48px; justify-content: center; margin-top: 64px; }
+    .stat-item { text-align: center; }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--accent); font-weight: 900; }
+    .stat-label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px; }
+
+    /* ─── SECTIONS ─── */
+    section { padding: 100px 40px; max-width: 900px; margin: 0 auto; }
+    .section-full { max-width: 100%; padding: 0; }
+
+    .chapter-header {
+      display: flex; align-items: center; gap: 16px; margin-bottom: 16px;
+    }
+    .chapter-number {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #fff; font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 20px;
+    }
+    .chapter-divider { flex: 1; height: 1px; background: var(--border); }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.9rem, 4vw, 3rem);
+      font-weight: 900; line-height: 1.2;
+      margin-bottom: 32px; color: #fff;
+    }
+    h3 { font-size: 1.3rem; font-weight: 700; color: var(--accent2); margin: 40px 0 16px; }
+    p { margin-bottom: 20px; color: rgba(232,228,223,0.88); }
+    strong { color: #fff; font-weight: 700; }
+    em { color: var(--accent2); font-style: normal; }
+
+    .chapter-img {
+      width: 100%; max-height: 480px; object-fit: cover;
+      border-radius: 16px; margin-bottom: 48px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+      border: 1px solid var(--border);
+      transition: transform 0.4s;
+    }
+    .chapter-img:hover { transform: scale(1.01); }
+
+    /* Pull quotes */
+    .pull-quote {
+      border-left: 4px solid var(--accent);
+      padding: 20px 28px;
+      background: var(--surface);
+      border-radius: 0 12px 12px 0;
+      margin: 36px 0;
+      font-size: 1.15rem; font-style: italic; color: #fff;
+      box-shadow: inset 0 0 40px rgba(224,123,42,0.05);
+    }
+
+    /* Info boxes */
+    .info-box {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin: 36px 0;
+    }
+    .info-box-title {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 700; color: var(--accent2); font-size: 1rem;
+      text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px;
+    }
+    .info-box ul { padding-left: 20px; }
+    .info-box li { margin-bottom: 10px; color: rgba(232,228,223,0.85); }
+
+    /* Benefit cards */
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin: 40px 0; }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 28px 24px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(224,123,42,0.15); }
+    .card-icon { font-size: 2rem; margin-bottom: 14px; }
+    .card-title { font-weight: 700; color: #fff; margin-bottom: 8px; font-size: 1rem; }
+    .card-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+
+    /* Routine steps */
+    .steps { margin: 32px 0; }
+    .step {
+      display: flex; gap: 20px; margin-bottom: 28px; align-items: flex-start;
+    }
+    .step-num {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #fff; font-weight: 900; font-size: 1.1rem;
+      width: 44px; height: 44px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .step-content h4 { font-weight: 700; color: #fff; margin-bottom: 6px; }
+    .step-content p { font-size: 0.95rem; color: var(--muted); margin: 0; }
+
+    /* Hacks */
+    .hacks { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 32px 0; }
+    .hack {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 12px; padding: 20px;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .hack-emoji { font-size: 1.6rem; }
+    .hack-title { font-weight: 700; color: var(--accent2); font-size: 0.95rem; }
+    .hack-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
+
+    /* Chapter divider band */
+    .chapter-band {
+      background: linear-gradient(135deg, var(--surface), var(--surface2));
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      padding: 16px 40px; text-align: center;
+      font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.2em;
+      color: var(--muted); margin: 0;
+    }
+
+    /* ─── CTA FINAL ─── */
+    #cta {
+      background: linear-gradient(135deg, #0d0a20, #1a0e2e);
+      border-top: 1px solid rgba(224,123,42,0.3);
+      padding: 100px 40px; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    #cta::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, rgba(224,123,42,0.12) 0%, transparent 70%);
+    }
+    .cta-content { position: relative; z-index: 2; max-width: 700px; margin: 0 auto; }
+    .cta-badge {
+      display: inline-block; background: rgba(224,123,42,0.15);
+      border: 1px solid rgba(224,123,42,0.4); color: var(--accent);
+      font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 7px 18px; border-radius: 20px; margin-bottom: 28px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(224,123,42,0.4); }
+      50% { box-shadow: 0 0 0 12px rgba(224,123,42,0); }
+    }
+    .cta-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900;
+      line-height: 1.2; color: #fff; margin-bottom: 24px;
+    }
+    .cta-title span { color: var(--accent); }
+    .cta-sub { color: rgba(232,228,223,0.75); font-size: 1.1rem; margin-bottom: 48px; line-height: 1.7; }
+    .btn-cta {
+      display: inline-block; padding: 22px 56px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #fff; font-size: 1.1rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      border-radius: 60px; border: none; cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 0 60px rgba(224,123,42,0.6), 0 10px 40px rgba(0,0,0,0.5);
+      transition: all 0.3s; animation: glow-pulse 3s ease-in-out infinite;
+      margin-bottom: 28px; display: block; width: fit-content; margin: 0 auto 32px;
+    }
+    @keyframes glow-pulse {
+      0%, 100% { box-shadow: 0 0 40px rgba(224,123,42,0.4), 0 10px 30px rgba(0,0,0,0.4); }
+      50% { box-shadow: 0 0 80px rgba(224,123,42,0.8), 0 10px 30px rgba(0,0,0,0.4); }
+    }
+    .btn-cta:hover { transform: translateY(-4px) scale(1.04); }
+    .cta-disclaimer { font-size: 0.8rem; color: var(--muted); }
+
+    .guarantee {
+      display: flex; align-items: center; gap: 20px;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px; padding: 20px 28px; margin-top: 48px; text-align: left;
+    }
+    .guarantee-icon { font-size: 2.4rem; flex-shrink: 0; }
+    .guarantee-text h4 { font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .guarantee-text p { font-size: 0.88rem; color: var(--muted); margin: 0; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #070710; border-top: 1px solid rgba(255,255,255,0.06);
+      text-align: center; padding: 40px;
+      font-size: 0.82rem; color: var(--muted);
+    }
+    footer span { color: var(--accent); }
+
+    /* ─── PRINT ─── */
+    @page {
+      size: A4;
+      margin: 18mm 16mm 18mm 16mm;
+    }
+
+    @media print {
+      /* ── Esconder elementos de interface e animações ── */
+      nav,
+      .btn-nav,
+      .btn-download,
+      .btn-primary,
+      .btn-cta,
+      .cta-badge,
+      .cover-stats { display: none !important; }
+
+      /* ── FORÇAR VISIBILIDADE (Correção para Scroll Reveal) ── */
+      .card, .hack, .step, .info-box, .pull-quote, section, div, p, h1, h2, h3, h4, h5 {
+        opacity: 1 !important;
+        transform: none !important;
+        visibility: visible !important;
+        transition: none !important;
+      }
+
+      /* ── Base: fundo branco, texto preto ── */
+      *,
+      *::before,
+      *::after {
+        background: transparent !important;
+        color: #1a1a1a !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      html, body {
+        font-size: 11pt;
+        line-height: 1.6;
+        background: #fff !important;
+        color: #1a1a1a !important;
+        font-family: 'Inter', Georgia, serif;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      /* ── Layout ── */
+      section {
+        max-width: 100% !important;
+        padding: 10pt 0 !important;
+        margin: 0 !important;
+        display: block !important;
+        page-break-before: avoid !important;
+      }
+
+      /* ── Cover ── */
+      #cover {
+        min-height: auto !important;
+        height: auto !important;
+        padding: 60pt 0 40pt !important;
+        text-align: center;
+        page-break-after: avoid !important;
+      }
+      .cover-bg, .cover-overlay { display: none !important; }
+      .cover-content { position: static !important; z-index: auto !important; width: 100% !important; max-width: 100% !important; }
+      .cover-title {
+        font-size: 36pt !important;
+        font-weight: 900 !important;
+        color: #111 !important;
+        -webkit-text-fill-color: #111 !important;
+        background: none !important;
+        -webkit-background-clip: unset !important;
+        background-clip: unset !important;
+        margin-bottom: 20pt !important;
+      }
+      .cover-subtitle { font-size: 14pt !important; color: #444 !important; margin-bottom: 30pt !important; }
+      .cover-eyebrow {
+        background: #f0f0f0 !important;
+        border: 1px solid #ccc !important;
+        color: #444 !important;
+        font-size: 9pt !important;
+        padding: 4pt 12pt !important;
+      }
+
+      /* ── Títulos ── */
+      h2 {
+        font-size: 22pt !important;
+        border-bottom: 2px solid #111;
+        padding-bottom: 6pt;
+        margin-bottom: 16pt !important;
+        page-break-after: avoid;
+        page-break-before: avoid;
+      }
+      h3 {
+        font-size: 14pt !important;
+        color: #333 !important;
+        margin-top: 20pt !important;
+        margin-bottom: 10pt !important;
+        page-break-after: avoid;
+      }
+
+      /* ── Imagens ── */
+      .chapter-img {
+        width: 100% !important;
+        max-height: 250pt !important;
+        object-fit: cover !important;
+        border-radius: 8pt !important;
+        border: 1pt solid #ccc !important;
+        margin-bottom: 20pt !important;
+        display: block !important;
+        page-break-inside: avoid;
+      }
+
+      /* ── Chapter bands (Onde as páginas devem quebrar) ── */
+      .chapter-band {
+        page-break-before: always !important;
+        background: #111 !important;
+        color: #fff !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        padding: 8pt 0 !important;
+        margin-top: 0 !important;
+        width: 100% !important;
+      }
+
+      /* ── Outros elementos ── */
+      .pull-quote, .info-box, .card, .step, .hack, .guarantee {
+        page-break-inside: avoid !important;
+      }
+
+      .cards-grid {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 12pt !important;
+      }
+
+      /* ── CTA Final ── */
+      #cta {
+        page-break-before: always !important;
+        background: #fff !important;
+        border-top: 2pt solid #c0392b !important;
+        padding: 40pt 0 !important;
+      }
+
+      footer {
+        page-break-before: avoid !important;
+        background: #f0f0f0 !important;
+        padding: 20pt !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 12px 20px; }
+      .nav-links { display: none; }
+      section { padding: 60px 24px; }
+      .cover-stats { gap: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">BIO-OTIMIZAÇÃO ♂</div>
+  <ul class="nav-links">
+    <li><a href="#cap1">Cap. 1</a></li>
+    <li><a href="#cap2">Cap. 2</a></li>
+    <li><a href="#cap3">Cap. 3</a></li>
+    <li><a href="#cap4">Cap. 4</a></li>
+    <li><a href="#cap5">Cap. 5</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <a href="#cap5" class="btn-nav" title="Capítulo 5 — Arsenal Natural">💊</a>
+    <button class="btn-download" onclick="downloadEbook()" title="Baixar eBook em PDF">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      Baixar PDF
+    </button>
+  </div>
+</nav>
+
+<!-- ─── COVER ─── -->
+<section id="cover" class="section-full" style="padding: 0;">
+  <div class="cover-bg"></div>
+  <div class="cover-overlay"></div>
+  <div class="cover-content">
+    <div class="cover-eyebrow">🔬 eBook de Alta Performance Masculina</div>
+    <h1 class="cover-title">Bio-Otimização<br/>Pélvica Masculina</h1>
+    <p class="cover-subtitle">O fim da dor silenciosa. O resgate da sua virilidade. Uma abordagem clínica e visceral sobre como recuperar o controle da sua performance, de dentro para fora.</p>
+    <a href="#cap1" class="btn-primary">📖 Começar a Leitura</a>
+    <div class="cover-stats">
+      <div class="stat-item">
+        <div class="stat-num">5</div>
+        <div class="stat-label">Capítulos</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Baseado em Ciência</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">30</div>
+        <div class="stat-label">Dias p/ Resultado</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CAPÍTULO 1 ─── -->
+<div class="chapter-band">◆ &nbsp; Capítulo 1 &nbsp; ◆</div>
+<section id="cap1">
+  <div class="chapter-header">
+    <span class="chapter-number">Capítulo 01</span>
+    <div class="chapter-divider"></div>
+  </div>
+  <h2>A Dor Silenciosa e a Epidemia Masculina</h2>
+
+  <img src="assets/bio_ch1.png" alt="Homem em dor silenciosa e estresse no trabalho" class="chapter-img" />
+
+  <p>Existe uma dor da qual os homens não falam. Não na mesa de bar com os amigos. Não no consultório médico. E, muitas vezes, nem mesmo com a mulher que divide a cama com eles.</p>
+
+  <p>É a dor de ver a virilidade – aquela força silenciosa e inabalável que sempre definiu quem você é – <strong>secar aos poucos.</strong></p>
+
+  <div class="pull-quote">
+    "Começa com pequenos sinais. Aquela ereção matinal, rígida como aço, que costumava ser o seu 'bom dia' biológico, desaparece. Depois, vem o controle que já não é o mesmo."
+  </div>
+
+  <p>A ejaculação que acontece antes da hora, deixando no ar um silêncio pesado e um olhar de frustração mútua. E então, o fantasma mais cruel de todos: a falha na rigidez na hora H. O momento em que the corpo, pela primeira vez, <strong>te trai.</strong></p>
+
+  <p>Se você está sentindo isso, preste muita atenção: <em>você não está sozinho e a culpa não é sua.</em></p>
+
+  <h3>🏙️ A Epidemia Que Ninguém Vê</h3>
+  <p>Estamos vivendo uma epidemia silenciosa que está castrando os homens modernos. Você trabalha horas a fio, engolido pelo estresse do escritório. Passa o dia inteiro sentado com a coluna curvada. Seu celular não para de apitar, seu chefe cobra metas, as contas acumulam e o cortisol dispara envenenando seu sangue. Telas, vapes, noites mal dormidas e a pressão constante de "dar conta de tudo".</p>
+
+  <div class="cards-grid">
+    <div class="card">
+      <div class="card-icon">😓</div>
+      <div class="card-title">Estresse Crônico</div>
+      <div class="card-desc">O cortisol em excesso destrói a testosterona e bloqueia o sistema vascular responsável pela ereção.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🪑</div>
+      <div class="card-title">Sedentarismo</div>
+      <div class="card-desc">9 em cada 10 homens com disfunção erétil são sedentários. A falta de movimento sufoca a pelve.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">😶</div>
+      <div class="card-title">Vergonha Silenciosa</div>
+      <div class="card-desc">O estigma impede o homem de buscar ajuda. A dor vira armor de isolamento emocional.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔥</div>
+      <div class="card-title">Ansiedade de Performance</div>
+      <div class="card-desc">O medo de falhar se torna uma profecia autorrealizável, inibindo a resposta sexual natural.</div>
+    </div>
+  </div>
+
+  <p>Sabe o que isso faz com você? <strong>Isso calcifica a sua região pélvica.</strong> Imagine o motor de um carro esporte de luxo. Se você o deixa parado na garagem por anos, ligando apenas para ir até a esquina, o óleo engrossa, as engrenagens enferrujam e as mangueiras ressecam. É exatamente isso que a vida moderna faz com o seu sistema reprodutor.</p>
+
+  <div class="info-box">
+    <div class="info-box-title">⚠️ Os Sinais de Alerta Que Você Não Pode Ignorar</div>
+    <ul>
+      <li>Ausência de ereções matinais espontâneas regulares</li>
+      <li>Dificuldade em manter a rigidez durante a relação</li>
+      <li>Ejaculação involuntária antes do momento desejado</li>
+      <li>Fadiga constante, irritabilidade e falta de disposição</li>
+      <li>Queda de libido e desinteresse por intimidade</li>
+      <li>Sentimento de vergonha ou inadequação como parceiro/homem</li>
+    </ul>
+  </div>
+
+  <p>O peso de "ser homem" e não conseguir entregar o que se espera na intimidade é um ácido que corrói a autoestima em segredo. Mas antes de aceitar que "é assim mesmo", você precisa entender: <strong>a máquina não quebrou. Ela só precisa de manutenção.</strong></p>
+</section>
+
+<!-- ─── CAPÍTULO 2 ─── -->
+<div class="chapter-band">◆ &nbsp; Capítulo 2 &nbsp; ◆</div>
+<section id="cap2">
+  <div class="chapter-header">
+    <span class="chapter-number">Capítulo 02</span>
+    <div class="chapter-divider"></div>
+  </div>
+  <h2>Entendendo a Máquina e Quebrando o Mito da Idade</h2>
+
+  <img src="assets/bio_ch2.png" alt="Anatomia do músculo pélvico masculino - visualização científica" class="chapter-img" />
+
+  <p>A primeira mentira que a indústria farmacêutica quer que você engula é que <em>"depois dos 30, 40 ou 50, é normal o desempenho cair"</em>. Eles querem convencer você de que o seu RG é a certidão de óbito da sua performance sexual, para que você dependa de pílulas azuis para o resto da vida.</p>
+
+  <div class="pull-quote">
+    "Isso é uma falácia clínica. O seu pênis não adoeceu. A sua idade não é o problema. A verdadeira raiz da sua frustração tem nome e sobrenome: <strong>Atrofia Pélvica.</strong>"
+  </div>
+
+  <h3>🧬 O Músculo que Ninguém te Ensinou</h3>
+  <p>Existe uma estrutura no seu corpo chamada <strong>Assoalho Pélvico</strong>, e dentro dele um músculo vital chamado <strong>Músculo PC (Pubococcígeo)</strong>. Ele é literalmente o alicerce da sua masculinidade. E você provavelmente nunca ouviu falar dele até hoje.</p>
+
+  <p>Pense no seu pênis como um sistema hidráulico. Para que uma mangueira tenha pressão máxima, você precisa de uma bomba de alta potência injetando água e de uma <em>trava forte</em> para que a água não vaze de volta. O seu coração é a bomba. O seu <strong>Músculo PC é a trava.</strong></p>
+
+  <div class="info-box">
+    <div class="info-box-title">🔬 O Que o Músculo PC Controla</div>
+    <ul>
+      <li><strong>Rigidez Erétil:</strong> Comprime as veias do pênis, aprisionando o sangue para uma ereção firme e duradoura</li>
+      <li><strong>Controle Ejaculatório:</strong> O "freio" biológico do seu orgasmo — se está fraco, dispara sozinho</li>
+      <li><strong>Intensidade do Orgasmo:</strong> Contrações mais fortes = explosões muito mais intensas</li>
+      <li><strong>Saúde da Próstata:</strong> Suporte estrutural que previne inflamações e problemas urinários</li>
+      <li><strong>Ereções Matinais:</strong> Indicador direto de que o sistema vascular pélvico está ativo</li>
+    </ul>
+  </div>
+
+  <h3>💧 O Vazamento que Ninguém Vê</h3>
+  <p>Se você passa 8, 10, 12 horas por dia sentado – no carro, no escritório, no sofá –, sem nunca exercitar ou engajar essa musculatura, ela simplesmente <strong>morre por inatividade.</strong> Ela atrofia. É matemática simples: músculo que não é estimulado, míngua.</p>
+
+  <p>Quando o Músculo PC está fraco, a "trava" falha. O sangue entra, mas vaza de volta pelas veias. O resultado? Você perde a ereção no meio do ato, ou nunca consegue a rigidez máxima de ferro. Além disso, é esse mesmo músculo que segura a contração da ejaculação. <em>PC fraco = gatilho rápido = ejaculação precoce.</em></p>
+
+  <div class="pull-quote">
+    "Não é velhice. É falta de engenharia corporal. Você simplesmente parou de ligar o motor da sua virilidade."
+  </div>
+
+  <p>A boa notícia? Assim como um bíceps atrofiado volta a crescer com treino progressivo, o assoalho pélvico responde ao estímulo certo de forma rápida e eficaz. A ciência confirma isso de forma inequívoca.</p>
+</section>
+
+<!-- ─── CAPÍTULO 3 ─── -->
+<div class="chapter-band">◆ &nbsp; Capítulo 3 &nbsp; ◆</div>
+<section id="cap3">
+  <div class="chapter-header">
+    <span class="chapter-number">Capítulo 03</span>
+    <div class="chapter-divider"></div>
+  </div>
+  <h2>A Solução: A Ciência por Trás da Bio-Otimização</h2>
+
+  <img src="assets/bio_ch3.png" alt="Homem praticando Bio-Otimização Pélvica - energia e força" class="chapter-img" />
+
+  <p>Se o problema não é a sua idade, e sim uma fraqueza mecânica e atrófica, a solução é incrivelmente lógica: <strong>Reabilitação Fisiológica.</strong></p>
+
+  <p>Aqui é onde precisamos derrubar outro mito estúpido: <em>"Exercícios de Bio-Otimização Pélvica ApexCore são coisas de mulher, para grávidas"</em>. Esqueça isso. Na urologia de elite e na ciência da performance de atletas, o fortalecimento pélvico masculino é a intervenção de primeira linha para reverter disfunções sem bisturi ou química.</p>
+
+  <h3>⚙️ Como Funciona o Mecanismo Veno-Oclusivo</h3>
+  <p>Vamos traduzir a ciência em linguagem real: quando você fortalece o Músculo PC com técnicas de hipertrofia específicas, você reconstrói o seu <strong>Mecanismo Veno-Oclusivo</strong> — o sistema que aprisiona o sangue no pênis sob alta pressão, gerando ereções maciças e inabaláveis.</p>
+
+  <div class="cards-grid">
+    <div class="card">
+      <div class="card-icon">🩸</div>
+      <div class="card-title">Ereções de Ferro</div>
+      <div class="card-desc">Um Músculo PC forte comprime as veias como um torniquete de aço. O sangue fica aprisionado. Você não cai mais.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">⏱️</div>
+      <div class="card-title">Freio ABS Ejaculatório</div>
+      <div class="card-desc">A ejaculação é um reflexo muscular. Com o PC forte, você cria um "freio" voluntário. Você decide a hora.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">⚡</div>
+      <div class="card-title">Explosão de Sensibilidade</div>
+      <div class="card-desc">Mais fluxo sanguíneo = mais oxigênio e nervos ativos. O prazer se torna incalculavelmente maior.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🧠</div>
+      <div class="card-title">Confiança Absoluta</div>
+      <div class="card-desc">Quando o corpo responde, a ansiedade desaparece. A confiança retorna naturalmente e de forma permanente.</div>
+    </div>
+  </div>
+
+  <h3>📚 O Que a Ciência Diz</h3>
+  <div class="info-box">
+    <div class="info-box-title">🔬 Evidências Clínicas Documentadas</div>
+    <ul>
+      <li><strong>Estudo Physiotherapy (2019):</strong> Exercícios de fortalecimento do assoalho pélvico melhoraram significativamente a disfunção erétil e ejaculatória em revisão sistemática de múltiplos ensaios clínicos</li>
+      <li><strong>Mayo Clinic:</strong> Confirma os exercícios de fortalecimento do assoalho pélvico (como os do Método ApexCore) como intervenção de primeira linha para controle ejaculatório em homens, sem efeitos colaterais</li>
+      <li><strong>Cleveland Clinic:</strong> Documenta melhora mensurável na rigidez erétil após 3 meses de protocolo progressivo de treinamento pélvico</li>
+      <li>Nem cirurgia. Nem substâncias. Apenas <strong>engenharia muscular pura.</strong></li>
+    </ul>
+  </div>
+
+  <div class="pull-quote">
+    "É pura biologia mecânica. E funciona com todos — dos 30 aos 65 anos, com ou sem histórico de sedentarismo, com ou sem medicamentos anteriores."
+  </div>
+
+  <p>O protocolo correto, aplicado progressivamente, pode começar a mostrar resultados percetíveis em 2 a 4 semanas. Resultados transformadores acontecem entre 60 e 90 dias de consistência disciplinada.</p>
+</section>
+
+<!-- ─── CAPÍTULO 4 ─── -->
+<div class="chapter-band">◆ &nbsp; Capítulo 4 &nbsp; ◆</div>
+<section id="cap4">
+  <div class="chapter-header">
+    <span class="chapter-number">Capítulo 04</span>
+    <div class="chapter-divider"></div>
+  </div>
+  <h2>Rotina Inicial Prática e Hábitos — A Ponte</h2>
+
+  <img src="assets/bio_ch4.png" alt="Homem com hábitos saudáveis recobrando vitalidade" class="chapter-img" />
+
+  <p>Você já entendeu que a salvação está nas suas mãos. Mas por onde começar? Se você nunca acessou essa musculatura, é como pedir a um cego que encontre um interruptor de luz no escuro. O primeiro passo é <strong>isolar e localizar a sua trava.</strong></p>
+
+  <h3>🗺️ Como Localizar o Seu Músculo PC</h3>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h4>O Truque do Sistema Hidráulico</h4>
+        <p>Na próxima vez que for urinar, tente interromper repentinamente o fluxo a meio. Preste atenção em qual músculo do fundo da pelve você "puxou" para dentro e para cima. <em>É esse!</em> (Aviso: faça apenas para descobrir o músculo, NUNCA pratique durante a micção).</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h4>O Elevador Anatômico</h4>
+        <p>Sentado e relaxado, tente "puxar" levemente a base do pênis e os testículos para cima, como se fossem um elevador subindo. Sem contrair barriga, coxas ou nádegas. Esse movimento interno é o Músculo PC trabalhando.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h4>A Confirmação</h4>
+        <p>Se você sentiu o músculo entre o ânus e a base do escroto contrair e relaxar voluntariamente, parabéns. Você encontrou o alicerce da sua virilidade. Agora é hora de construir em cima dele.</p>
+      </div>
+    </div>
+  </div>
+
+  <h3>⚡ Rotina Start — Degustação dos Primeiros 3 Dias</h3>
+  <div class="info-box">
+    <div class="info-box-title">🏋️ Protocolo Básico "Despertar"</div>
+    <ul>
+      <li><strong>O Bombeamento Rápido (Força):</strong> Contraia o PC o mais forte que puder por 1 segundo, solte immediately. 10 repetições. Descanse 30 seg.</li>
+      <li><strong>A Trava de Ferro (Resistência):</strong> Contraia e segure a pressão por 5 segundos. Relaxe total por 5 segundos. Repita 5 vezes.</li>
+      <li><strong>Frequência:</strong> 2 vezes ao dia — manhã e noite. Você pode fazer sentado, deitado, em pé.</li>
+      <li><strong>Duração total:</strong> Menos de 5 minutos por sessão.</li>
+    </ul>
+  </div>
+
+  <h3>🚀 Hacks Fisiológicos Imediatos</h3>
+  <div class="hacks">
+    <div class="hack">
+      <div class="hack-emoji">🚶</div>
+      <div class="hack-title">Levante da Cadeira</div>
+      <div class="hack-desc">A cada 60 minutos, levante e caminhe 2 minutos. Descomprima a pelve e reative a circulação.</div>
+    </div>
+    <div class="hack">
+      <div class="hack-emoji">💧</div>
+      <div class="hack-title">3 Litros de Água</div>
+      <div class="hack-desc">O sangue precisa de plasma. Hidratação plena = maior volumes e pressão. Simples assim.</div>
+    </div>
+    <div class="hack">
+      <div class="hack-emoji">😴</div>
+      <div class="hack-title">7-8h de Sono</div>
+      <div class="hack-desc">A testosterona é produzida na fase REM. Cada hora de sono roubada é testosterona perdida.</div>
+    </div>
+    <div class="hack">
+      <div class="hack-emoji">🥑</div>
+      <div class="hack-title">Corte o Açúcar</div>
+      <div class="hack-desc">O açúcar inflama as microartérias penianas, bloqueando o fluxo de sangue na raiz do problema.</div>
+    </div>
+    <div class="hack">
+      <div class="hack-emoji">🧘</div>
+      <div class="hack-title">Gerencie o Cortisol</div>
+      <div class="hack-desc">10 minutos de respiração diafragmática por dia podem reduzir o cortisol em até 23% em 30 dias.</div>
+    </div>
+    <div class="hack">
+      <div class="hack-emoji">🏃</div>
+      <div class="hack-title">Exercício Aeróbico</div>
+      <div class="hack-desc">30 min de caminhada rápida, 3x por semana. Ativa a circulação geral e dispara a produção de óxido nítrico.</div>
+    </div>
+  </div>
+
+  <p>Essa rotina é o seu tiro de largada. Você já vai sentir a <em>"bomba" acordando nos próximos dias.</em> Combine esses exercícios com os compostos que você vai descobrir no próximo capítulo, e o resultado será exponencial.</p>
+</section>
+
+<!-- ─── CAPÍTULO 5 ─── -->
+<div class="chapter-band">◆ &nbsp; Capítulo 5 &nbsp; ◆</div>
+<section id="cap5">
+  <div class="chapter-header">
+    <span class="chapter-number">Capítulo 05</span>
+    <div class="chapter-divider"></div>
+  </div>
+  <h2>O Arsenal Natural — Compostos, Suplementos e Peptídeos que Potencializam Tudo</h2>
+
+  <img src="assets/bio_ch5.png" alt="Ciência e natureza na recuperação da virilidade masculina" class="chapter-img" />
+
+  <p>O treino do assoalho pélvico, os hábitos de sono e a alimentação anti-inflamatória são a fundação. Mas existe uma camada adicional que os homens de alta performance vêm descobrindo: <strong>compostos naturais e peptídeos que atuam diretamente no eixo hormonal, vascular e neural</strong> — amplificando cada resultado que os exercícios já entregam.</p>
+
+  <p>Este capítulo é um mapa honesto, baseado em bioquímica e estudos clínicos. Não estamos falando de anabolizantes, de pílulas azuis ou de milagres em cápsula. Estamos falando de <em>sinalização biológica inteligente</em> — compostos que reativam o que a idade e o estilo de vida moderno apagaram.</p>
+
+  <div class="pull-quote">
+    "Imagine que o seu sistema hormonal é uma orquestra. Os exercícios pélvicos afinam os instrumentos. Esses compostos garantem que o maestro está vivo, atento e em plena forma para reger o espetáculo."
+  </div>
+
+  <h3>🌿 Maca Peruana (Lepidium meyenii) — O Adaptógeno Andino da Virilidade</h3>
+  <p>A maca peruana é cultivada nas altitudes extremas dos Andes há mais de 2.000 anos. Os guerreiros Incas a consumiam antes das batalhas para potencializar força e resistência. Hoje, a ciência moderna entendeu por quê.</p>
+  <p>A Maca <strong>não eleva diretamente a testosterona</strong>, mas age de forma mais inteligente: ela modula o eixo hipotálamo-hipofisário (HPA), que é o sistema central de controle hormonal do corpo. Ao equilibrar esse eixo, ela reduz o cortisol cronicamente elevado e <em>cria o ambiente hormonal ideal</em> para a testosterona endógena prosperar. Estudos duplo-cegos documentaram melhora significativa em libido, energia sexual e redução da disfunção erétil psicogênica em 8 a 12 semanas de uso consistente.</p>
+  <div class="info-box">
+    <div class="info-box-title">🔬 O Que a Ciência Diz sobre a Maca</div>
+    <ul>
+      <li><strong>Libido elevada:</strong> Melhora documentada da função sexual independente dos níveis de testosterona sérica</li>
+      <li><strong>Energia e disposição:</strong> Redução da fadiga e aumento da resistência física mensuráveis em ensaios clínicos</li>
+      <li><strong>Dose eficaz:</strong> 2.000 a 3.000mg/dia de extrato padronizado (preferência pela forma gelatinizada)</li>
+      <li><strong>Tempo de resposta:</strong> Primeiros efeitos percetíveis entre 4 e 8 semanas de uso contínuo</li>
+      <li><strong>Segurança:</strong> Sem efeitos adversos documentados em doses normais. Não interfere com medicamentos comuns</li>
+    </ul>
+  </div>
+
+  <h3>⚖️ Bloqueadores de Estrogênio Naturais — A Restauração do Equilíbrio Anabólico</h3>
+  <p>Aqui está um dado que ninguém te conta: muitos homens após os 35 anos não têm apenas pouca testosterona — <strong>têm excesso de estrogênio</strong>. A enzima chamada <em>Aromatase</em> converte testosterona em estradiol (estrógeno), e o sedentarismo, a gordura visceral e os xenoestrógenos ambientais (plásticos, pesticidas, álcool) aceleram esse processo degenerativo de forma brutal.</p>
+  <p>A boa notícia: compostos naturais chamados <strong>inibidores de aromatase fitoterápicos</strong> podem frear essa conversão, restaurando o equilíbrio T:E2 (testosterona para estradiol) — o verdadeiro marcador da virilidade bioquímica.</p>
+
+  <div class="cards-grid">
+    <div class="card">
+      <div class="card-icon">🌱</div>
+      <div class="card-title">Tongkat Ali (Eurycoma longifolia)</div>
+      <div class="card-desc">Inibidor natural de aromatase originário da Malásia. Estudos documentam elevação de testosterona livre em 37% após 5 semanas. Também inibe a SHBG (globulina que prende a testosterona). Dose: 200-400mg/dia de extrato 100:1.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">⚗️</div>
+      <div class="card-title">Boro (Boron)</div>
+      <div class="card-desc">Mineral raramente discutido, mas devastador contra o excesso de estrogênio. 10mg/dia de boro elementar reduziram estradiol em 39% e elevaram testosterona livre em 28% em apenas 7 dias, segundo estudo clínico publicado em 2011.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🫚</div>
+      <div class="card-title">Extrato de Sementes de Uva (Resveratrol + OPC)</div>
+      <div class="card-desc">Potente inibidor de aromatase vegetal. Além de suprimir a conversão T→E2, é um vasodilatador de óxido nítrico que melhora o fluxo sanguíneo peniano. Bônus duplo para ereção e hormônios.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🌾</div>
+      <div class="card-title">Chrysin (Flavona do Maracujá)</div>
+      <div class="card-desc">Flavonoide com ação aromatase-inibitória documentada in vitro e em estudos preliminares. Melhor absorção quando combinado com piperina (pimenta preta). Dose: 500-1500mg/dia.</div>
+    </div>
+  </div>
+
+  <div class="pull-quote">
+    "Restaurar o equilíbrio testosterona-estrogênio não é vanidade. É reequilibrar a química que define se você acorda com energia ou exaustão, com desejo ou apatia, com confiança ou ansiedade."
+  </div>
+
+  <h3>🧬 Peptídeos de Última Geração — A Fronteira da Bioativação Masculina</h3>
+  <p>Nos últimos anos, a medicina de longevidade e a biohacking community de elite descobriram uma classe de moléculas de altíssima especificidade chamadas <strong>peptídeos bioativos</strong>. Diferente de hormônios exógenos, eles <em>sinalizam</em> o organismo a produzir suas próprias respostas — de forma muito mais fisiológica e segura.</p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-content">
+        <h4>PT-141 (Bremelanotida) — O Peptídeo do Desejo Central</h4>
+        <p>Ao contrário dos medicamentos como o sildenafil (que agem nos vasos), o PT-141 age diretamente no <strong>sistema nervoso central</strong>, nos receptores de melanocortina MC3R e MC4R, ativando o circuito neurológico do desejo sexual. Resulta em aumento significativo tanto de libido quanto de rigidez erétil. É a única molécula aprovada pela FDA para desejo sexual hipoativo, tanto em homens quanto em mulheres. Uso: subcutâneo conforme orientação médica específica.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-content">
+        <h4>BPC-157 (Body Protection Compound-157) — Regeneração e Óxido Nítrico</h4>
+        <p>Peptídeo de origem gástrica com propriedades regenerativas documentadas em múltiplos sistemas do corpo. Para a saúde sexual masculina, o seu papel mais relevante é a <strong>ativação do eixo óxido nítrico</strong> (via eNOS) — a mesma molécula que causa a vasodilatação dos corpos cavernosos durante a ereção. Também documentado para reduzir inflamação vascular sistémica, acelerando a recuperação do endotélio dos vasos penianos. Uso oral ou subcutâneo, fora de alimentos. Ainda em fase de pesquisa avançada.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-content">
+        <h4>Ipamorelin / CJC-1295 — Hormônio de Crescimento e Regeneração Noturna</h4>
+        <p>Combinação de secretagogos de GH (hormônio de crescimento) que <strong>estimulam a hipófise a produzir GH de forma pulsátil</strong>, imitando o pico natural do sono profundo. O GH é fundamental para a regeneração muscular (incluindo o assoalho pélvico), para a qualidade do sono, para a manutenção do peso e para os níveis de energia geral. Ao melhorar a qualidade do sono profundo, estabelece uma cascata positiva em toda a saúde sexual. De uso exclusivamente médico prescrição.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <div class="info-box-title">⚠️ Aviso Importante sobre Peptídeos</div>
+    <ul>
+      <li>O uso de peptídeos é uma área de biohacking avançado e de medicina de longevidade. A maioria não possui aprovação regulatória ampla para uso humano fora de contextos de pesquisa</li>
+      <li><strong>Consulte sempre um médico especialista</strong> em medicina funcional, de longevidade ou endocrinologista antes de iniciar qualquer protocolo com peptídeos</li>
+      <li>Os suplementos naturais (Maca, Tongkat Ali, Boro) têm perfil de segurança muito mais estabelecido e podem ser explorados com autonomia e consciência</li>
+    </ul>
+  </div>
+
+  <h3>🧪 A Sinergia Perfeita — Composto + Exercício + Hábito</h3>
+  <p>O erro que a maioria comete é usar suplementos como atalho, sem trabalhar a base. A sinergia real acontece quando você combina:</p>
+  <div class="hacks">
+    <div class="hack">
+      <div class="hack-emoji">💪</div>
+      <div class="hack-title">Treino do PC</div>
+      <div class="hack-desc">A "bomba hidráulica" funcionando com força máxima. Nenhum composto substitui o músculo ativo.</div>
+    </div>
+    <div class="hack">
+      <div class="hack-emoji">🌿</div>
+      <div class="hack-title">Maca + Tongkat Ali</div>
+      <div class="hack-desc">Equilíbrio hormonal natural, libido disparada, cortisol controlado.</div>
+    </div>
+    <div class="hack">
+      <div class="hack-emoji">⚗️</div>
+      <div class="hack-title">Boro diário</div>
+      <div class="hack-desc">Supressão do excesso de estrogênio. Testosterona livre alta.</div>
+    </div>
+    <div class="hack">
+      <div class="hack-emoji">😴</div>
+      <div class="hack-title">Sono 7-9h</div>
+      <div class="hack-desc">GH natural, testosterona restaurada, cortisol baixo. A recuperação completa acontece aqui.</div>
+    </div>
+    <div class="hack">
+      <div class="hack-emoji">🚫</div>
+      <div class="hack-title">Zero xenoestrógenos</div>
+      <div class="hack-desc">Elimine plásticos, álcool frequente e alimentos ultra-processados. Eles são veneno hormonal silencioso.</div>
+    </div>
+    <div class="hack">
+      <div class="hack-emoji">🩺</div>
+      <div class="hack-title">Acompanhamento médico</div>
+      <div class="hack-desc">Exames de testosterona total, livre, estradiol e SHBG a cada 6 meses. Números concretos. Decisões precisas.</div>
+    </div>
+  </div>
+
+  <p>Este é o nível de inteligência que separa o homem que <em>espera melhorar</em> do homem que <strong>engenheiriza a própria biologia.</strong> Você agora tem o conhecimento. O próximo passo é a ação.</p>
+</section>
+
+<!-- ─── CTA FINAL ─── -->
+<section id="cta" class="section-full">
+  <div class="cta-content">
+    <div class="cta-badge">📘 Você chegou ao fim deste eBook</div>
+    <h2 class="cta-title">O Conhecimento é Seu.<br/>A Ação <span>Depende de Você.</span></h2>
+    <p class="cta-sub">Você terminou os 5 capítulos da Bio-Otimização Pélvica Masculina. Agora carrega dentro de si o mapa completo — da dor silenciosa à bioquímica de elite. O diferencial entre os homens que continuam sofrendo e os que transformam a sua realidade é uma só coisa: <strong>começo imediato.</strong></p>
+
+    <div class="guarantee">
+      <div class="guarantee-icon">🛡️</div>
+      <div class="guarantee-text">
+        <h4>O que este eBook entregou a você</h4>
+        <p>Capítulo 1 a 5: da compreensão da dor, passando pela anatomia do Músculo PC, pelo protocolo ApexCore baseado em ciência clínica, pelos hábitos de bioativação diária, até o arsenal completo de compostos naturais e peptídeos de alta performance. Tudo o que você precisa para começar está aqui.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <p>© 2025 <span>Bio-Otimização Pélvica Masculina</span>. Conteúdo educacional baseado em evidências científicas.<br/>
+  Este eBook não substitui consulta médica. Procure um urologista ou fisioterapeuta pélvico certificado para avaliação clínica.</p>
+</footer>
+
+<script>
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.card, .hack, .step, .info-box, .pull-quote').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+
+  // Download / Print PDF
+  function downloadEbook() {
+    const originalTitle = document.title;
+    document.title = 'Bio-Otimizacao-Pelvica-Masculina-eBook';
+    window.print();
+    setTimeout(() => { document.title = originalTitle; }, 2000);
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.ctrlKey && e.key === 'p') {
+      document.title = 'Bio-Otimizacao-Pelvica-Masculina-eBook';
+    }
+  });
+</script>
+</body>
+</html>

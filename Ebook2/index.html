@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bio-Hacking Hormonal e Suplementação | Ebook 2 Extra</title>
+  <meta name="description" content="O guia definitivo de suplementação e bio-hacking hormonal para máxima performance masculina." />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #07070a;
+      --surface: #0f0f16;
+      --surface2: #161621;
+      --accent: #2e8b57; /* Sea Green for a fresh bio-hacking feel */
+      --accent2: #4ade80;
+      --gold: #d4a04a;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --border: rgba(74, 222, 128, 0.15);
+      --glow: rgba(74, 222, 128, 0.1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.8;
+      font-size: 17px;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      background: rgba(7, 7, 10, 0.95);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 40px;
+    }
+    .nav-logo { font-family: 'Playfair Display', serif; color: var(--accent2); font-size: 1.1rem; font-weight: 700; letter-spacing: -1px; }
+    .btn-download {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #fff; text-decoration: none; font-weight: 700;
+      padding: 10px 18px; border-radius: 8px; font-size: 0.8rem;
+      text-transform: uppercase; letter-spacing: 0.05em;
+      border: none; cursor: pointer; display: flex; align-items: center; gap: 8px;
+    }
+
+    /* COVER */
+    #cover {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden; text-align: center;
+      padding: 120px 24px 80px;
+      background: radial-gradient(circle at center, #111827 0%, #07070a 100%);
+    }
+    .cover-content { position: relative; z-index: 2; max-width: 850px; }
+    .cover-badge {
+      display: inline-block; background: rgba(74, 222, 128, 0.1);
+      border: 1px solid var(--border); color: var(--accent2);
+      font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em;
+      padding: 7px 18px; border-radius: 30px; margin-bottom: 32px;
+    }
+    .cover-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      font-weight: 900; line-height: 1.1;
+      margin-bottom: 24px; color: #fff;
+    }
+    .cover-title span { color: var(--accent2); font-style: italic; }
+    .cover-subtitle { font-size: 1.25rem; color: var(--muted); max-width: 650px; margin: 0 auto 48px; }
+
+    /* SECTIONS */
+    section { padding: 100px 24px; max-width: 900px; margin: 0 auto; }
+    h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 900; margin-bottom: 32px; color: #fff; line-height: 1.2; }
+    h3 { font-size: 1.4rem; color: var(--accent2); margin: 40px 0 20px; font-weight: 800; }
+    p { margin-bottom: 24px; color: rgba(226, 232, 240, 0.85); font-size: 1.05rem; }
+    
+    .chapter-band {
+      background: linear-gradient(90deg, transparent, var(--surface), transparent);
+      padding: 15px; text-align: center; font-size: 0.8rem; text-transform: uppercase;
+      letter-spacing: 0.3em; color: var(--accent2); border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border); margin: 60px 0;
+    }
+
+    .info-box {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 20px; padding: 32px; margin: 48px 0;
+      position: relative; overflow: hidden;
+    }
+    .info-box::before { content: 'i'; position: absolute; top: -10px; right: 20px; font-family: 'Playfair Display'; font-size: 120px; font-style: italic; opacity: 0.03; color: var(--accent2); }
+    .info-box-title { color: var(--accent2); font-weight: 900; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+    
+    .pull-quote {
+      font-family: 'Playfair Display', serif; font-size: 1.6rem; font-style: italic;
+      color: #fff; border-left: 4px solid var(--accent2); padding-left: 30px;
+      margin: 60px 0; line-height: 1.5;
+    }
+
+    .grid-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin: 48px 0; }
+    .card { background: var(--surface); border: 1px solid var(--surface2); padding: 32px; border-radius: 20px; transition: 0.3s; }
+    .card:hover { border-color: var(--accent2); transform: translateY(-5px); }
+    .card-icon { font-size: 2.5rem; margin-bottom: 20px; }
+    .card-title { font-weight: 800; color: #fff; margin-bottom: 12px; }
+    .card-text { font-size: 0.95rem; color: var(--muted); }
+
+    .checklist-item { display: flex; gap: 16px; margin-bottom: 20px; align-items: flex-start; }
+    .check-icon { color: var(--accent2); font-weight: 900; }
+
+    footer { padding: 60px 24px; text-align: center; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.85rem; }
+    
+    @media (max-width: 768px) {
+      nav { padding: 12px 20px; }
+      section { padding: 60px 20px; }
+    }
+
+    /* ─── PRINT ─── */
+    @page {
+      size: A4;
+      margin: 18mm 16mm 18mm 16mm;
+    }
+
+    @media print {
+      nav, .btn-download, .chapter-band:first-of-type { display: none !important; }
+      
+      /* Force visibility for scroll reveal */
+      .card, .info-box, .pull-quote, .checklist-item, section, div, p, h1, h2, h3 {
+        opacity: 1 !important;
+        transform: none !important;
+        visibility: visible !important;
+        transition: none !important;
+      }
+
+      *, *::before, *::after {
+        background: transparent !important;
+        color: #111 !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+        print-color-adjust: exact;
+      }
+
+      body {
+        font-size: 10.5pt;
+        line-height: 1.4;
+        background: #fff !important;
+        color: #111 !important;
+      }
+
+      section {
+        max-width: 100% !important;
+        padding: 10pt 0 !important;
+        margin: 0 !important;
+        page-break-before: auto !important;
+      }
+
+      #cover {
+        min-height: auto !important;
+        padding: 40pt 0 20pt !important;
+        page-break-after: avoid !important;
+      }
+
+      .cover-title {
+        font-size: 30pt !important;
+        color: #000 !important;
+        margin-bottom: 10pt !important;
+      }
+
+      h2 {
+        font-size: 18pt !important;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 4pt;
+        margin-bottom: 12pt !important;
+        page-break-after: avoid;
+      }
+
+      h3 {
+        font-size: 13pt !important;
+        color: #2e8b57 !important;
+        margin-top: 15pt !important;
+        page-break-after: avoid;
+      }
+
+      .chapter-band {
+        page-break-before: auto !important; /* Changed from always to reduce white space */
+        background: #f8f8f8 !important;
+        color: #2e8b57 !important;
+        border-top: 1px solid #eee !important;
+        border-bottom: 1px solid #eee !important;
+        padding: 8pt !important;
+        margin: 15pt 0 !important;
+        font-weight: bold;
+      }
+
+      /* Allow the browser to manage page breaks more naturally */
+      #checklist {
+        page-break-before: always !important;
+      }
+
+      .info-box, .card, .pull-quote {
+        page-break-inside: avoid !important;
+        border: 1px solid #f0f0f0 !important;
+        background: #fafafa !important;
+        margin: 8pt 0 !important;
+        padding: 12pt !important;
+      }
+
+      .grid-cards {
+        display: block !important;
+      }
+      .card {
+        margin-bottom: 10pt !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">COMBUSTÍVEL DA PERFORMANCE ♂</div>
+    <button class="btn-download" onclick="downloadPDF()">
+      Baixar PDF
+    </button>
+  </nav>
+
+  <!-- COVER -->
+  <section id="cover">
+    <div class="cover-content">
+      <div class="cover-badge">Guia Extra de Bio-Hacking</div>
+      <h1 class="cover-title">O Combustível da <span>Performance</span></h1>
+      <p class="cover-subtitle">O guia estratégico de otimização hormonal e suplementação para homens que não aceitam o declínio.</p>
+      <div style="display:flex; gap:15px; justify-content:center;">
+        <a href="#intro" style="text-decoration:none;" class="btn-download">Começar Guia 📖</a>
+        <button class="btn-download" onclick="downloadPDF()" style="background:transparent; border:1px solid var(--accent2); color:var(--accent2);">Baixar em PDF ⬇️</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="chapter-band">Introdução</div>
+  
+  <section id="intro">
+    <h2>A Ciência Oculta por Trás do Vigor</h2>
+    <p>Treinar a musculatura pélvica é o alicerce físico. Mas, de nada adianta ter uma estrutura de aço se o seu corpo não possui o <strong>combustível químico</strong> necessário para sustentar a função.</p>
+    <p>Vivemos em uma era onde a testosterona masculina caiu 1% ao ano nas últimas 3 décadas. Poluição plástica, sono interrompido e estresse crônico são os assassinos silenciosos da sua virilidade. Este guia é o seu arsenal contra esse declínio.</p>
+    <div class="pull-quote">
+      "Sua biologia não está quebrada. Ela está apenas soterrada por ruído químico e inflamação."
+    </div>
+  </section>
+
+  <div class="chapter-band">Pilar 1: Hormônios</div>
+
+  <section id="pilar1">
+    <h2>Bio-Hacking Hormonal: Otimizando o Natural</h2>
+    <p>A testosterona não é apenas sobre músculos. É sobre foco, agressividade saudável, saúde cardiovascular e, claro, <strong>rigidez erétil absoluta</strong>.</p>
+    
+    <h3>🚀 O Reset do Cortisol</h3>
+    <p>O cortisol é o inimigo número 1. Quando ele sobe, a testosterona cai. Para otimizar o seu eixo hormonal, você precisa sinalizar segurança para o seu cérebro.</p>
+    
+    <div class="grid-cards">
+      <div class="card">
+        <div class="card-icon">☀️</div>
+        <div class="card-title">Luz Solar Matinal</div>
+        <div class="card-text">Pelo menos 15 min de sol nos olhos ao acordar reseta seu ritmo circadiano e dispara a produção hormonal.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">❄️</div>
+        <div class="card-title">Banho Gelado</div>
+        <div class="card-text">O estresse térmico controlado aumenta a resiliência hormonal e dispara a dopamina por até 4 horas.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">💤</div>
+        <div class="card-title">Sono Delta</div>
+        <div class="card-text">A testosterona é produzida no sono profundo. Zero telas 1h antes de dormir é inegociável.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="chapter-band">Pilar 2: Suplementação</div>
+
+  <section id="pilar2">
+    <h2>Arsenal de Suplementação Estratégica</h2>
+    <p>Não compre multivitamínicos genéricos. Use o que a ciência da performance utiliza para restaurar os estoques que o estresse moderno esgota.</p>
+
+    <div class="info-box">
+      <div class="info-box-title">🏆 O Trio Essencial</div>
+      <div class="checklist-item"><span class="check-icon">✓</span> <span><strong>Zinco (30-50mg):</strong> O mineral da virilidade. Fundamental para a saúde da próstata e controle da aromatase.</span></div>
+      <div class="checklist-item"><span class="check-icon">✓</span> <span><strong>Magnésio Quelato (400mg):</strong> Melhora o sono e relaxa a musculatura lisa (crucial para ereções).</span></div>
+      <div class="checklist-item"><span class="check-icon">✓</span> <span><strong>Vitamina D3 (5.000 UI):</strong> Essencial para a sinalização de testosterona livre no sangue.</span></div>
+    </div>
+
+    <h3>🌿 Adaptógenos de Elite</h3>
+    <div class="grid-cards">
+      <div class="card">
+        <div class="card-title">Tongkat Ali</div>
+        <div class="card-text">O "ouro da malásia". Estudos mostram aumento significativo de testosterona livre e redução da SHBG.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Maca Peruana Gelatinizada</div>
+        <div class="card-text">Aumenta a libido e a contagem de esperma sem mexer diretamente no eixo hormonal.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Ashwagandha KSM-66</div>
+        <div class="card-text">Reduz o cortisol em até 30%, permitindo que o corpo produza testosterona naturalmente.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="chapter-band">Pilar 3: Nutrição</div>
+
+  <section id="pilar3">
+    <h2>Nutrição e Inimigos Ocultos</h2>
+    <p>O que você come decide se você é uma máquina de testosterona ou uma fábrica de estrogênio. O segredo está em fornecer as gorduras certas e evitar os disruptores endócrinos.</p>
+
+    <div class="grid-cards">
+      <div class="card">
+        <div class="card-icon">🥩</div>
+        <div class="card-title">Gorduras de Alta Performance</div>
+        <div class="card-text">O colesterol HDL é o bloco de construção da testosterona. Consuma ovos inteiros, abacate, azeite e carnes de qualidade. Sem gordura = sem hormônios.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🚫</div>
+        <div class="card-title">A Ameaça dos Xenos</div>
+        <div class="card-text">Plásticos (BPA), ftalatos e pesticidas imitam o estrogênio no seu corpo. Troque o plástico por vidro e evite alimentos processados que destroem sua virilidade.</div>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <div class="info-box-title">🥗 Alimentos Amigos do Fluxo</div>
+      <p>Certos alimentos agem como precursores de Óxido Nítrico, melhorando a vasodilatação pélvica:</p>
+      <div class="checklist-item"><span class="check-icon">✓</span> <span><strong>Melancia e Citrulina:</strong> Relaxa os vasos sanguíneos penianos.</span></div>
+      <div class="checklist-item"><span class="check-icon">✓</span> <span><strong>Beterraba:</strong> Rica em nitratos que aumentam o fluxo sanguíneo sistêmico.</span></div>
+      <div class="checklist-item"><span class="check-icon">✓</span> <span><strong>Chocolate Amargo (85%+):</strong> Flavonoides que melhoram a saúde endotelial.</span></div>
+    </div>
+  </section>
+
+  <div class="chapter-band">Pilar 4: Estilo de Vida</div>
+
+  <section id="pilar4">
+    <h2>O Poder do Treino de Força e Jejum</h2>
+    <p>A biologia masculina responde ao desafio. Um corpo que não é testado se torna preguiçoso e hormonalmente ineficiente.</p>
+
+    <h3>⚡ O Treino Composto</h3>
+    <p>Para disparar a testosterona sistêmica, você precisa recrutar grandes grupos musculares. Exercícios isolados não funcionam aqui.</p>
+    <div class="grid-cards">
+      <div class="card">
+        <div class="card-title">Agachamento e Levantamento Terra</div>
+        <div class="card-text">Os "reis" da sinalização hormonal. Criam uma demanda sistêmica que obriga o corpo a produzir mais testosterona e GH.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">HIIT e Sprints</div>
+        <div class="card-text">Corrida intensa de curta duração dispara o hormônio do crescimento (HGH) de forma muito superior ao cardio moderado.</div>
+      </div>
+    </div>
+
+    <div class="pull-quote">
+      "O jejum intermitente (16/8) pode aumentar o hormônio do crescimento em até 2.000% em homens, acelerando a queima de gordura visceral e regeneração celular."
+    </div>
+
+    <h3>🧠 O Bio-Hacking Mental</h3>
+    <p>A postura física sinaliza o estado hormonal. Manter-se ereto, com ombros abertos e peito expandido por 2 minutos (Postura Alpha) reduz comprovadamente o cortisol e aumenta a testosterona livre.</p>
+  </section>
+
+  <div class="chapter-band">Checklist Prático</div>
+
+  <section id="checklist">
+    <h2>O Plano de Ação Final</h2>
+    <p>Aplique estas regras junto ao seu Protocolo ApexCore principal para resultados permanentes.</p>
+    
+    <div class="checklist-item"><span class="check-icon">●</span> <span><strong>Manhã:</strong> 15 min de sol + 2 min de banho gelado + Jejum até o almoço.</span></div>
+    <div class="checklist-item"><span class="check-icon">●</span> <span><strong>Treino:</strong> Priorize pesos pesados (3-4x na semana) + Sprints.</span></div>
+    <div class="checklist-item"><span class="check-icon">●</span> <span><strong>Suplementação:</strong> Zinco, Magnésio e D3 ao deitar para otimizar o sono.</span></div>
+    <div class="checklist-item"><span class="check-icon">●</span> <span><strong>Ambiente:</strong> Elimine plásticos e durma em quarto totalmente escuro e frio.</span></div>
+    <div class="checklist-item"><span class="check-icon">●</span> <span><strong>Nutrição:</strong> Priorize gorduras boas (abacate, ovos, azeite) — elas são a base da testosterona.</span></div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 ApexCore. Guia de Bio-Otimização Nível 2.<br/><span>Atenção:</span> Consulte seu médico antes de iniciar novos suplementos.</p>
+  </footer>
+
+  <script>
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Scroll reveal animation
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.card, .info-box, .pull-quote, .checklist-item, h2, h3').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'all 0.6s cubic-bezier(0.22, 1, 0.36, 1)';
+      observer.observe(el);
+    });
+
+    // PDF Download function
+    function downloadPDF() {
+      const originalTitle = document.title;
+      document.title = 'Combustivel-da-Performance-Ebook2';
+      window.print();
+      setTimeout(() => { document.title = originalTitle; }, 2000);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Dr. Apex | Plano de Performance Personalizado</title>
+    <meta name="description" content="Recupere seu vigor e controle com o protocolo de bio-otimização personalizado do Dr. Apex. Ciência urológica e performance masculina.">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="style.css?v=1.29">
+    <!-- Google Fonts: Inter & Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <!-- Scripts: Tailwind, GSAP & Lucide -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#00E0FF',
+              accent: '#34D399',
+            },
+            fontFamily: {
+              main: ['Outfit', 'sans-serif'],
+              drama: ['Playfair Display', 'serif'],
+            },
+            borderRadius: {
+              'pill': '500px',
+            }
+          }
+        }
+      }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-black text-white font-main overflow-x-hidden">
+    <!-- Floating Pill Navbar -->
+    <nav class="pill-nav fixed top-6 left-1/2 -translate-x-1/2 z-[1000]">
+        <div class="flex-container flex justify-between items-center w-full gap-10">
+            <img src="logo_apexcore.png" alt="ApexCore Logo" class="h-12 md:h-16">
+            <div class="hidden md:flex gap-10">
+                <a href="#about" class="text-xs font-bold text-white/70 hover:text-white transition-colors uppercase tracking-[0.2em]">Método</a>
+                <a href="#science" class="text-xs font-bold text-white/70 hover:text-white transition-colors uppercase tracking-[0.2em]">Ciência</a>
+            </div>
+            <button class="bg-white text-black px-6 py-3 rounded-pill text-[12px] font-black uppercase tracking-widest hover:scale-105 hover:bg-primary transition-all" onclick="startQuiz()">Começar</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero min-h-screen relative flex flex-col items-center justify-start px-[5%] pt-[160px] pb-[100px] gap-12" id="hero">
+        <div class="absolute inset-0 bg-gradient-to-b from-black/0 via-black/20 to-black z-0"></div>
+        
+        <!-- Digital Grid Overlay -->
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-[0.03] pointer-events-none"></div>
+
+        <div class="relative z-10 max-w-[600px] w-full text-center flex flex-col items-center gap-10">
+            <!-- Collage Container -->
+            <div class="w-full">
+                <div class="hero-banner-collage rounded-[2rem] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.8)] border border-white/10 relative aspect-[16/10] md:aspect-[21/9] transition-all duration-700 hover:scale-[1.01] hover:border-primary/30">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10"></div>
+                </div>
+            </div>
+
+            <!-- Content Group -->
+            <div class="flex flex-col items-center gap-6">
+                <div>
+                    <span class="hero-badge bg-primary/10 text-primary border border-primary/20 px-4 py-2 rounded-pill text-[11px] font-black uppercase tracking-[2px]">Avanço em Saúde Masculina</span>
+                </div>
+                
+                <h1 class="hero-title text-[clamp(42px,10vw,88px)] font-black leading-[0.9] tracking-[-4px]">
+                    Performance Máxima <br>
+                    <span class="drama-text font-drama italic font-normal text-primary/90 block mt-2 text-[0.8em]">Através da Ciência.</span>
+                </h1>
+
+                <p class="hero-subtitle text-lg text-white/40 max-w-[450px] leading-relaxed">Protocolo de bio-otimização personalizado para restaurar seu vigor e controle natural.</p>
+            </div>
+
+            <button class="hero-cta-btn group bg-white text-black px-12 py-6 rounded-pill text-xl font-black flex items-center justify-center gap-4 hover:scale-[1.05] hover:bg-primary transition-all shadow-[0_20px_50px_rgba(0,224,255,0.2)]" onclick="startQuiz()">
+                Personalizar Meu Plano
+                <i data-lucide="arrow-right" class="w-6 h-6 group-hover:translate-x-1 transition-transform"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- Features / Social Proof Section -->
+    <section class="py-24 px-[5%] bg-black border-t border-white/5 relative overflow-hidden" id="about">
+        <div class="max-w-[1200px] mx-auto">
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="p-8 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
+                    <div class="w-12 h-12 bg-primary/20 rounded-2xl flex items-center justify-center mb-6">
+                        <i data-lucide="shield" class="text-primary w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Base Científica</h3>
+                    <p class="text-white/50 text-sm leading-relaxed">Protocolos baseados em estudos urológicos recentes para resultados reais e duradouros.</p>
+                </div>
+                <div class="p-8 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
+                    <div class="w-12 h-12 bg-accent/20 rounded-2xl flex items-center justify-center mb-6">
+                        <i data-lucide="activity" class="text-accent w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Personalização IA</h3>
+                    <p class="text-white/50 text-sm leading-relaxed">Nossa tecnologia analisa seu perfil biológico para criar um plano 100% sob medida.</p>
+                </div>
+                <div class="p-8 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
+                    <div class="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center mb-6">
+                        <i data-lucide="lock" class="text-white w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Privacidade Total</h3>
+                    <p class="text-white/50 text-sm leading-relaxed">Seus dados são protegidos com criptografia de ponta a ponta e anonimato garantido.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Container -->
+    <div id="quiz-root" class="hidden max-w-[600px] mx-auto pt-[100px] px-6 pb-[180px] min-h-screen relative">
+        <header class="mb-8 flex justify-between items-center px-4 md:px-1">
+            <div class="flex items-center gap-2 text-[10px] font-black tracking-widest text-primary uppercase">
+                <div class="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+                <span id="social-proof-indicator">128 homens iniciaram seu plano nas últimas 24h</span>
+            </div>
+            <div id="step-counter" class="text-[10px] font-black tracking-widest text-white/30 uppercase">
+                01 / 12
+            </div>
+        </header>
+        
+        <div class="mb-10">
+            <div class="h-1 bg-white/5 rounded-full overflow-hidden">
+                <div id="progress-fill" class="h-full bg-primary transition-all duration-300"></div>
+            </div>
+        </div>
+
+        <main id="main-content" class="content-area">
+            <h2 id="question" class="text-[32px] font-extrabold leading-tight mb-8 tracking-tighter">Carregando...</h2>
+            <div id="options" class="options-container">
+                <!-- Dynamic Options -->
+            </div>
+        </main>
+
+        <footer id="footer-controls" class="fixed bottom-0 left-0 w-full p-6 bg-black/80 backdrop-blur-xl border-t border-white/10 z-[100]">
+            <div class="max-w-[600px] mx-auto flex flex-col gap-3">
+                <button id="next-btn" class="w-full py-5 rounded-pill font-black text-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed">
+                    Continuar
+                </button>
+                <button id="back-btn" class="hidden w-full text-center text-white/50 text-xs font-bold uppercase tracking-widest hover:text-white transition-colors py-2">
+                    Voltar
+                </button>
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+      // Initialize Lucide icons
+      lucide.createIcons();
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

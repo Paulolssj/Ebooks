@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin | ApexCore Security</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #050505;
+            color: white;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .accent-gradient {
+            background: linear-gradient(135deg, #00E0FF 0%, #34D399 100%);
+        }
+
+        input {
+            background: rgba(255, 255, 255, 0.05) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            color: white !important;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen p-4 md:p-8">
+
+    <!-- Login Overlay -->
+    <div id="login-overlay" class="fixed inset-0 z-[2000] bg-black flex items-center justify-center p-6">
+        <div class="glass p-8 rounded-[2rem] w-full max-w-md text-center">
+            <div
+                class="w-16 h-16 accent-gradient rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-[0_0_30px_rgba(0,224,255,0.3)]">
+                <i data-lucide="shield-check" class="text-black w-8 h-8"></i>
+            </div>
+            <h1 class="text-2xl font-black mb-2">Acesso Restrito</h1>
+            <p class="text-white/40 text-sm mb-8">Insira sua senha de administrador ApexCore</p>
+            <input type="password" id="admin-pass"
+                class="w-full p-4 rounded-2xl mb-4 text-center text-lg tracking-widest" placeholder="••••••••">
+            <button onclick="login()"
+                class="w-full py-4 accent-gradient text-black font-black rounded-2xl hover:scale-[1.02] transition-transform">Entrar
+                no Sistema</button>
+            <p id="login-error" class="text-red-400 text-xs mt-4 hidden">Senha incorreta. Tente novamente.</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="admin-content" class="max-w-6xl mx-auto hidden pb-20">
+        <header class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
+            <div>
+                <div class="flex items-center gap-2 mb-2">
+                    <div id="status-indicator" class="status-dot bg-green-500 animate-pulse"></div>
+                    <span id="status-text" class="text-[10px] uppercase font-black tracking-[3px] text-white/30">Sistema Ativo</span>
+                </div>
+                <h2 class="text-3xl font-black tracking-tighter">Painel de Segurança ApexCore</h2>
+            </div>
+            <button onclick="logout()"
+                class="text-xs font-bold text-white/30 hover:text-white transition-colors flex items-center gap-2">
+                <i data-lucide="log-out" class="w-4 h-4"></i> SAIR
+            </button>
+        </header>
+
+        <div class="grid lg:grid-cols-3 gap-8">
+            <!-- Central Control -->
+            <div class="lg:col-span-2 space-y-8">
+                <section class="glass p-8 rounded-[2.5rem]">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center text-primary">
+                            <i data-lucide="settings"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Configurações Mestres</h3>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div>
+                            <label
+                                class="block text-[10px] uppercase font-black tracking-widest text-white/30 mb-2">Link
+                                Global de Checkout</label>
+                            <div class="flex gap-2">
+                                <input type="text" id="master-checkout" class="flex-1 p-4 rounded-xl text-sm"
+                                    placeholder="https://lastlink.com/...">
+                                <button onclick="updateConfig()"
+                                    class="px-6 accent-gradient text-black font-black rounded-xl hover:scale-105 transition-transform">SALVAR</button>
+                            </div>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label
+                                    class="block text-[10px] uppercase font-black tracking-widest text-white/30 mb-2">Chave
+                                    de Acesso Ebooks</label>
+                                <input type="text" id="access-key" class="w-full p-4 rounded-xl text-sm"
+                                    placeholder="apex_vip_...">
+                            </div>
+                            <div>
+                                <label
+                                    class="block text-[10px] uppercase font-black tracking-widest text-white/30 mb-2">Domínio
+                                    Oficial</label>
+                                <input type="text" id="official-domain" class="w-full p-4 rounded-xl text-sm"
+                                    placeholder="ex: drapex.com.br">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="glass p-8 rounded-[2.5rem]">
+                    <div class="flex items-center justify-between mb-8">
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-10 h-10 bg-red-500/10 rounded-xl flex items-center justify-center text-red-400">
+                                <i data-lucide="alert-triangle"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">Clones Detectados</h3>
+                        </div>
+                        <button onclick="fetchData()" class="text-xs text-white/20 hover:text-white"><i
+                                data-lucide="refresh-cw" class="w-4 h-4"></i></button>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead>
+                                <tr
+                                    class="text-[10px] uppercase font-black tracking-widest text-white/20 border-b border-white/5">
+                                    <th class="pb-4 px-2">Domínio Suspeito</th>
+                                    <th class="pb-4 px-2">Data/Hora</th>
+                                    <th class="pb-4 px-2">Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody id="clones-list" class="text-sm">
+                                <!-- Dynamic -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Stats & Quick Actions -->
+            <div class="space-y-8">
+                <div class="glass p-8 rounded-[2.5rem] bg-gradient-to-br from-primary/5 to-transparent">
+                    <h4 class="text-[10px] uppercase font-black tracking-widest text-white/40 mb-6">Status da Oferta
+                    </h4>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center p-4 bg-white/5 rounded-2xl">
+                            <span class="text-xs font-bold">Ebooks Protegidos</span>
+                            <span class="text-green-400 text-xs font-black">ATIVO</span>
+                        </div>
+                        <div class="flex justify-between items-center p-4 bg-white/5 rounded-2xl">
+                            <span class="text-xs font-bold">Anti-Clone Script</span>
+                            <span class="text-green-400 text-xs font-black">ATIVO</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass p-8 rounded-[2.5rem]">
+                    <h4 class="text-[10px] uppercase font-black tracking-widest text-white/40 mb-6">Sua URL de Venda
+                        (Obrigado)</h4>
+                    <p class="text-[10px] text-white/30 mb-4 italic">Configure esta URL como destino pós-venda na
+                        Lastlink:</p>
+                    <div class="p-4 bg-black rounded-xl border border-white/10 break-all text-[11px] font-mono select-all cursor-pointer"
+                        id="unlock-url-display">
+                        https://seu-dominio.vercel.app/api/unlock?key=...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentPass = '';
+
+        function login() {
+            const pass = document.getElementById('admin-pass').value.trim();
+            if (!pass) return;
+            fetchData(pass);
+        }
+
+        async function fetchData(pass = currentPass) {
+            const isLocal = window.location.hostname === 'localhost' || 
+                           window.location.hostname === '127.0.0.1' || 
+                           window.location.protocol === 'file:';
+            
+            // MODO SANDBOX LOCAL: Permite teste visual sem API
+            if (isLocal && pass === 'apex_admin_2024') {
+                currentPass = pass;
+                document.getElementById('login-overlay').classList.add('hidden');
+                document.getElementById('admin-content').classList.remove('hidden');
+                document.getElementById('status-indicator').className = 'status-dot bg-yellow-500 animate-pulse';
+                document.getElementById('status-text').innerText = 'MODO DEMO LOCAL';
+                
+                // Dados simulados para o demo
+                renderUI({
+                    config: {
+                        checkout_url: 'https://lastlink.com/exemplo',
+                        access_key: 'apex_demo_key',
+                        official_domain: 'localhost'
+                    },
+                    logs: [
+                        { domain: 'clone-exemplo.com', timestamp: new Date().toISOString() }
+                    ]
+                });
+                return;
+            }
+
+            try {
+                const resp = await fetch('/api/manage', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ password: pass, action: 'GET_CONFIG' })
+                });
+
+                if (resp.ok) {
+                    const data = await resp.json();
+                    currentPass = pass;
+                    document.getElementById('login-overlay').classList.add('hidden');
+                    document.getElementById('admin-content').classList.remove('hidden');
+                    renderUI(data);
+                } else {
+                    const errorEl = document.getElementById('login-error');
+                    errorEl.classList.remove('hidden');
+                    if (resp.status === 401) {
+                        errorEl.innerText = "Senha incorreta. Tente novamente.";
+                    } else {
+                        errorEl.innerText = "Erro no Servidor: Verifique se o Vercel KV está configurado.";
+                    }
+                }
+            } catch (e) {
+                const errorEl = document.getElementById('login-error');
+                errorEl.innerText = isLocal ? "A senha padrão é apex_admin_2024" : "Erro de Conexão. Publique na Vercel.";
+                errorEl.classList.remove('hidden');
+            }
+        }
+
+        function renderUI(data) {
+            const { config, logs } = data;
+            document.getElementById('master-checkout').value = config.checkout_url || '';
+            document.getElementById('access-key').value = config.access_key || '';
+            document.getElementById('official-domain').value = config.official_domain || '';
+
+            const hostname = window.location.origin;
+            document.getElementById('unlock-url-display').innerText = `${hostname}/api/unlock?key=${config.access_key}`;
+
+            const list = document.getElementById('clones-list');
+            list.innerHTML = logs.length ? '' : '<tr><td colspan="3" class="py-10 text-center text-white/10 italic">Nenhum clone detectado ainda.</td></tr>';
+
+            logs.forEach(log => {
+                const entry = typeof log === 'string' ? JSON.parse(log) : log;
+                const row = document.createElement('tr');
+                row.className = 'border-b border-white/5 group hover:bg-white/[0.02] transition-colors';
+                row.innerHTML = `
+                    <td class="py-4 px-2 font-mono text-xs text-red-400">${entry.domain}</td>
+                    <td class="py-4 px-2 text-white/40 text-[10px]">${new Date(entry.timestamp).toLocaleString()}</td>
+                    <td class="py-4 px-2 italic text-[10px] text-white/20">Monitorado</td>
+                `;
+                list.appendChild(row);
+            });
+
+            lucide.createIcons();
+        }
+
+        async function updateConfig() {
+            const isLocal = window.location.hostname === 'localhost' || window.location.protocol === 'file:';
+            if (isLocal) {
+                alert("Bloqueado: Você não pode alterar as configurações em modo de demonstração local. Publique na Vercel primeiro!");
+                return;
+            }
+
+            const payload = {
+                checkout_url: document.getElementById('master-checkout').value,
+                access_key: document.getElementById('access-key').value,
+                official_domain: document.getElementById('official-domain').value
+            };
+
+            try {
+                const resp = await fetch('/api/manage', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ password: currentPass, action: 'UPDATE_CONFIG', payload })
+                });
+
+                if (resp.ok) {
+                    alert('Configurações salvas com sucesso no banco de dados!');
+                    fetchData();
+                } else {
+                    alert('Erro ao salvar no servidor.');
+                }
+            } catch (e) {
+                alert('Erro de conexão ao salvar.');
+            }
+        }
+
+        function logout() {
+            location.reload();
+        }
+
+        window.onload = () => {
+            document.getElementById('admin-pass').focus();
+            lucide.createIcons();
+        };
+    </script>
+</body>
+
+</html>

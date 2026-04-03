@@ -1,0 +1,168 @@
+/* Custom Typography & Animations */
+:root {
+    --purple-glow: 0 0 40px rgba(168, 85, 247, 0.2);
+}
+
+html {
+    scroll-behavior: smooth;
+    background-color: #050505;
+}
+
+/* Animations */
+@keyframes slide-up {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slow-zoom {
+    from { transform: scale(1.05); }
+    to { transform: scale(1.1); }
+}
+
+.animate-slide-up {
+    animation: slide-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in {
+    animation: fade-in 1.5s ease-out forwards;
+}
+
+.animate-slow-zoom {
+    animation: slow-zoom 20s linear infinite alternate;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #4a1d96; /* Purple 900 */
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #7e22ce; /* Purple 700 */
+}
+
+/* 
+=================================================
+             PRINT RULES (PDF EXPORT)
+=================================================
+*/
+
+@media print {
+    /* Hide everything that isn't content */
+    .no-print {
+        display: none !important;
+    }
+    
+    /* Global Resets for Print */
+    body {
+        background: #ffffff !important;
+        color: #111111 !important;
+        font-family: 'Inter', sans-serif !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    * {
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    /* Page Breaks */
+    .page-break {
+        page-break-before: always;
+        break-before: page;
+        padding-top: 1cm !important;
+    }
+
+    /* Cover specific changes */
+    .print-cover {
+        height: auto !important;
+        min-height: 100vh !important;
+        position: relative !important;
+        display: block !important;
+        page-break-after: always;
+    }
+
+    .print-bg-none {
+        background: none !important;
+    }
+
+    /* Make images crisp and ensure they render on PDF */
+    .print-img-container {
+        border-radius: 0 !important;
+        border: none !important;
+        margin-bottom: 1cm !important;
+        height: auto !important;
+    }
+
+    .print-img-container img {
+        height: auto !important;
+        max-height: 12cm !important;
+        width: 100% !important;
+        object-fit: cover !important;
+        border-radius: 8px !important;
+    }
+
+    /* Text Formatting for Light PDF */
+    h1, h2, h3, h4, h5, h6 {
+        color: #000000 !important;
+        break-after: avoid;
+        page-break-after: avoid;
+    }
+
+    p {
+        color: #222222 !important;
+        orphans: 3;
+        widows: 3;
+        font-size: 13pt !important;
+        line-height: 1.6 !important;
+    }
+
+    /* Prose adjustments */
+    .print-prose {
+        max-width: 100% !important;
+        padding: 0 1.5cm !important;
+    }
+
+    .print-prose h2 {
+        font-size: 32pt !important;
+        margin-bottom: 0.5cm !important;
+        color: #000 !important;
+    }
+
+    .print-prose h3 {
+        color: #6b21a8 !important; /* purple-800 for print */
+    }
+
+    /* Quotes */
+    .print-prose blockquote, .print-prose p.italic {
+        border-left: 4px solid #9333ea !important;
+        color: #444 !important;
+        background: #fafafa !important;
+        padding: 15px !important;
+    }
+
+    /* Links usually have underlines in print */
+    a {
+        text-decoration: none !important;
+        color: #111 !important;
+    }
+
+    /* Custom print-only elements */
+    .print-only {
+        display: block !important;
+    }
+}
