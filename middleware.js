@@ -1,20 +1,22 @@
-import { NextResponse } from 'next/server';
+import { next } from '@vercel/edge';
 
-export function middleware(req) {
-  const { pathname } = req.nextUrl;
+export default function middleware(req) {
+  const { pathname } = new URL(req.url);
 
   // Protege as pastas de Ebook
   if (pathname.startsWith('/Ebook/') || pathname.startsWith('/Ebook2/')) {
-    const accessCookie = req.cookies.get('apex_access_token');
+    // Busca o cookie de autorização
+    const cookies = req.headers.get('cookie') || '';
+    const hasAccess = cookies.includes('apex_access_token=authorized_apex_vip');
     
     // Se o cookie não existir ou for inválido, redireciona para o checkout
-    if (!accessCookie || accessCookie.value !== 'authorized_apex_vip') {
+    if (!hasAccess) {
       const checkoutUrl = 'https://lastlink.com/p/CAA303628/checkout-payment/';
-      return NextResponse.redirect(new URL(checkoutUrl, req.url));
+      return Response.redirect(new URL(checkoutUrl, req.url));
     }
   }
 
-  return NextResponse.next();
+  return next();
 }
 
 export const config = {
