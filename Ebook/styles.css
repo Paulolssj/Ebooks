@@ -1,6 +1,6 @@
 /* Custom Typography & Animations */
 :root {
-    --purple-glow: 0 0 40px rgba(168, 85, 247, 0.2);
+    --cyan-glow: 0 0 40px rgba(0, 224, 255, 0.2);
 }
 
 html {
@@ -46,12 +46,12 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #4a1d96; /* Purple 900 */
+    background: #083344; /* Cyan 900 */
     border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #7e22ce; /* Purple 700 */
+    background: #0e7490; /* Cyan 700 */
 }
 
 /* 
@@ -144,12 +144,12 @@ html {
     }
 
     .print-prose h3 {
-        color: #6b21a8 !important; /* purple-800 for print */
+        color: #0e7490 !important; /* cyan-800 for print */
     }
 
     /* Quotes */
     .print-prose blockquote, .print-prose p.italic {
-        border-left: 4px solid #9333ea !important;
+        border-left: 4px solid #00e0ff !important;
         color: #444 !important;
         background: #fafafa !important;
         padding: 15px !important;

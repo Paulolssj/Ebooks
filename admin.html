@@ -5,6 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Admin | ApexCore Security</title>
+    <meta name="description" content="Painel administrativo seguro do sistema ApexCore. Monitoramento de clones e gestão de links de checkout.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Dashboard Admin | ApexCore Security">
+    <meta property="og:description" content="Painel administrativo seguro do sistema ApexCore.">
+    <meta property="og:type" content="website">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
@@ -52,6 +58,7 @@
             </div>
             <h1 class="text-2xl font-black mb-2">Acesso Restrito</h1>
             <p class="text-white/40 text-sm mb-8">Insira sua senha de administrador ApexCore</p>
+            <label for="admin-pass" class="sr-only">Senha do Administrador</label>
             <input type="password" id="admin-pass"
                 class="w-full p-4 rounded-2xl mb-4 text-center text-lg tracking-widest" placeholder="••••••••">
             <button onclick="login()"
@@ -90,7 +97,7 @@
 
                     <div class="space-y-6">
                         <div>
-                            <label
+                            <label for="master-checkout"
                                 class="block text-[10px] uppercase font-black tracking-widest text-white/30 mb-2">Link
                                 Global de Checkout</label>
                             <div class="flex gap-2">
@@ -103,14 +110,14 @@
 
                         <div class="grid md:grid-cols-2 gap-6">
                             <div>
-                                <label
+                                <label for="access-key"
                                     class="block text-[10px] uppercase font-black tracking-widest text-white/30 mb-2">Chave
                                     de Acesso Ebooks</label>
                                 <input type="text" id="access-key" class="w-full p-4 rounded-xl text-sm"
                                     placeholder="apex_vip_...">
                             </div>
                             <div>
-                                <label
+                                <label for="official-domain"
                                     class="block text-[10px] uppercase font-black tracking-widest text-white/30 mb-2">Domínio
                                     Oficial</label>
                                 <input type="text" id="official-domain" class="w-full p-4 rounded-xl text-sm"
