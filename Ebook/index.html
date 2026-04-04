@@ -6,6 +6,15 @@
   <title>Bio-Otimização Pélvica Masculina | eBook Premium</title>
   <meta name="description" content="Descubra como reverter a perda de virilidade com a ciência da Bio-Otimização Pélvica Masculina. eBook completo e baseado em evidências." />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <noscript>
+    <style>#ebook-content { display: none !important; } #vip-overlay { display: none !important; }</style>
+    <div style="position:fixed; inset:0; background:#0a0a0f; color:#fff; display:flex; align-items:center; justify-content:center; text-align:center; padding:20px; z-index:100000;">
+      <div>
+        <h1 style="color:#e07b2a;">Acesso Bloqueado</h1>
+        <p>Você precisa ativar o JavaScript em seu navegador para ler este Ebook VIP.</p>
+      </div>
+    </div>
+  </noscript>
   <style>
     :root {
       --bg: #0a0a0f;
@@ -448,7 +457,8 @@
     }
   </style>
 </head>
-<body>
+<body class="is-locked">
+  <div id="ebook-content">
 
 <!-- NAV -->
 <nav>
@@ -959,5 +969,147 @@
     }
   });
 </script>
+  </div> <!-- END ebook-content -->
+
+  <!-- VIP GATEWAY -->
+  <style id="gateway-styles">
+    body.is-locked { overflow: hidden; height: 100vh; }
+    body.is-locked #ebook-content { filter: blur(25px); opacity: 0.2; pointer-events: none; transition: 1.5s filter ease; }
+    
+    #vip-overlay {
+      position: fixed; inset: 0; z-index: 9999;
+      background: radial-gradient(circle at center, rgba(15, 15, 20, 0.98) 0%, rgba(5, 5, 5, 1) 100%);
+      display: flex; align-items: center; justify-content: center; padding: 24px;
+      font-family: 'Inter', sans-serif; color: #fff;
+    }
+    .vip-card {
+      background: rgba(255, 255, 255, 0.03); 
+      border: 1px solid rgba(224, 123, 42, 0.2);
+      padding: 60px 40px; border-radius: 40px; max-width: 450px; width: 100%;
+      text-align: center; backdrop-filter: blur(20px);
+      box-shadow: 0 40px 100px rgba(0,0,0,0.8), 0 0 40px rgba(224, 123, 42, 0.1);
+    }
+    .vip-icon { font-size: 50px; margin-bottom: 25px; display: block; color: var(--accent); }
+    .vip-title { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 900; margin-bottom: 12px; }
+    .vip-subtitle { font-size: 0.85rem; color: #9ca3af; margin-bottom: 35px; letter-spacing: 2px; text-transform: uppercase; }
+    
+    .vip-input-wrap { position: relative; margin-bottom: 20px; }
+    .vip-input {
+      width: 100%; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(224, 123, 42, 0.2);
+      padding: 20px; border-radius: 20px; color: #fff; text-align: center; font-size: 1.2rem;
+      letter-spacing: 4px; outline: none; transition: 0.3s;
+    }
+    .vip-input:focus { border-color: var(--accent); background: rgba(255, 255, 255, 0.08); box-shadow: 0 0 20px rgba(224, 123, 42, 0.2); }
+    
+    .vip-btn {
+      width: 100%; background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #000; font-weight: 900; text-transform: uppercase; letter-spacing: 2px;
+      padding: 20px; border-radius: 20px; border: none; cursor: pointer; transition: 0.3s;
+    }
+    .vip-btn:hover { transform: scale(1.02); filter: brightness(1.1); box-shadow: 0 10px 30px rgba(224, 123, 42, 0.3); }
+    
+    .vip-error { color: #f87171; font-size: 0.85rem; margin-top: 15px; display: none; }
+    .shake { animation: shake 0.4s ease-in-out; }
+    @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-10px); } 75% { transform: translateX(10px); } }
+  </style>
+
+
+  <!-- VIP GATEWAY -->
+  <style id="gateway-styles">
+    body.is-locked { overflow: hidden; height: 100vh; }
+    body.is-locked #ebook-content { filter: blur(25px); opacity: 0.2; pointer-events: none; transition: 1.5s filter ease; }
+    
+    #vip-overlay {
+      position: fixed; inset: 0; z-index: 9999;
+      background: radial-gradient(circle at center, rgba(15, 15, 20, 0.98) 0%, rgba(5, 5, 5, 1) 100%);
+      display: flex; align-items: center; justify-content: center; padding: 24px;
+      font-family: 'Inter', sans-serif; color: #fff;
+    }
+    .vip-card {
+      background: rgba(255, 255, 255, 0.03); 
+      border: 1px solid rgba(224, 123, 42, 0.2);
+      padding: 60px 40px; border-radius: 40px; max-width: 450px; width: 100%;
+      text-align: center; backdrop-filter: blur(20px);
+      box-shadow: 0 40px 100px rgba(0,0,0,0.8), 0 0 40px rgba(224, 123, 42, 0.1);
+    }
+    .vip-icon { font-size: 50px; margin-bottom: 25px; display: block; color: var(--accent); }
+    .vip-title { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 900; margin-bottom: 12px; }
+    .vip-subtitle { font-size: 0.85rem; color: #9ca3af; margin-bottom: 35px; letter-spacing: 2px; text-transform: uppercase; }
+    
+    .vip-input-wrap { position: relative; margin-bottom: 20px; }
+    .vip-input {
+      width: 100%; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(224, 123, 42, 0.2);
+      padding: 20px; border-radius: 20px; color: #fff; text-align: center; font-size: 1.2rem;
+      letter-spacing: 4px; outline: none; transition: 0.3s;
+    }
+    .vip-input:focus { border-color: var(--accent); background: rgba(255, 255, 255, 0.08); box-shadow: 0 0 20px rgba(224, 123, 42, 0.2); }
+    
+    .vip-btn {
+      width: 100%; background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #000; font-weight: 900; text-transform: uppercase; letter-spacing: 2px;
+      padding: 20px; border-radius: 20px; border: none; cursor: pointer; transition: 0.3s;
+    }
+    .vip-btn:hover { transform: scale(1.02); filter: brightness(1.1); box-shadow: 0 10px 30px rgba(224, 123, 42, 0.3); }
+    
+    .vip-error { color: #f87171; font-size: 0.85rem; margin-top: 15px; display: none; }
+    .shake { animation: shake 0.4s ease-in-out; }
+    @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-10px); } 75% { transform: translateX(10px); } }
+  </style>
+
+  <div id="vip-overlay">
+    <div class="vip-card" id="vip-card">
+      <span class="vip-icon">🔐</span>
+      <h2 class="vip-title">Acesso VIP</h2>
+      <p class="vip-subtitle">Ebook 1: Bio-Otimização</p>
+      <div style="background: rgba(224, 123, 42, 0.1); border-radius: 12px; padding: 12px; margin-bottom: 25px; border: 1px dashed rgba(224, 123, 42, 0.3); font-size: 0.8rem; color: #f5a623; display: flex; align-items: center; gap: 10px; text-align: left; line-height: 1.4;">
+        <span>⚠️</span>
+        <span>A sua senha de acesso está disponível na <strong>descrição deste eBook na Lastlink</strong>.</span>
+      </div>
+      <div class="vip-input-wrap">
+        <input type="password" id="vip-pass" class="vip-input" placeholder="••••••••" autocomplete="off" />
+      </div>
+      <button class="vip-btn" onclick="validateVIP()">Validar Acesso</button>
+      <p id="vip-error" class="vip-error">Senha incorreta. Verifique sua área do aluno.</p>
+    </div>
+  </div>
+
+  <script id="gateway-script">
+    (function() {
+      const PASS = "apex_bio_2026";
+      const KEY = "apex_ebook1_access_2026";
+      
+      const overlay = document.getElementById('vip-overlay');
+      const inputEl = document.getElementById('vip-pass');
+      const errorEl = document.getElementById('vip-error');
+      const cardEl = document.getElementById('vip-card');
+
+      // Immediate check
+      if (sessionStorage.getItem(KEY) === "true") {
+        overlay.style.display = 'none';
+        document.body.classList.remove('is-locked');
+      }
+
+      window.validateVIP = function() {
+        const val = inputEl.value.replace(/[\u200B-\u200D\uFEFF]/g, '').trim();
+        if (val === PASS) {
+          sessionStorage.setItem(KEY, "true");
+          overlay.style.transition = 'opacity 0.8s ease';
+          overlay.style.opacity = '0';
+          document.body.classList.remove('is-locked');
+          setTimeout(() => overlay.style.display = 'none', 800);
+        } else {
+          errorEl.style.display = 'block';
+          cardEl.classList.add('shake');
+          setTimeout(() => cardEl.classList.remove('shake'), 400);
+          inputEl.value = '';
+        }
+      };
+
+      inputEl.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') validateVIP();
+      });
+    })();
+  </script>
+
 </body>
 </html>

@@ -4,7 +4,7 @@ export default async function handler(req, res) {
   const { password, action, payload } = req.body;
 
   // AUTH: Senha básica de administrador
-  const ADMIN_PASS = process.env.ADMIN_PASSWORD || 'apex_admin_2024';
+  const ADMIN_PASS = process.env.ADMIN_PASSWORD || 'apex_admin_2026';
   
   if (password !== ADMIN_PASS) {
     return res.status(401).json({ error: 'Acesso Negado' });
@@ -14,7 +14,7 @@ export default async function handler(req, res) {
     if (action === 'GET_CONFIG') {
       const config = await kv.hgetall('apex_config') || {
         checkout_url: 'https://lastlink.com/p/CAA303628/checkout-payment/',
-        access_key: 'apex_vip_access_2024_secure',
+        access_key: 'apex_vip_access_2026_secure',
         official_domain: ''
       };
       const logs = await kv.lrange('apex_clones_log', 0, 49) || [];

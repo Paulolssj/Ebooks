@@ -204,7 +204,7 @@
                            window.location.protocol === 'file:';
             
             // MODO SANDBOX LOCAL: Permite teste visual sem API
-            if (isLocal && pass === 'apex_admin_2024') {
+            if (isLocal && pass === 'apex_admin_2026') {
                 currentPass = pass;
                 document.getElementById('login-overlay').classList.add('hidden');
                 document.getElementById('admin-content').classList.remove('hidden');
@@ -249,7 +249,7 @@
                 }
             } catch (e) {
                 const errorEl = document.getElementById('login-error');
-                errorEl.innerText = isLocal ? "A senha padrão é apex_admin_2024" : "Erro de Conexão. Publique na Vercel.";
+                errorEl.innerText = isLocal ? "A senha padrão é apex_admin_2026" : "Erro de Conexão. Publique na Vercel.";
                 errorEl.classList.remove('hidden');
             }
         }
