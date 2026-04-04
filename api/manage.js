@@ -1,4 +1,4 @@
-import { kv } from '@vercel/kv';
+import { supabase } from './supabase.js';
 
 export default async function handler(req, res) {
   const { password, action, payload } = req.body;
@@ -12,22 +12,40 @@ export default async function handler(req, res) {
 
   try {
     if (action === 'GET_CONFIG') {
-      const config = await kv.hgetall('apex_config') || {
+      // 1. Busca Configuração Base
+      const { data: configData, error: configError } = await supabase
+        .from('apex_config')
+        .select('value')
+        .eq('key', 'main_config')
+        .single();
+
+      // 2. Busca Logs de Clones (últimos 50)
+      const { data: logsData, error: logsError } = await supabase
+        .from('apex_clones_log')
+        .select('*')
+        .order('created_at', { ascending: false })
+        .limit(50);
+
+      const config = configData?.value || {
         checkout_url: 'https://lastlink.com/p/CAA303628/checkout-payment/',
         access_key: 'apex_vip_access_2026_secure',
         official_domain: ''
       };
-      const logs = await kv.lrange('apex_clones_log', 0, 49) || [];
-      return res.status(200).json({ config, logs });
+
+      return res.status(200).json({ config, logs: logsData || [] });
 
     } else if (action === 'UPDATE_CONFIG') {
-      await kv.hset('apex_config', payload);
-      return res.status(200).json({ success: true, message: 'Configurações Atualizadas' });
+      const { error } = await supabase
+        .from('apex_config')
+        .upsert({ key: 'main_config', value: payload, updated_at: new Date() });
+
+      if (error) throw error;
+      return res.status(200).json({ success: true, message: 'Configurações Atualizadas no Supabase' });
     }
 
     return res.status(400).json({ error: 'Ação Inválida' });
   } catch (err) {
-    console.error('KV Error:', err);
-    return res.status(500).json({ error: 'Erro no Banco de Dados' });
+    console.error('Supabase Error:', err);
+    return res.status(500).json({ error: 'Erro no Banco de Dados Supabase' });
   }
 }

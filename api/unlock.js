@@ -1,10 +1,16 @@
-import { kv } from '@vercel/kv';
+import { supabase } from './supabase.js';
 
 export default async function handler(req, res) {
   const { key, goto = '/Ebook/index.html' } = req.query;
 
-  // Busca a configuração atualizada ou usa o padrão
-  const config = await kv.hgetall('apex_config') || {};
+  // Busca a configuração atualizada no Supabase
+  const { data: configData } = await supabase
+    .from('apex_config')
+    .select('value')
+    .eq('key', 'main_config')
+    .single();
+
+  const config = configData?.value || {};
   const MASTER_KEY = config.access_key || 'apex_vip_access_2026_secure';
   const CHECKOUT_URL = config.checkout_url || 'https://lastlink.com/p/CAA303628/checkout-payment/';
 
