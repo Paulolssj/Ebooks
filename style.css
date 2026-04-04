@@ -643,6 +643,49 @@ html, body {
   border-color: var(--primary);
 }
 
+/* Visual Choice (Question 15) */
+.visual-choice-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.visual-choice-img-wrapper {
+  position: relative;
+  width: 100%;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #000;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.visual-choice-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.visual-glow-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(0, 224, 255, 0.1), transparent 70%);
+  animation: scanning 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes scanning {
+  0% { opacity: 0.3; transform: scale(0.9); }
+  50% { opacity: 0.6; transform: scale(1.1); }
+  100% { opacity: 0.3; transform: scale(0.9); }
+}
+
+.visual-choice-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 /* Social Proof Steps */
 .inspiration-container {
   text-align: center;

@@ -71,26 +71,56 @@ const quizData = [
   {type: "rating", question: "Quão satisfeito você está com sua performance atual?", options: ["1", "2", "3", "4", "5"], label: "Satisfação"},
   {type: "choice", question: "Sua confiança é afetada por esses fatores?", options: ["Sim, significativamente", "Um pouco", "Não, me sinto confiante"]},
   {type: "choice", question: "Você utiliza tabaco ou vapes com frequência?", options: ["Sim, diariamente", "Ocasionalmente", "Não utilizo"]},
-  {type: "rating", question: "Como você avalia sua qualidade alimentar?", options: ["1", "2", "3", "4", "5"], label: "Saúde"},
-  {type: "choice", question: "Qual seu objetivo principal com o plano?", options: ["Máximo Controle", "Rigidez Superior", "Aumento de Libido", "Saúde Sexual Preventiva", "Energia e Vigor"]}
+  {
+    type: "rating", 
+    question: "Como você avalia sua qualidade alimentar?", 
+    options: ["1", "2", "3", "4", "5"], 
+    label: "Saúde"
+  },
+  {
+    type: "gradient-slider",
+    question: "Como você classificaria seu nível de estresse recente?",
+    min: 0,
+    max: 10,
+    initial: 5,
+    unit: "",
+    statusLabels: { 0: "Zen", 4: "Moderado", 7: "Elevado", 9: "Crítico" }
+  },
+  {
+    type: "choice",
+    question: "Qual sua frequência de consumo de álcool ou estimulantes?",
+    options: ["Raramente / Nunca", "Socialmente (1-2x semana)", "Frequentemente (3-4x)", "Diariamente"]
+  },
+  {
+    type: "visual-choice",
+    question: "Análise de Tensão Pélvica: Identifique sua condição atual",
+    image: "pelvic_blood_flow_diagram_1775301438774.png",
+    options: ["Leveza e Vigor (Fluxo Otimizado)", "Tensão Ocasional (Fluxo Regular)", "Peso e Congestão (Fluxo Restrito)", "Desconforto Constante (Fluxo Crítico)"],
+    objective: "Mapeamento Biológico"
+  },
+  {
+    type: "choice", 
+    question: "Qual seu objetivo principal com o plano?", 
+    options: ["Máximo Controle", "Rigidez Superior", "Aumento de Libido", "Saúde Sexual Preventiva", "Energia e Vigor"]
+  }
 ];
 
 const inspirations = [
   {
-    step: 4, 
+    step: 5, 
     title: "Excelente Início!",
     image: "vitality.png", 
     text: "87% dos homens com perfil pélvico similar ao seu alcançaram maior controle e vigor nos primeiros 30 dias de protocolo."
   },
   {
-    step: 8, 
+    step: 10, 
     title: "Ótimo Progresso!",
     image: "couple.png", 
     text: "A recuperação da confiança sexual é o benefício #1 relatado por nossos usuários após a 2ª semana."
   },
   {
-    step: 12, 
-    title: "Análise Final",
+    step: 15, 
+    title: "Análise Biométrica",
     image: "badge.png", 
     text: "Diagnóstico Final: Você possui alto potencial de resposta aos exercícios de Bio-Otimização do Dr. Apex."
   }
@@ -415,6 +445,27 @@ function renderStep() {
         grid.appendChild(item);
       });
       optionsEl.appendChild(grid);
+    } else if (step.type === 'visual-choice') {
+      const container = document.createElement('div');
+      container.className = 'visual-choice-container';
+      
+      container.innerHTML = `
+        <div class="visual-choice-img-wrapper">
+          <img src="${step.image}" class="visual-choice-img" alt="Scan Pélvico">
+          <div class="visual-glow-overlay"></div>
+        </div>
+        <div class="visual-choice-options">
+          ${step.options.map((option, index) => `
+            <div class="option-card ${selections[currentStep] === index ? 'selected' : ''}" onclick="selectOption(${index})">
+              <span class="option-text">${option}</span>
+              <div class="check-circle">
+                <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+      optionsEl.appendChild(container);
     }
 
     backBtn.style.display = currentStep > 0 ? 'block' : 'none';
@@ -555,7 +606,7 @@ function showAnalyzing() {
           <span class="text-[10px] text-white/30 uppercase tracking-widest block mb-2">Variáveis</span>
           <div class="flex items-center gap-2 text-sm font-bold">
             <div class="w-1.5 h-1.5 bg-primary rounded-full shadow-[0_0_8px_#38BDF8]"></div> 
-            12 inputs
+            15 inputs
           </div>
         </div>
         <div class="bg-white/5 border border-white/10 rounded-2xl p-4">
@@ -671,9 +722,9 @@ function drawRadarChart() {
   const values = [
     selections[4] !== undefined ? (selections[4].x / 100) * 100 : 60, // Stamina (from XY Pad)
     selections[5] !== undefined ? (selections[5] + 1) * 20 : 50, // Control
-    selections[7] !== undefined ? (selections[7] + 1) * 20 : 70, // Rigidez
-    selections[11] !== undefined ? (selections[11] + 1) * 20 : 80, // Health
-    selections[9] !== undefined ? (selections[9] + 1) * 20 : 40  // Confidence
+    selections[6] !== undefined ? (selections[6] + 1) * 20 : 70, // Rigidez
+    selections[12] !== undefined ? (selections[12] + 1) * 25 : 80, // Health (Alimentação/Lifestlye)
+    selections[14] !== undefined ? (selections[14] + 1) * 20 : 40  // Confidence
   ];
 
   let svgHtml = `<svg class="radar-chart" viewBox="0 0 ${size} ${size}">`;
