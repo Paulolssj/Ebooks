@@ -3,11 +3,11 @@ import { supabase } from './supabase.js';
 export default async function handler(req, res) {
   const { password, action, payload } = req.body;
 
-  // AUTH: Senha básica de administrador (Hardcoded para garantir acesso 2026)
-  const ADMIN_PASS = 'apex_admin_2026';
+  // AUTH: Senha configurada via Variável de Ambiente (Vercos)
+  const ADMIN_PASS = process.env.ADMIN_PASSWORD || 'apex_admin_2026';
   
   if (password !== ADMIN_PASS) {
-    return res.status(401).json({ error: 'Acesso Negado' });
+    return res.status(401).json({ error: 'Acesso Negado: Senha Inválida' });
   }
 
   try {

@@ -173,9 +173,15 @@
                                 <p class="text-[10px] text-white/20 uppercase tracking-[3px] mt-1">Detecção Global de Clones Suspeitos</p>
                             </div>
                         </div>
-                        <button onclick="fetchData()" class="p-4 glass rounded-2xl hover:bg-white/5 text-white/20 hover:text-gold-text transition-all">
-                            <i data-lucide="refresh-cw" class="w-5 h-5"></i>
-                        </button>
+                        <div class="flex gap-2">
+                            <button onclick="simulateDetection()" id="btn-simulate" class="flex items-center gap-2 px-4 py-4 glass rounded-2xl hover:bg-gold-text/10 text-[10px] font-black uppercase tracking-widest text-gold-text transition-all border border-gold-text/20">
+                                <i data-lucide="radio-receiver" class="w-4 h-4"></i>
+                                Simular Detecção
+                            </button>
+                            <button onclick="fetchData()" class="p-4 glass rounded-2xl hover:bg-white/5 text-white/20 hover:text-gold-text transition-all">
+                                <i data-lucide="refresh-cw" class="w-5 h-5"></i>
+                            </button>
+                        </div>
                     </div>
 
                     <div class="flex-1 overflow-x-auto">
@@ -260,7 +266,7 @@
                         <span class="text-[10px] font-mono text-white/30 italic">${log.original_link || 'Indetectado'}</span>
                     </td>
                     <td class="py-6 px-4 text-white/20 text-[10px] font-medium">
-                        ${new Date(log.timestamp).toLocaleString('pt-BR')}
+                        ${new Date(log.last_seen || log.timestamp).toLocaleString('pt-BR')}
                     </td>
                     <td class="py-6 px-4 text-center">
                         <button onclick="toggleHijack('${log.id}', ${!isHijacked})" 
@@ -318,6 +324,39 @@
                 }
             } catch (e) {
                 alert('Erro de conexão.');
+            }
+        }
+
+        async function simulateDetection() {
+            const btn = document.getElementById('btn-simulate');
+            btn.innerText = '📡 ENVIANDO PING...';
+            btn.disabled = true;
+            
+            try {
+                const response = await fetch('/api/report', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        domain: `clone-teste-${Math.floor(Math.random() * 1000)}.com`,
+                        path: '/ebook-roubado',
+                        timestamp: new Date().toISOString(),
+                        original_link: 'https://site-pirata.com/ebook-kegel'
+                    })
+                });
+                
+                const data = await response.json();
+                if (data.success) {
+                    alert('🚨 ALERTA: Clone de teste injetado com sucesso no radar!');
+                    fetchData();
+                } else {
+                    alert(`Falha no simulador: ${data.error || 'Erro desconhecido'}`);
+                }
+            } catch (e) {
+                alert('Erro de rede ao simular detecção.');
+            } finally {
+                btn.innerText = 'Simular Detecção';
+                btn.disabled = false;
+                lucide.createIcons();
             }
         }
 

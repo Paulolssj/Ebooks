@@ -1,0 +1,10 @@
+node_modules
+.env
+.env.*
+.vercel
+*.log
+tmp_check_db.js
+verify_live_api.js
+diagnose.js
+15383
+.gemini
