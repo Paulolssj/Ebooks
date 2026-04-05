@@ -163,6 +163,40 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+window.skipQuiz = function() {
+  const footerControls = document.getElementById('footer-controls');
+  if (footerControls) footerControls.style.display = 'none';
+  const socialTicker = document.getElementById('social-ticker');
+  if (socialTicker) socialTicker.style.display = 'none';
+  const stepCounter = document.getElementById('step-counter');
+  if (stepCounter) stepCounter.style.display = 'none';
+  const quizHeader = document.getElementById('quiz-header');
+  if (quizHeader) quizHeader.style.display = 'none';
+  const progressContainer = document.getElementById('progress-container');
+  if (progressContainer) progressContainer.style.display = 'none';
+  
+  if (heroSection.style.display !== 'none') {
+    gsap.to(heroSection, {
+      opacity: 0,
+      y: -50,
+      duration: 0.5,
+      onComplete: () => {
+        heroSection.style.display = 'none';
+        const aboutSection = document.getElementById('about');
+        if (aboutSection) aboutSection.classList.add('hidden');
+        const navEl = document.querySelector('.pill-nav');
+        if (navEl) navEl.classList.add('nav-hidden');
+        quizRoot.style.display = 'block';
+        showProtocol();
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      }
+    });
+  } else {
+    showProtocol();
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+};
+
 function startQuiz() {
   gsap.to(heroSection, {
     opacity: 0,
