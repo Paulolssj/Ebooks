@@ -61,13 +61,14 @@ export default async function handler(req, res) {
       if (error) throw error;
       return res.status(200).json({ success: true, message: `Status de Sequestro Atualizado` });
 
-    } else if (action === 'UPDATE_CONFIG') {
+    } else if (action === 'CLEAR_LOGS') {
       const { error } = await supabase
-        .from('apex_config')
-        .upsert({ key: 'main_config', value: payload, updated_at: new Date() });
+        .from('apex_clones_log')
+        .delete()
+        .neq('id', 0); // Delete all rows where id != 0 (standard hack to delete all)
 
       if (error) throw error;
-      return res.status(200).json({ success: true, message: 'Configurações Globais Sincronizadas' });
+      return res.status(200).json({ success: true, message: 'Base de Dados Limpa' });
     }
 
     return res.status(400).json({ error: 'Comando Não Reconhecido' });
