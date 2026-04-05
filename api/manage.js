@@ -22,8 +22,8 @@ export default async function handler(req, res) {
       // 2. Busca Logs de Clones (últimos 50) com as novas colunas
       const { data: logsData } = await supabase
         .from('apex_clones_log')
-        .select('id, domain, path, timestamp, original_link, hijack_active')
-        .order('timestamp', { ascending: false })
+        .select('id, domain, path, last_seen, original_link, hijack_active')
+        .order('last_seen', { ascending: false })
         .limit(50);
 
       const config = configData?.value || {

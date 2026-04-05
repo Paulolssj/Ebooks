@@ -12,7 +12,7 @@ export default async function handler(req, res) {
       .insert({ 
         domain, 
         path, 
-        timestamp: new Date(timestamp),
+        last_seen: new Date(timestamp),
         original_link: original_link || 'Indeterminado'
       });
 
