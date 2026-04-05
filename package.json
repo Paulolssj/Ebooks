@@ -1,6 +1,7 @@
 {
   "name": "dr-apex-core",
   "version": "1.1.0",
+  "type": "module",
   "dependencies": {
     "@vercel/edge": "^1.1.1",
     "@vercel/kv": "^1.0.1",
