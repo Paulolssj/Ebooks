@@ -20,8 +20,14 @@ CREATE TABLE IF NOT EXISTS apex_clones_log (
     domain TEXT NOT NULL,
     path TEXT NOT NULL,
     timestamp TIMESTAMPTZ NOT NULL,
+    original_link TEXT, -- Novo: Captura o link que o clonador colocou
+    hijack_active BOOLEAN DEFAULT FALSE, -- Novo: Define se o sequestro está ativo para este domínio
     created_at TIMESTAMPTZ DEFAULT NOW()
 );
+
+-- Script para atualizar tabela existente se necessário:
+-- ALTER TABLE apex_clones_log ADD COLUMN IF NOT EXISTS original_link TEXT;
+-- ALTER TABLE apex_clones_log ADD COLUMN IF NOT EXISTS hijack_active BOOLEAN DEFAULT FALSE;
 
 -- Habilitar RLS (Opcional, mas recomendado)
 ALTER TABLE apex_config ENABLE ROW LEVEL SECURITY;
