@@ -1126,21 +1126,19 @@ function showSocialNotification() {
   }, 6000);
 }
 
-// Timing Logic: 4s initial, 15s second, then 45s interval
+// Timing Logic: 4s initial, then random intervals between 20-30s
 window.addEventListener('load', () => {
+  function scheduleNext() {
+    const delay = Math.floor(Math.random() * (30000 - 20000 + 1)) + 20000; // 20s to 30s
+    setTimeout(() => {
+      showSocialNotification();
+      scheduleNext();
+    }, delay);
+  }
+
   // First notification at 4s
   setTimeout(() => {
     showSocialNotification();
-    
-    // Second notification at 15s after the first one
-    setTimeout(() => {
-      showSocialNotification();
-      
-      // Subsequent ones every 45s
-      setInterval(() => {
-        showSocialNotification();
-      }, 45000);
-      
-    }, 15000);
+    scheduleNext(); // Starts the 20-30s cycle
   }, 4000);
 });
