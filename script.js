@@ -1126,9 +1126,9 @@ function showSocialNotification() {
   }, 6000);
 }
 
-// Timing Logic: 5s initial, 15s second, then 45s interval
+// Timing Logic: 4s initial, 15s second, then 45s interval
 window.addEventListener('load', () => {
-  // First notification at 5s
+  // First notification at 4s
   setTimeout(() => {
     showSocialNotification();
     
@@ -1142,5 +1142,5 @@ window.addEventListener('load', () => {
       }, 45000);
       
     }, 15000);
-  }, 5000);
+  }, 4000);
 });
