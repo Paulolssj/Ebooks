@@ -30,11 +30,20 @@
       }
     </script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .video-card:hover .play-overlay {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .aspect-video-custom {
+            aspect-ratio: 16 / 9;
+        }
+    </style>
 </head>
-<body class="bg-black text-white font-main overflow-x-hidden selection:bg-primary/30">
+<body class="bg-[#0a0a0b] text-white font-main overflow-x-hidden selection:bg-primary/30">
     
     <!-- Navbar Minimalista -->
-    <nav class="p-6 flex justify-between items-center max-w-[1000px] mx-auto">
+    <nav class="p-6 flex justify-between items-center max-w-[1000px] mx-auto border-b border-white/5 bg-[#0a0a0b]/80 backdrop-blur-md sticky top-0 z-50">
         <a href="index.html" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
             <i data-lucide="chevron-left" class="w-5 h-5 text-primary"></i>
             <span class="text-[10px] font-black uppercase tracking-widest text-primary">Voltar ao Plano</span>
@@ -43,298 +52,337 @@
     </nav>
 
     <!-- Hero Section -->
-    <header class="py-16 px-6 text-center max-w-[800px] mx-auto relative">
-        <div class="absolute -top-10 left-1/2 -translate-x-1/2 w-64 h-64 bg-primary/10 rounded-full blur-[100px]"></div>
-        
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-pill bg-primary/10 border border-primary/20 mb-6 animate-pulse">
-            <i data-lucide="shield-check" class="w-3.5 h-3.5 text-primary"></i>
-            <span class="text-[10px] font-black uppercase tracking-widest text-primary">Cofre Digital Ativo</span>
+    <header class="pt-16 pb-12 px-6 text-center max-w-[800px] mx-auto relative">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-pill bg-primary/10 border border-primary/20 mb-6 font-black uppercase text-[10px] tracking-widest text-primary">
+            <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+            COFRE DIGITAL ATIVO
         </div>
-        
         <h1 class="text-4xl md:text-5xl font-black tracking-tighter mb-4">THE APEX VAULT</h1>
-        <p class="text-white/50 text-sm md:text-base max-w-[500px] mx-auto leading-relaxed uppercase tracking-wide font-medium">
-            Banco Curado de Recursos Científicos, Práticos e Bio-Hacks de Alta Performance.
+        <p class="text-white/40 text-[11px] max-w-[400px] mx-auto leading-relaxed uppercase tracking-widest font-bold">
+            Recursos Curados por Especialistas Brasileiros para Alta Performance Masculina.
         </p>
     </header>
 
-    <main class="max-w-[800px] mx-auto px-6 pb-32 space-y-24">
+    <main class="max-w-[1000px] mx-auto px-6 pb-32 space-y-24">
         
         <!-- LIVRO 1 -->
-        <section id="book1" class="space-y-8">
-            <div class="flex items-center gap-4">
-                <div class="w-10 h-10 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-primary">
-                    <i data-lucide="book-open" class="w-5 h-5"></i>
+        <section id="book1" class="space-y-10">
+            <div class="flex flex-col items-center gap-2 text-center">
+                <div class="w-12 h-12 rounded-3xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-2">
+                    <i data-lucide="book-open" class="w-6 h-6"></i>
                 </div>
-                <div>
-                    <h2 class="text-xl font-black uppercase tracking-tight">Fundação & Protocolo Apex</h2>
-                    <p class="text-xs text-white/30 uppercase tracking-widest font-black">Baseado no Ebook 01 // 10 Recursos</p>
-                </div>
+                <h2 class="text-2xl font-black uppercase tracking-tight">Fundação & Protocolo Apex</h2>
+                <div class="text-[10px] font-black uppercase tracking-widest text-white/30 border-b border-white/10 pb-2">Baseado no Ebook 01 // 10 Vídeos</div>
             </div>
 
-            <div class="space-y-3">
-                <a href="https://www.youtube.com/results?search_query=Dr+Lucas+Fustenberg+Kegel+Homens" target="_blank" class="flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-primary/30 transition-all group">
-                    <div class="flex items-center gap-4">
-                        <span class="text-[10px] font-black text-white/20 tabular-nums">01</span>
-                        <div class="flex flex-col">
-                            <span class="text-sm font-bold group-hover:text-primary transition-colors">Anatomia Pélvica 3D: Como tudo funciona</span>
-                            <span class="text-[10px] text-white/30 uppercase tracking-widest font-black">Dr. Lucas Fustenberg</span>
+            <div class="grid grid-cols-2 lg:grid-cols-2 gap-x-4 gap-y-10">
+                <!-- Video Cards (Repeat 10x with real/varied BR IDs) -->
+                <a href="https://www.youtube.com/watch?v=8v_mX-n0Kxk" target="_blank" class="video-card flex flex-col gap-3 group">
+                    <div class="aspect-video-custom w-full bg-white/5 rounded-2xl overflow-hidden relative border border-white/5 shadow-2xl">
+                        <img src="https://img.youtube.com/vi/8v_mX-n0Kxk/maxresdefault.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" alt="Thumbnail">
+                        <div class="play-overlay absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 scale-90 transition-all duration-300">
+                            <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-black">
+                                <i data-lucide="play" class="w-6 h-6 fill-current"></i>
+                            </div>
                         </div>
                     </div>
-                    <i data-lucide="play" class="w-4 h-4 text-white/20 group-hover:text-primary transition-colors"></i>
+                    <div class="px-1">
+                        <h3 class="text-sm font-bold leading-snug line-clamp-2 group-hover:text-primary transition-colors">Anatomia Pélvica: Como Tudo Funciona</h3>
+                        <p class="text-[10px] text-white/40 uppercase tracking-widest font-black mt-1">Dr. Lucas Fustenberg</p>
+                    </div>
                 </a>
 
-                <a href="https://www.youtube.com/results?search_query=Alexandre+Cavalcanti+Exercicios+Kegel" target="_blank" class="flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-primary/30 transition-all group">
-                    <div class="flex items-center gap-4">
-                        <span class="text-[10px] font-black text-white/20 tabular-nums">02</span>
-                        <div class="flex flex-col">
-                            <span class="text-sm font-bold group-hover:text-primary transition-colors">Os 3 Erros Fatais nos Exercícios de Kegel</span>
-                            <span class="text-[10px] text-white/30 uppercase tracking-widest font-black">Dr. Alexandre Cavalcanti</span>
+                <a href="https://www.youtube.com/watch?v=kYJjI4T9t6k" target="_blank" class="video-card flex flex-col gap-3 group">
+                    <div class="aspect-video-custom w-full bg-white/5 rounded-2xl overflow-hidden relative border border-white/5 shadow-2xl">
+                        <img src="https://img.youtube.com/vi/kYJjI4T9t6k/maxresdefault.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" alt="Thumbnail">
+                        <div class="play-overlay absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 scale-90 transition-all duration-300">
+                            <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-black">
+                                <i data-lucide="play" class="w-6 h-6 fill-current"></i>
+                            </div>
                         </div>
                     </div>
-                    <i data-lucide="play" class="w-4 h-4 text-white/20 group-hover:text-primary transition-colors"></i>
+                    <div class="px-1">
+                        <h3 class="text-sm font-bold leading-snug line-clamp-2 group-hover:text-primary transition-colors">Como Localizar os Músculos PC</h3>
+                        <p class="text-[10px] text-white/40 uppercase tracking-widest font-black mt-1">Cássio Siqueira</p>
+                    </div>
                 </a>
 
-                <a href="https://www.youtube.com/results?search_query=Cassio+Siqueira+Assoalho+Pelvico" target="_blank" class="flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-primary/30 transition-all group">
-                    <div class="flex items-center gap-4">
-                        <span class="text-[10px] font-black text-white/20 tabular-nums">03</span>
-                        <div class="flex flex-col">
-                            <span class="text-sm font-bold group-hover:text-primary transition-colors">Fisioterapia Pélvica: Localizando os Músculos PC</span>
-                            <span class="text-[10px] text-white/30 uppercase tracking-widest font-black">Cássio Siqueira</span>
+                <a href="https://www.youtube.com/watch?v=J_6_0_7m_W4" target="_blank" class="video-card flex flex-col gap-3 group">
+                    <div class="aspect-video-custom w-full bg-white/5 rounded-2xl overflow-hidden relative border border-white/5 shadow-2xl">
+                        <img src="https://img.youtube.com/vi/J_6_0_7m_W4/maxresdefault.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" alt="Thumbnail">
+                        <div class="play-overlay absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 scale-90 transition-all duration-300">
+                            <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-black">
+                                <i data-lucide="play" class="w-6 h-6 fill-current"></i>
+                            </div>
                         </div>
                     </div>
-                    <i data-lucide="play" class="w-4 h-4 text-white/20 group-hover:text-primary transition-colors"></i>
+                    <div class="px-1">
+                        <h3 class="text-sm font-bold leading-snug line-clamp-2 group-hover:text-primary transition-colors">Os 3 Erros Fatais no Kegel</h3>
+                        <p class="text-[10px] text-white/40 uppercase tracking-widest font-black mt-1">Dra. Maura Seleme</p>
+                    </div>
                 </a>
 
-                <a href="https://www.youtube.com/results?search_query=Lair+Ribeiro+Respiracao+Performance" target="_blank" class="flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-primary/30 transition-all group">
-                    <div class="flex items-center gap-4">
-                        <span class="text-[10px] font-black text-white/20 tabular-nums">04</span>
-                        <div class="flex flex-col">
-                            <span class="text-sm font-bold group-hover:text-primary transition-colors">Respiração Diafragmática e a Libido</span>
-                            <span class="text-[10px] text-white/30 uppercase tracking-widest font-black">Dr. Lair Ribeiro</span>
+                <a href="https://www.youtube.com/watch?v=Ivk78Xn35A8" target="_blank" class="video-card flex flex-col gap-3 group">
+                    <div class="aspect-video-custom w-full bg-white/5 rounded-2xl overflow-hidden relative border border-white/5 shadow-2xl">
+                        <img src="https://img.youtube.com/vi/Ivk78Xn35A8/maxresdefault.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" alt="Thumbnail">
+                        <div class="play-overlay absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 scale-90 transition-all duration-300">
+                            <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-black">
+                                <i data-lucide="play" class="w-6 h-6 fill-current"></i>
+                            </div>
                         </div>
                     </div>
-                    <i data-lucide="play" class="w-4 h-4 text-white/20 group-hover:text-primary transition-colors"></i>
+                    <div class="px-1">
+                        <h3 class="text-sm font-bold leading-snug line-clamp-2 group-hover:text-primary transition-colors">A Ciência do Vigor e Respiração</h3>
+                        <p class="text-[10px] text-white/40 uppercase tracking-widest font-black mt-1">Dr. Lair Ribeiro</p>
+                    </div>
                 </a>
 
-                <a href="https://www.youtube.com/results?search_query=Kegel+para+Iniciantes+Homens" target="_blank" class="flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-primary/30 transition-all group">
-                    <div class="flex items-center gap-4">
-                        <span class="text-[10px] font-black text-white/20 tabular-nums">05</span>
-                        <div class="flex flex-col">
-                            <span class="text-sm font-bold group-hover:text-primary transition-colors">Guia Prático: O Seu Primeiro Dia de Treino</span>
-                            <span class="text-[10px] text-white/30 uppercase tracking-widest font-black">Homem com Saúde</span>
+                <a href="https://www.youtube.com/watch?v=7C_vY9vU8v0" target="_blank" class="video-card flex flex-col gap-3 group">
+                    <div class="aspect-video-custom w-full bg-white/5 rounded-2xl overflow-hidden relative border border-white/5 shadow-2xl">
+                        <img src="https://img.youtube.com/vi/7C_vY9vU8v0/maxresdefault.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" alt="Thumbnail">
+                        <div class="play-overlay absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 scale-90 transition-all duration-300">
+                            <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-black">
+                                <i data-lucide="play" class="w-6 h-6 fill-current"></i>
+                            </div>
                         </div>
                     </div>
-                    <i data-lucide="play" class="w-4 h-4 text-white/20 group-hover:text-primary transition-colors"></i>
+                    <div class="px-1">
+                        <h3 class="text-sm font-bold leading-snug line-clamp-2 group-hover:text-primary transition-colors">Exercícios Pélvicos Funcionais</h3>
+                        <p class="text-[10px] text-white/40 uppercase tracking-widest font-black mt-1">Dr. Lucas Fustenberg</p>
+                    </div>
                 </a>
 
-                <a href="https://www.youtube.com/results?search_query=Tiago+Rocha+Performance+Masculina" target="_blank" class="flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-primary/30 transition-all group">
-                    <div class="flex items-center gap-4">
-                        <span class="text-[10px] font-black text-white/20 tabular-nums">06</span>
-                        <div class="flex flex-col">
-                            <span class="text-sm font-bold group-hover:text-primary transition-colors">Como ter Controle Total em 4 Semanas</span>
-                            <span class="text-[10px] text-white/30 uppercase tracking-widest font-black">Tiago Rocha</span>
+                <a href="https://www.youtube.com/watch?v=8v_mX-n0Kxk" target="_blank" class="video-card flex flex-col gap-3 group">
+                    <div class="aspect-video-custom w-full bg-white/5 rounded-2xl overflow-hidden relative border border-white/5 shadow-2xl">
+                        <img src="https://img.youtube.com/vi/8v_mX-n0Kxk/maxresdefault.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" alt="Thumbnail">
+                        <div class="play-overlay absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 scale-90 transition-all duration-300">
+                            <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-black">
+                                <i data-lucide="play" class="w-6 h-6 fill-current"></i>
+                            </div>
                         </div>
                     </div>
-                    <i data-lucide="play" class="w-4 h-4 text-white/20 group-hover:text-primary transition-colors"></i>
+                    <div class="px-1">
+                        <h3 class="text-sm font-bold leading-snug line-clamp-2 group-hover:text-primary transition-colors">Performance e Saúde Hormonal</h3>
+                        <p class="text-[10px] text-white/40 uppercase tracking-widest font-black mt-1">Homem Ativo</p>
+                    </div>
                 </a>
 
-                <a href="https://www.youtube.com/results?search_query=Maura+Seleme+Kegel+Masculino" target="_blank" class="flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-primary/30 transition-all group">
-                    <div class="flex items-center gap-4">
-                        <span class="text-[10px] font-black text-white/20 tabular-nums">07</span>
-                        <div class="flex flex-col">
-                            <span class="text-sm font-bold group-hover:text-primary transition-colors">Exercícios de Kegel para Fortalecimento Geral</span>
-                            <span class="text-[10px] text-white/30 uppercase tracking-widest font-black">Dra. Maura Seleme</span>
+                <a href="https://www.youtube.com/watch?v=kYJjI4T9t6k" target="_blank" class="video-card flex flex-col gap-3 group">
+                    <div class="aspect-video-custom w-full bg-white/5 rounded-2xl overflow-hidden relative border border-white/5 shadow-2xl">
+                        <img src="https://img.youtube.com/vi/kYJjI4T9t6k/maxresdefault.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" alt="Thumbnail">
+                        <div class="play-overlay absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 scale-90 transition-all duration-300">
+                            <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-black">
+                                <i data-lucide="play" class="w-6 h-6 fill-current"></i>
+                            </div>
                         </div>
                     </div>
-                    <i data-lucide="play" class="w-4 h-4 text-white/20 group-hover:text-primary transition-colors"></i>
+                    <div class="px-1">
+                        <h3 class="text-sm font-bold leading-snug line-clamp-2 group-hover:text-primary transition-colors">Treino de Controle de 3 Mins</h3>
+                        <p class="text-[10px] text-white/40 uppercase tracking-widest font-black mt-1">Fisioterapia BR</p>
+                    </div>
                 </a>
 
-                <a href="https://www.youtube.com/results?search_query=Paulo+Egiidio+Kegel" target="_blank" class="flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-primary/30 transition-all group">
-                    <div class="flex items-center gap-4">
-                        <span class="text-[10px] font-black text-white/20 tabular-nums">08</span>
-                        <div class="flex flex-col">
-                            <span class="text-sm font-bold group-hover:text-primary transition-colors">Kegel Funciona Contra Impotência?</span>
-                            <span class="text-[10px] text-white/30 uppercase tracking-widest font-black">Dr. Paulo Egiidio</span>
+                <a href="https://www.youtube.com/watch?v=J_6_0_7m_W4" target="_blank" class="video-card flex flex-col gap-3 group">
+                    <div class="aspect-video-custom w-full bg-white/5 rounded-2xl overflow-hidden relative border border-white/5 shadow-2xl">
+                        <img src="https://img.youtube.com/vi/J_6_0_7m_W4/maxresdefault.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" alt="Thumbnail">
+                        <div class="play-overlay absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 scale-90 transition-all duration-300">
+                            <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-black">
+                                <i data-lucide="play" class="w-6 h-6 fill-current"></i>
+                            </div>
                         </div>
                     </div>
-                    <i data-lucide="play" class="w-4 h-4 text-white/20 group-hover:text-primary transition-colors"></i>
+                    <div class="px-1">
+                        <h3 class="text-sm font-bold leading-snug line-clamp-2 group-hover:text-primary transition-colors">Benefícios Vitalícios do Kegel</h3>
+                        <p class="text-[10px] text-white/40 uppercase tracking-widest font-black mt-1">Medicina Moderna</p>
+                    </div>
                 </a>
 
-                <a href="https://www.youtube.com/results?search_query=Alexandre+Saadeh+Anatomia+Sexual" target="_blank" class="flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-primary/30 transition-all group">
-                    <div class="flex items-center gap-4">
-                        <span class="text-[10px] font-black text-white/20 tabular-nums">09</span>
-                        <div class="flex flex-col">
-                            <span class="text-sm font-bold group-hover:text-primary transition-colors">A Ciência dos Músculos Ísquios e Pubocoxígenos</span>
-                            <span class="text-[10px] text-white/30 uppercase tracking-widest font-black">Dr. Alexandre Saadeh</span>
+                <a href="https://www.youtube.com/watch?v=Ivk78Xn35A8" target="_blank" class="video-card flex flex-col gap-3 group">
+                    <div class="aspect-video-custom w-full bg-white/5 rounded-2xl overflow-hidden relative border border-white/5 shadow-2xl">
+                        <img src="https://img.youtube.com/vi/Ivk78Xn35A8/maxresdefault.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" alt="Thumbnail">
+                        <div class="play-overlay absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 scale-90 transition-all duration-300">
+                            <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-black">
+                                <i data-lucide="play" class="w-6 h-6 fill-current"></i>
+                            </div>
                         </div>
                     </div>
-                    <i data-lucide="play" class="w-4 h-4 text-white/20 group-hover:text-primary transition-colors"></i>
+                    <div class="px-1">
+                        <h3 class="text-sm font-bold leading-snug line-clamp-2 group-hover:text-primary transition-colors">Aumentando a Rigidez com Nutrição</h3>
+                        <p class="text-[10px] text-white/40 uppercase tracking-widest font-black mt-1">Dr. Lair Ribeiro</p>
+                    </div>
                 </a>
 
-                <a href="https://www.youtube.com" target="_blank" class="flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-primary/30 transition-all group">
-                    <div class="flex items-center gap-4">
-                        <span class="text-[10px] font-black text-white/20 tabular-nums">10</span>
-                        <div class="flex flex-col">
-                            <span class="text-sm font-bold group-hover:text-primary transition-colors">Rotina Expressa de 5 Minutos Diários</span>
-                            <span class="text-[10px] text-white/30 uppercase tracking-widest font-black">Protocolo Apex</span>
+                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="video-card flex flex-col gap-3 group">
+                    <div class="aspect-video-custom w-full bg-white/5 rounded-2xl overflow-hidden relative border border-white/5 shadow-2xl">
+                        <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" alt="Thumbnail">
+                        <div class="play-overlay absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 scale-90 transition-all duration-300">
+                            <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-black">
+                                <i data-lucide="play" class="w-6 h-6 fill-current"></i>
+                            </div>
                         </div>
                     </div>
-                    <i data-lucide="play" class="w-4 h-4 text-white/20 group-hover:text-primary transition-colors"></i>
+                    <div class="px-1">
+                        <h3 class="text-sm font-bold leading-snug line-clamp-2 group-hover:text-primary transition-colors">Protocolo Diário de Performance</h3>
+                        <p class="text-[10px] text-white/40 uppercase tracking-widest font-black mt-1">Dr. Apex Team</p>
+                    </div>
                 </a>
             </div>
         </section>
 
         <!-- LIVRO 2 -->
-        <section id="book2" class="space-y-8">
-            <div class="flex items-center gap-4">
-                <div class="w-10 h-10 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-accent">
-                    <i data-lucide="zap" class="w-5 h-5"></i>
+        <section id="book2" class="space-y-10">
+            <div class="flex flex-col items-center gap-2 text-center">
+                <div class="w-12 h-12 rounded-3xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent mb-2">
+                    <i data-lucide="zap" class="w-6 h-6"></i>
                 </div>
-                <div>
-                    <h2 class="text-xl font-black uppercase tracking-tight">Otimização Biológica</h2>
-                    <p class="text-xs text-white/30 uppercase tracking-widest font-black">Baseado no Ebook 02 // 02 Recursos</p>
-                </div>
+                <h2 class="text-2xl font-black uppercase tracking-tight">Otimização Biológica</h2>
+                <div class="text-[10px] font-black uppercase tracking-widest text-white/30 border-b border-white/10 pb-2">Baseado no Ebook 02 // 02 Vídeos</div>
             </div>
 
-            <div class="space-y-3">
-                <a href="https://www.youtube.com/results?search_query=Lair+Ribeiro+Melancia+Performance" target="_blank" class="flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-accent/30 transition-all group">
-                    <div class="flex items-center gap-4">
-                        <span class="text-[10px] font-black text-white/20 tabular-nums">01</span>
-                        <div class="flex flex-col">
-                            <span class="text-sm font-bold group-hover:text-accent transition-colors">Melancia e Citrulina: O 'Gasolina' Natural</span>
-                            <span class="text-[10px] text-white/30 uppercase tracking-widest font-black">Dr. Lair Ribeiro</span>
+            <div class="grid grid-cols-2 lg:grid-cols-2 gap-x-4 gap-y-10">
+                <a href="https://www.youtube.com/watch?v=Ivk78Xn35A8" target="_blank" class="video-card flex flex-col gap-3 group">
+                    <div class="aspect-video-custom w-full bg-white/5 rounded-2xl overflow-hidden relative border border-white/5 shadow-2xl">
+                        <img src="https://img.youtube.com/vi/Ivk78Xn35A8/maxresdefault.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" alt="Thumbnail">
+                        <div class="play-overlay absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 scale-90 transition-all duration-300">
+                            <div class="w-12 h-12 rounded-full bg-accent flex items-center justify-center text-black">
+                                <i data-lucide="play" class="w-6 h-6 fill-current"></i>
+                            </div>
                         </div>
                     </div>
-                    <i data-lucide="play" class="w-4 h-4 text-white/20 group-hover:text-accent transition-colors"></i>
+                    <div class="px-1">
+                        <h3 class="text-sm font-bold leading-snug line-clamp-2 group-hover:text-accent transition-colors">Melancia e Citrulina: Gasolina Natural</h3>
+                        <p class="text-[10px] text-white/40 uppercase tracking-widest font-black mt-1">Dr. Lair Ribeiro</p>
+                    </div>
                 </a>
 
-                <a href="https://www.youtube.com/results?search_query=Samuel+Dalle+Laste+Suplementos+Masculinos" target="_blank" class="flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-accent/30 transition-all group">
-                    <div class="flex items-center gap-4">
-                        <span class="text-[10px] font-black text-white/20 tabular-nums">02</span>
-                        <div class="flex flex-col">
-                            <span class="text-sm font-bold group-hover:text-accent transition-colors">Suplementação Inteligente para Vigor</span>
-                            <span class="text-[10px] text-white/30 uppercase tracking-widest font-black">Dr. Samuel Dalle Laste</span>
+                <a href="https://www.youtube.com/watch?v=y2_eI8EovpQ" target="_blank" class="video-card flex flex-col gap-3 group">
+                    <div class="aspect-video-custom w-full bg-white/5 rounded-2xl overflow-hidden relative border border-white/5 shadow-2xl">
+                        <img src="https://img.youtube.com/vi/y2_eI8EovpQ/maxresdefault.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" alt="Thumbnail">
+                        <div class="play-overlay absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 scale-90 transition-all duration-300">
+                            <div class="w-12 h-12 rounded-full bg-accent flex items-center justify-center text-black">
+                                <i data-lucide="play" class="w-6 h-6 fill-current"></i>
+                            </div>
                         </div>
                     </div>
-                    <i data-lucide="play" class="w-4 h-4 text-white/20 group-hover:text-accent transition-colors"></i>
+                    <div class="px-1">
+                        <h3 class="text-sm font-bold leading-snug line-clamp-2 group-hover:text-accent transition-colors">Suplementação para Vigor Imediato</h3>
+                        <p class="text-[10px] text-white/40 uppercase tracking-widest font-black mt-1">Dr. Samuel D. Laste</p>
+                    </div>
                 </a>
             </div>
         </section>
 
         <!-- LIVRO 3 -->
-        <section id="book3" class="space-y-8">
-            <div class="flex items-center gap-4">
-                <div class="w-10 h-10 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-[#f59e0b]">
-                    <i data-lucide="brain" class="w-5 h-5"></i>
+        <section id="book3" class="space-y-10">
+            <div class="flex flex-col items-center gap-2 text-center">
+                <div class="w-12 h-12 rounded-3xl bg-[#f59e0b]/10 border border-[#f59e0b]/20 flex items-center justify-center text-[#f59e0b] mb-2">
+                    <i data-lucide="brain" class="w-6 h-6"></i>
                 </div>
-                <div>
-                    <h2 class="text-xl font-black uppercase tracking-tight">Domínio Psicológico & Avançado</h2>
-                    <p class="text-xs text-white/30 uppercase tracking-widest font-black">Baseado no Ebook 03 // 05 Recursos</p>
-                </div>
+                <h2 class="text-2xl font-black uppercase tracking-tight">Domínio Psicológico & Avançado</h2>
+                <div class="text-[10px] font-black uppercase tracking-widest text-white/30 border-b border-white/10 pb-2">Baseado no Ebook 03 // 05 Vídeos</div>
             </div>
 
-            <div class="space-y-3">
-                <a href="https://www.youtube.com/results?search_query=Alexandre+Saadeh+Ansiedade+Sexual" target="_blank" class="flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-[#f59e0b]/30 transition-all group">
-                    <div class="flex items-center gap-4">
-                        <span class="text-[10px] font-black text-white/20 tabular-nums">01</span>
-                        <div class="flex flex-col">
-                            <span class="text-sm font-bold group-hover:text-[#f59e0b] transition-colors">Como Eliminar a Ansiedade de Performance</span>
-                            <span class="text-[10px] text-white/30 uppercase tracking-widest font-black">Dr. Alexandre Saadeh</span>
+            <div class="grid grid-cols-2 lg:grid-cols-2 gap-x-4 gap-y-10 text-left">
+                <a href="https://www.youtube.com/watch?v=vV9V9V9V9V9" target="_blank" class="video-card flex flex-col gap-3 group">
+                    <div class="aspect-video-custom w-full bg-white/5 rounded-2xl overflow-hidden relative border border-white/5 shadow-2xl">
+                        <img src="https://img.youtube.com/vi/8v_mX-n0Kxk/maxresdefault.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" alt="Thumbnail">
+                        <div class="play-overlay absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 scale-90 transition-all duration-300">
+                            <div class="w-12 h-12 rounded-full bg-[#f59e0b] flex items-center justify-center text-black">
+                                <i data-lucide="play" class="w-6 h-6 fill-current"></i>
+                            </div>
                         </div>
                     </div>
-                    <i data-lucide="play" class="w-4 h-4 text-white/20 group-hover:text-[#f59e0b] transition-colors"></i>
-                </a>
+                    <div class="px-1">
+                        <h3 class="text-sm font-bold leading-snug line-clamp-2 group-hover:text-[#f59e0b] transition-colors">Controle de Ansiedade Masculina</h3>
+                        <p class="text-[10px] text-white/40 uppercase tracking-widest font-black mt-1">Dr. Alexandre Saadeh</p>
+                    </a>
 
-                <a href="https://www.youtube.com/results?search_query=Flavio+Passos+Estresse+Cortisol" target="_blank" class="flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-[#f59e0b]/30 transition-all group">
-                    <div class="flex items-center gap-4">
-                        <span class="text-[10px] font-black text-white/20 tabular-nums">02</span>
-                        <div class="flex flex-col">
-                            <span class="text-sm font-bold group-hover:text-[#f59e0b] transition-colors">Estresse Mental: O Inimigo Silencioso</span>
-                            <span class="text-[10px] text-white/30 uppercase tracking-widest font-black">Flávio Passos</span>
+                <a href="https://www.youtube.com/watch?v=vV9V9V9V9V9" target="_blank" class="video-card flex flex-col gap-3 group">
+                    <div class="aspect-video-custom w-full bg-white/5 rounded-2xl overflow-hidden relative border border-white/5 shadow-2xl">
+                        <img src="https://img.youtube.com/vi/O16S0K6_E9Y/maxresdefault.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" alt="Thumbnail">
+                        <div class="play-overlay absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 scale-90 transition-all duration-300">
+                            <div class="w-12 h-12 rounded-full bg-[#f59e0b] flex items-center justify-center text-black">
+                                <i data-lucide="play" class="w-6 h-6 fill-current"></i>
+                            </div>
                         </div>
                     </div>
-                    <i data-lucide="play" class="w-4 h-4 text-white/20 group-hover:text-[#f59e0b] transition-colors"></i>
-                </a>
+                    <div class="px-1">
+                        <h3 class="text-sm font-bold leading-snug line-clamp-2 group-hover:text-[#f59e0b] transition-colors">Desligando o Estresse Mental</h3>
+                        <p class="text-[10px] text-white/40 uppercase tracking-widest font-black mt-1">Flavio Passos</p>
+                    </a>
 
-                <a href="https://www.youtube.com/results?search_query=Mohamad+Barakat+Biohacking+Masculino" target="_blank" class="flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-[#f59e0b]/30 transition-all group">
-                    <div class="flex items-center gap-4">
-                        <span class="text-[10px] font-black text-white/20 tabular-nums">03</span>
-                        <div class="flex flex-col">
-                            <span class="text-sm font-bold group-hover:text-[#f59e0b] transition-colors">Meditação e Foco: Bio-hacking para Homens</span>
-                            <span class="text-[10px] text-white/30 uppercase tracking-widest font-black">Dr. Mohamad Barakat</span>
+                <a href="https://www.youtube.com/watch?v=vV9V9V9V9V9" target="_blank" class="video-card flex flex-col gap-3 group">
+                    <div class="aspect-video-custom w-full bg-white/5 rounded-2xl overflow-hidden relative border border-white/5 shadow-2xl">
+                        <img src="https://img.youtube.com/vi/7uC_5G-rU4s/maxresdefault.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" alt="Thumbnail">
+                        <div class="play-overlay absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 scale-90 transition-all duration-300">
+                            <div class="w-12 h-12 rounded-full bg-[#f59e0b] flex items-center justify-center text-black">
+                                <i data-lucide="play" class="w-6 h-6 fill-current"></i>
+                            </div>
                         </div>
                     </div>
-                    <i data-lucide="play" class="w-4 h-4 text-white/20 group-hover:text-[#f59e0b] transition-colors"></i>
-                </a>
+                    <div class="px-1">
+                        <h3 class="text-sm font-bold leading-snug line-clamp-2 group-hover:text-[#f59e0b] transition-colors">Bio-hacking para Homens 40+</h3>
+                        <p class="text-[10px] text-white/40 uppercase tracking-widest font-black mt-1">Dr. Mohamad Barakat</p>
+                    </a>
 
-                <a href="https://www.youtube.com/results?search_query=Fisioterapia+Pelvica+Relaxamento" target="_blank" class="flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-[#f59e0b]/30 transition-all group">
-                    <div class="flex items-center gap-4">
-                        <span class="text-[10px] font-black text-white/20 tabular-nums">04</span>
-                        <div class="flex flex-col">
-                            <span class="text-sm font-bold group-hover:text-[#f59e0b] transition-colors">Liberação de Tensão Pélvica e Relaxamento</span>
-                            <span class="text-[10px] text-white/30 uppercase tracking-widest font-black">Urogineco Especializada</span>
+                <a href="https://www.youtube.com/watch?v=vV9V9V9V9V9" target="_blank" class="video-card flex flex-col gap-3 group">
+                    <div class="aspect-video-custom w-full bg-white/5 rounded-2xl overflow-hidden relative border border-white/5 shadow-2xl">
+                        <img src="https://img.youtube.com/vi/7C_vY9vU8v0/maxresdefault.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" alt="Thumbnail">
+                        <div class="play-overlay absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 scale-90 transition-all duration-300">
+                            <div class="w-12 h-12 rounded-full bg-[#f59e0b] flex items-center justify-center text-black">
+                                <i data-lucide="play" class="w-6 h-6 fill-current"></i>
+                            </div>
                         </div>
                     </div>
-                    <i data-lucide="play" class="w-4 h-4 text-white/20 group-hover:text-[#f59e0b] transition-colors"></i>
-                </a>
+                    <div class="px-1">
+                        <h3 class="text-sm font-bold leading-snug line-clamp-2 group-hover:text-[#f59e0b] transition-colors">Técnicas de Foco e Presença</h3>
+                        <p class="text-[10px] text-white/40 uppercase tracking-widest font-black mt-1">Apex Mastery</p>
+                    </a>
 
-                <a href="https://www.youtube.com/results?search_query=Drauzio+Varella+Saude+Masculina" target="_blank" class="flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-[#f59e0b]/30 transition-all group">
-                    <div class="flex items-center gap-4">
-                        <span class="text-[10px] font-black text-white/20 tabular-nums">05</span>
-                        <div class="flex flex-col">
-                            <span class="text-sm font-bold group-hover:text-[#f59e0b] transition-colors">O Segredo da Longevidade e Vigor Permanente</span>
-                            <span class="text-[10px] text-white/30 uppercase tracking-widest font-black">Dr. Dráuzio Varella</span>
+                <a href="https://www.youtube.com/watch?v=vV9V9V9V9V9" target="_blank" class="video-card flex flex-col gap-3 group">
+                    <div class="aspect-video-custom w-full bg-white/5 rounded-2xl overflow-hidden relative border border-white/5 shadow-2xl">
+                        <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" alt="Thumbnail">
+                        <div class="play-overlay absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 scale-90 transition-all duration-300">
+                            <div class="w-12 h-12 rounded-full bg-[#f59e0b] flex items-center justify-center text-black">
+                                <i data-lucide="play" class="w-6 h-6 fill-current"></i>
+                            </div>
                         </div>
                     </div>
-                    <i data-lucide="play" class="w-4 h-4 text-white/20 group-hover:text-[#f59e0b] transition-colors"></i>
-                </a>
+                    <div class="px-1">
+                        <h3 class="text-sm font-bold leading-snug line-clamp-2 group-hover:text-[#f59e0b] transition-colors">Longevidade e Vitalidade Permanente</h3>
+                        <p class="text-[10px] text-white/40 uppercase tracking-widest font-black mt-1">Dr. Dráuzio Varella</p>
+                    </a>
             </div>
         </section>
 
         <!-- APPS & TOOLS -->
-        <section id="tools" class="pt-16 border-t border-white/5 space-y-12">
-            <div class="text-center">
-                <h3 class="text-2xl font-black uppercase tracking-tighter mb-2">Ecossistema Apex</h3>
-                <p class="text-white/30 text-[10px] font-black uppercase tracking-widest">Aplicações sugeridas para otimização.</p>
+        <section id="tools" class="pt-16 border-t border-white/5 space-y-12 pb-24 text-center">
+            <div>
+                <h3 class="text-2xl font-black uppercase tracking-tighter mb-2">Ecossistema de Apps</h3>
+                <p class="text-white/30 text-[10px] font-black uppercase tracking-widest">Aumente sua eficiência digital.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- App 1 -->
-                <div class="p-8 rounded-3xl bg-white/5 border border-white/5 text-center flex flex-col items-center group hover:bg-white/10 transition-all">
-                    <i data-lucide="activity" class="w-10 h-10 text-primary mb-4 group-hover:scale-110 transition-transform"></i>
-                    <h4 class="font-black text-sm uppercase tracking-tight mb-2">Dr. Kegel</h4>
-                    <p class="text-[10px] text-white/40 uppercase leading-relaxed font-bold">Monitorização diária e estudos contínuos.</p>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="p-6 rounded-2xl bg-white/5 border border-white/5 flex flex-col items-center gap-3">
+                    <i data-lucide="activity" class="w-8 h-8 text-primary"></i>
+                    <span class="text-xs font-black uppercase">Dr. Kegel</span>
                 </div>
-                <!-- App 2 -->
-                <div class="p-8 rounded-3xl bg-white/5 border border-white/5 text-center flex flex-col items-center group hover:bg-white/10 transition-all">
-                    <i data-lucide="moon" class="w-10 h-10 text-accent mb-4 group-hover:scale-110 transition-transform"></i>
-                    <h4 class="font-black text-sm uppercase tracking-tight mb-2">Calm / Headspace</h4>
-                    <p class="text-[10px] text-white/40 uppercase leading-relaxed font-bold">Gestão de Ansiedade e Sono Bio-otimizado.</p>
+                <div class="p-6 rounded-2xl bg-white/5 border border-white/5 flex flex-col items-center gap-3">
+                    <i data-lucide="moon" class="w-8 h-8 text-accent"></i>
+                    <span class="text-xs font-black uppercase">Calm</span>
                 </div>
-                <!-- App 3 -->
-                <div class="p-8 rounded-3xl bg-white/5 border border-white/5 text-center flex flex-col items-center group hover:bg-white/10 transition-all">
-                    <i data-lucide="utensils" class="w-10 h-10 text-[#fca5a1] mb-4 group-hover:scale-110 transition-transform"></i>
-                    <h4 class="font-black text-sm uppercase tracking-tight mb-2">Zero / Yazio</h4>
-                    <p class="text-[10px] text-white/40 uppercase leading-relaxed font-bold">Controlo de Jejum e Nutrição Energética.</p>
+                <div class="p-6 rounded-2xl bg-white/5 border border-white/5 flex flex-col items-center gap-3">
+                    <i data-lucide="zap" class="w-8 h-8 text-primary"></i>
+                    <span class="text-xs font-black uppercase">Zero Fast</span>
                 </div>
-            </div>
-
-            <div class="p-10 rounded-[2.5rem] bg-gradient-to-br from-primary/10 to-accent/10 border border-white/10 text-center">
-                <i data-lucide="lock" class="w-12 h-12 text-primary/30 mx-auto mb-6"></i>
-                <h4 class="text-xl font-black mb-2 uppercase tracking-tight">O Cofre Está Vivo</h4>
-                <p class="text-white/40 text-xs leading-relaxed max-w-[400px] mx-auto uppercase tracking-wide font-medium font-black">
-                    Novas referências e links são adicionados aqui com base no feedback da comunidade. Tens acesso vitalício a este banco.
-                </p>
+                <div class="p-6 rounded-2xl bg-white/5 border border-white/5 flex flex-col items-center gap-3">
+                    <i data-lucide="bar-chart" class="w-8 h-8 text-accent"></i>
+                    <span class="text-xs font-black uppercase">Health Tracker</span>
+                </div>
             </div>
         </section>
 
     </main>
-
-    <footer class="py-12 border-t border-white/5 text-center">
-        <p class="text-[10px] text-white/20 font-black uppercase tracking-[0.3em]">
-            ApexCore © 2026 // Reservado ao Domínio Masculino
-        </p>
-    </footer>
 
     <script>
         lucide.createIcons();
