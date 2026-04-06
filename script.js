@@ -294,11 +294,11 @@ function renderStep() {
       const summary = document.createElement('div');
       summary.className = 'summary-box';
       const updateSummary = () => {
-        const age = currentVals.age || 25;
-        const height = currentVals.height || 1.75;
+        const age = currentVals.age || 32;
+        const weightValue = currentVals.weight || 80;
         summary.innerHTML = `
           <span class="summary-label">Resumo</span>
-          <span class="summary-content">${age} anos • ${height}m</span>
+          <span class="summary-content">${age} anos • ${weightValue}kg</span>
         `;
       };
       updateSummary();
