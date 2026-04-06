@@ -972,12 +972,12 @@ function showProtocol() {
           `).join('')}
         </div>
 
-        <div class="bg-black/40 rounded-3xl p-6 mb-10 border border-white/5 relative text-center">
+        <div class="bg-black/40 rounded-3xl pt-9 pb-6 px-6 mb-10 border border-white/5 relative text-center">
           <div class="text-xs font-bold text-white/30 line-through mb-1 uppercase tracking-widest">De R$ 49,90 por apenas</div>
           <div class="text-5xl font-black tracking-tighter">R$ <span class="text-primary">24,90</span></div>
           <p class="text-[10px] text-white/40 uppercase font-black tracking-widest mt-3">À vista ou via Pix</p>
           <div class="absolute -top-3 left-1/2 -translate-x-1/2">
-            <span class="bg-accent text-black px-4 py-1.5 rounded-pill text-[11px] font-black uppercase tracking-widest shadow-[0_0_15px_rgba(16,185,129,0.4)]">50% DE DESCONTO</span>
+            <span class="bg-accent text-black px-4 py-1.5 rounded-pill text-[11px] font-black uppercase tracking-widest whitespace-nowrap shadow-[0_0_15px_rgba(16,185,129,0.4)]">50% DE DESCONTO</span>
           </div>
         </div>
 
