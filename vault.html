@@ -72,29 +72,115 @@
             </div>
 
             <div class="space-y-3">
-                ${[
-                    { title: "Anatomia Pélvica 3D: Como tudo funciona", channel: "Dr. Lucas Fustenberg", url: "https://www.youtube.com/results?search_query=Dr+Lucas+Fustenberg+Kegel+Homens" },
-                    { title: "Os 3 Erros Fatais nos Exercícios de Kegel", channel: "Dr. Alexandre Cavalcanti", url: "https://www.youtube.com/results?search_query=Alexandre+Cavalcanti+Exercicios+Kegel" },
-                    { title: "Fisioterapia Pélvica: Localizando os Músculos PC", channel: "Cássio Siqueira", url: "https://www.youtube.com/results?search_query=Cassio+Siqueira+Assoalho+Pelvico" },
-                    { title: "Respiração Diafragmática e a Libido", channel: "Dr. Lair Ribeiro", url: "https://www.youtube.com/results?search_query=Lair+Ribeiro+Respiracao+Performance" },
-                    { title: "Guia Prático: O Seu Primeiro Dia de Treino", channel: "Homem com Saúde", url: "https://www.youtube.com/results?search_query=Kegel+para+Iniciantes+Homens" },
-                    { title: "Como ter Controle Total em 4 Semanas", channel: "Tiago Rocha", url: "https://www.youtube.com/results?search_query=Tiago+Rocha+Performance+Masculina" },
-                    { title: "Exercícios de Kegel para Fortalecimento Geral", channel: "Dra. Maura Seleme", url: "https://www.youtube.com/results?search_query=Maura+Seleme+Kegel+Masculino" },
-                    { title: "Kegel Funciona Contra Impotência?", channel: "Dr. Paulo Egiidio", url: "https://www.youtube.com/results?search_query=Paulo+Egiidio+Kegel" },
-                    { title: "A Ciência dos Músculos Ísquios e Pubocoxígenos", channel: "Dr. Alexandre Saadeh", url: "https://www.youtube.com/results?search_query=Alexandre+Saadeh+Anatomia+Sexual" },
-                    { title: "Rotina Expressa de 5 Minutos Diários", channel: "Protocolo Apex", url: "https://www.youtube.com" }
-                ].map((v, i) => `
-                    <a href="${v.url}" target="_blank" class="flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-primary/30 transition-all group">
-                        <div class="flex items-center gap-4">
-                            <span class="text-[10px] font-black text-white/20 tabular-nums">${(i+1).toString().padStart(2, '0')}</span>
-                            <div class="flex flex-col">
-                                <span class="text-sm font-bold group-hover:text-primary transition-colors">${v.title}</span>
-                                <span class="text-[10px] text-white/30 uppercase tracking-widest font-black">${v.channel}</span>
-                            </div>
+                <a href="https://www.youtube.com/results?search_query=Dr+Lucas+Fustenberg+Kegel+Homens" target="_blank" class="flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-primary/30 transition-all group">
+                    <div class="flex items-center gap-4">
+                        <span class="text-[10px] font-black text-white/20 tabular-nums">01</span>
+                        <div class="flex flex-col">
+                            <span class="text-sm font-bold group-hover:text-primary transition-colors">Anatomia Pélvica 3D: Como tudo funciona</span>
+                            <span class="text-[10px] text-white/30 uppercase tracking-widest font-black">Dr. Lucas Fustenberg</span>
                         </div>
-                        <i data-lucide="play" class="w-4 h-4 text-white/20 group-hover:text-primary transition-colors"></i>
-                    </a>
-                `).join('')}
+                    </div>
+                    <i data-lucide="play" class="w-4 h-4 text-white/20 group-hover:text-primary transition-colors"></i>
+                </a>
+
+                <a href="https://www.youtube.com/results?search_query=Alexandre+Cavalcanti+Exercicios+Kegel" target="_blank" class="flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-primary/30 transition-all group">
+                    <div class="flex items-center gap-4">
+                        <span class="text-[10px] font-black text-white/20 tabular-nums">02</span>
+                        <div class="flex flex-col">
+                            <span class="text-sm font-bold group-hover:text-primary transition-colors">Os 3 Erros Fatais nos Exercícios de Kegel</span>
+                            <span class="text-[10px] text-white/30 uppercase tracking-widest font-black">Dr. Alexandre Cavalcanti</span>
+                        </div>
+                    </div>
+                    <i data-lucide="play" class="w-4 h-4 text-white/20 group-hover:text-primary transition-colors"></i>
+                </a>
+
+                <a href="https://www.youtube.com/results?search_query=Cassio+Siqueira+Assoalho+Pelvico" target="_blank" class="flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-primary/30 transition-all group">
+                    <div class="flex items-center gap-4">
+                        <span class="text-[10px] font-black text-white/20 tabular-nums">03</span>
+                        <div class="flex flex-col">
+                            <span class="text-sm font-bold group-hover:text-primary transition-colors">Fisioterapia Pélvica: Localizando os Músculos PC</span>
+                            <span class="text-[10px] text-white/30 uppercase tracking-widest font-black">Cássio Siqueira</span>
+                        </div>
+                    </div>
+                    <i data-lucide="play" class="w-4 h-4 text-white/20 group-hover:text-primary transition-colors"></i>
+                </a>
+
+                <a href="https://www.youtube.com/results?search_query=Lair+Ribeiro+Respiracao+Performance" target="_blank" class="flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-primary/30 transition-all group">
+                    <div class="flex items-center gap-4">
+                        <span class="text-[10px] font-black text-white/20 tabular-nums">04</span>
+                        <div class="flex flex-col">
+                            <span class="text-sm font-bold group-hover:text-primary transition-colors">Respiração Diafragmática e a Libido</span>
+                            <span class="text-[10px] text-white/30 uppercase tracking-widest font-black">Dr. Lair Ribeiro</span>
+                        </div>
+                    </div>
+                    <i data-lucide="play" class="w-4 h-4 text-white/20 group-hover:text-primary transition-colors"></i>
+                </a>
+
+                <a href="https://www.youtube.com/results?search_query=Kegel+para+Iniciantes+Homens" target="_blank" class="flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-primary/30 transition-all group">
+                    <div class="flex items-center gap-4">
+                        <span class="text-[10px] font-black text-white/20 tabular-nums">05</span>
+                        <div class="flex flex-col">
+                            <span class="text-sm font-bold group-hover:text-primary transition-colors">Guia Prático: O Seu Primeiro Dia de Treino</span>
+                            <span class="text-[10px] text-white/30 uppercase tracking-widest font-black">Homem com Saúde</span>
+                        </div>
+                    </div>
+                    <i data-lucide="play" class="w-4 h-4 text-white/20 group-hover:text-primary transition-colors"></i>
+                </a>
+
+                <a href="https://www.youtube.com/results?search_query=Tiago+Rocha+Performance+Masculina" target="_blank" class="flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-primary/30 transition-all group">
+                    <div class="flex items-center gap-4">
+                        <span class="text-[10px] font-black text-white/20 tabular-nums">06</span>
+                        <div class="flex flex-col">
+                            <span class="text-sm font-bold group-hover:text-primary transition-colors">Como ter Controle Total em 4 Semanas</span>
+                            <span class="text-[10px] text-white/30 uppercase tracking-widest font-black">Tiago Rocha</span>
+                        </div>
+                    </div>
+                    <i data-lucide="play" class="w-4 h-4 text-white/20 group-hover:text-primary transition-colors"></i>
+                </a>
+
+                <a href="https://www.youtube.com/results?search_query=Maura+Seleme+Kegel+Masculino" target="_blank" class="flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-primary/30 transition-all group">
+                    <div class="flex items-center gap-4">
+                        <span class="text-[10px] font-black text-white/20 tabular-nums">07</span>
+                        <div class="flex flex-col">
+                            <span class="text-sm font-bold group-hover:text-primary transition-colors">Exercícios de Kegel para Fortalecimento Geral</span>
+                            <span class="text-[10px] text-white/30 uppercase tracking-widest font-black">Dra. Maura Seleme</span>
+                        </div>
+                    </div>
+                    <i data-lucide="play" class="w-4 h-4 text-white/20 group-hover:text-primary transition-colors"></i>
+                </a>
+
+                <a href="https://www.youtube.com/results?search_query=Paulo+Egiidio+Kegel" target="_blank" class="flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-primary/30 transition-all group">
+                    <div class="flex items-center gap-4">
+                        <span class="text-[10px] font-black text-white/20 tabular-nums">08</span>
+                        <div class="flex flex-col">
+                            <span class="text-sm font-bold group-hover:text-primary transition-colors">Kegel Funciona Contra Impotência?</span>
+                            <span class="text-[10px] text-white/30 uppercase tracking-widest font-black">Dr. Paulo Egiidio</span>
+                        </div>
+                    </div>
+                    <i data-lucide="play" class="w-4 h-4 text-white/20 group-hover:text-primary transition-colors"></i>
+                </a>
+
+                <a href="https://www.youtube.com/results?search_query=Alexandre+Saadeh+Anatomia+Sexual" target="_blank" class="flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-primary/30 transition-all group">
+                    <div class="flex items-center gap-4">
+                        <span class="text-[10px] font-black text-white/20 tabular-nums">09</span>
+                        <div class="flex flex-col">
+                            <span class="text-sm font-bold group-hover:text-primary transition-colors">A Ciência dos Músculos Ísquios e Pubocoxígenos</span>
+                            <span class="text-[10px] text-white/30 uppercase tracking-widest font-black">Dr. Alexandre Saadeh</span>
+                        </div>
+                    </div>
+                    <i data-lucide="play" class="w-4 h-4 text-white/20 group-hover:text-primary transition-colors"></i>
+                </a>
+
+                <a href="https://www.youtube.com" target="_blank" class="flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-primary/30 transition-all group">
+                    <div class="flex items-center gap-4">
+                        <span class="text-[10px] font-black text-white/20 tabular-nums">10</span>
+                        <div class="flex flex-col">
+                            <span class="text-sm font-bold group-hover:text-primary transition-colors">Rotina Expressa de 5 Minutos Diários</span>
+                            <span class="text-[10px] text-white/30 uppercase tracking-widest font-black">Protocolo Apex</span>
+                        </div>
+                    </div>
+                    <i data-lucide="play" class="w-4 h-4 text-white/20 group-hover:text-primary transition-colors"></i>
+                </a>
             </div>
         </section>
 
@@ -111,21 +197,27 @@
             </div>
 
             <div class="space-y-3">
-                ${[
-                    { title: "Melancia e Citrulina: O 'Gasolina' Natural", channel: "Dr. Lair Ribeiro", url: "https://www.youtube.com/results?search_query=Lair+Ribeiro+Melancia+Performance" },
-                    { title: "Suplementação Inteligente para Vigor", channel: "Dr. Samuel Dalle Laste", url: "https://www.youtube.com/results?search_query=Samuel+Dalle+Laste+Suplementos+Masculinos" }
-                ].map((v, i) => `
-                    <a href="${v.url}" target="_blank" class="flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-accent/30 transition-all group">
-                        <div class="flex items-center gap-4">
-                            <span class="text-[10px] font-black text-white/20 tabular-nums">${(i+1).toString().padStart(2, '0')}</span>
-                            <div class="flex flex-col">
-                                <span class="text-sm font-bold group-hover:text-accent transition-colors">${v.title}</span>
-                                <span class="text-[10px] text-white/30 uppercase tracking-widest font-black">${v.channel}</span>
-                            </div>
+                <a href="https://www.youtube.com/results?search_query=Lair+Ribeiro+Melancia+Performance" target="_blank" class="flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-accent/30 transition-all group">
+                    <div class="flex items-center gap-4">
+                        <span class="text-[10px] font-black text-white/20 tabular-nums">01</span>
+                        <div class="flex flex-col">
+                            <span class="text-sm font-bold group-hover:text-accent transition-colors">Melancia e Citrulina: O 'Gasolina' Natural</span>
+                            <span class="text-[10px] text-white/30 uppercase tracking-widest font-black">Dr. Lair Ribeiro</span>
                         </div>
-                        <i data-lucide="play" class="w-4 h-4 text-white/20 group-hover:text-accent transition-colors"></i>
-                    </a>
-                `).join('')}
+                    </div>
+                    <i data-lucide="play" class="w-4 h-4 text-white/20 group-hover:text-accent transition-colors"></i>
+                </a>
+
+                <a href="https://www.youtube.com/results?search_query=Samuel+Dalle+Laste+Suplementos+Masculinos" target="_blank" class="flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-accent/30 transition-all group">
+                    <div class="flex items-center gap-4">
+                        <span class="text-[10px] font-black text-white/20 tabular-nums">02</span>
+                        <div class="flex flex-col">
+                            <span class="text-sm font-bold group-hover:text-accent transition-colors">Suplementação Inteligente para Vigor</span>
+                            <span class="text-[10px] text-white/30 uppercase tracking-widest font-black">Dr. Samuel Dalle Laste</span>
+                        </div>
+                    </div>
+                    <i data-lucide="play" class="w-4 h-4 text-white/20 group-hover:text-accent transition-colors"></i>
+                </a>
             </div>
         </section>
 
@@ -142,24 +234,60 @@
             </div>
 
             <div class="space-y-3">
-                ${[
-                    { title: "Como Eliminar a Ansiedade de Performance", channel: "Dr. Alexandre Saadeh", url: "https://www.youtube.com/results?search_query=Alexandre+Saadeh+Ansiedade+Sexual" },
-                    { title: "Estresse Mental: O Inimigo Silencioso", channel: "Flávio Passos", url: "https://www.youtube.com/results?search_query=Flavio+Passos+Estresse+Cortisol" },
-                    { title: "Meditação e Foco: Bio-hacking para Homens", channel: "Dr. Mohamad Barakat", url: "https://www.youtube.com/results?search_query=Mohamad+Barakat+Biohacking+Masculino" },
-                    { title: "Liberação de Tensão Pélvica e Relaxamento", channel: "Urogineco Especializada", url: "https://www.youtube.com/results?search_query=Fisioterapia+Pelvica+Relaxamento" },
-                    { title: "O Segredo da Longevidade e Vigor Permanente", channel: "Dr. Dráuzio Varella", url: "https://www.youtube.com/results?search_query=Drauzio+Varella+Saude+Masculina" }
-                ].map((v, i) => `
-                    <a href="${v.url}" target="_blank" class="flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-[#f59e0b]/30 transition-all group">
-                        <div class="flex items-center gap-4">
-                            <span class="text-[10px] font-black text-white/20 tabular-nums">${(i+1).toString().padStart(2, '0')}</span>
-                            <div class="flex flex-col">
-                                <span class="text-sm font-bold group-hover:text-[#f59e0b] transition-colors">${v.title}</span>
-                                <span class="text-[10px] text-white/30 uppercase tracking-widest font-black">${v.channel}</span>
-                            </div>
+                <a href="https://www.youtube.com/results?search_query=Alexandre+Saadeh+Ansiedade+Sexual" target="_blank" class="flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-[#f59e0b]/30 transition-all group">
+                    <div class="flex items-center gap-4">
+                        <span class="text-[10px] font-black text-white/20 tabular-nums">01</span>
+                        <div class="flex flex-col">
+                            <span class="text-sm font-bold group-hover:text-[#f59e0b] transition-colors">Como Eliminar a Ansiedade de Performance</span>
+                            <span class="text-[10px] text-white/30 uppercase tracking-widest font-black">Dr. Alexandre Saadeh</span>
                         </div>
-                        <i data-lucide="play" class="w-4 h-4 text-white/20 group-hover:text-[#f59e0b] transition-colors"></i>
-                    </a>
-                `).join('')}
+                    </div>
+                    <i data-lucide="play" class="w-4 h-4 text-white/20 group-hover:text-[#f59e0b] transition-colors"></i>
+                </a>
+
+                <a href="https://www.youtube.com/results?search_query=Flavio+Passos+Estresse+Cortisol" target="_blank" class="flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-[#f59e0b]/30 transition-all group">
+                    <div class="flex items-center gap-4">
+                        <span class="text-[10px] font-black text-white/20 tabular-nums">02</span>
+                        <div class="flex flex-col">
+                            <span class="text-sm font-bold group-hover:text-[#f59e0b] transition-colors">Estresse Mental: O Inimigo Silencioso</span>
+                            <span class="text-[10px] text-white/30 uppercase tracking-widest font-black">Flávio Passos</span>
+                        </div>
+                    </div>
+                    <i data-lucide="play" class="w-4 h-4 text-white/20 group-hover:text-[#f59e0b] transition-colors"></i>
+                </a>
+
+                <a href="https://www.youtube.com/results?search_query=Mohamad+Barakat+Biohacking+Masculino" target="_blank" class="flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-[#f59e0b]/30 transition-all group">
+                    <div class="flex items-center gap-4">
+                        <span class="text-[10px] font-black text-white/20 tabular-nums">03</span>
+                        <div class="flex flex-col">
+                            <span class="text-sm font-bold group-hover:text-[#f59e0b] transition-colors">Meditação e Foco: Bio-hacking para Homens</span>
+                            <span class="text-[10px] text-white/30 uppercase tracking-widest font-black">Dr. Mohamad Barakat</span>
+                        </div>
+                    </div>
+                    <i data-lucide="play" class="w-4 h-4 text-white/20 group-hover:text-[#f59e0b] transition-colors"></i>
+                </a>
+
+                <a href="https://www.youtube.com/results?search_query=Fisioterapia+Pelvica+Relaxamento" target="_blank" class="flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-[#f59e0b]/30 transition-all group">
+                    <div class="flex items-center gap-4">
+                        <span class="text-[10px] font-black text-white/20 tabular-nums">04</span>
+                        <div class="flex flex-col">
+                            <span class="text-sm font-bold group-hover:text-[#f59e0b] transition-colors">Liberação de Tensão Pélvica e Relaxamento</span>
+                            <span class="text-[10px] text-white/30 uppercase tracking-widest font-black">Urogineco Especializada</span>
+                        </div>
+                    </div>
+                    <i data-lucide="play" class="w-4 h-4 text-white/20 group-hover:text-[#f59e0b] transition-colors"></i>
+                </a>
+
+                <a href="https://www.youtube.com/results?search_query=Drauzio+Varella+Saude+Masculina" target="_blank" class="flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-[#f59e0b]/30 transition-all group">
+                    <div class="flex items-center gap-4">
+                        <span class="text-[10px] font-black text-white/20 tabular-nums">05</span>
+                        <div class="flex flex-col">
+                            <span class="text-sm font-bold group-hover:text-[#f59e0b] transition-colors">O Segredo da Longevidade e Vigor Permanente</span>
+                            <span class="text-[10px] text-white/30 uppercase tracking-widest font-black">Dr. Dráuzio Varella</span>
+                        </div>
+                    </div>
+                    <i data-lucide="play" class="w-4 h-4 text-white/20 group-hover:text-[#f59e0b] transition-colors"></i>
+                </a>
             </div>
         </section>
 
