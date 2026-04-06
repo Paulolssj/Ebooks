@@ -963,6 +963,7 @@ function showProtocol() {
             'Protocolo de Assoalho Pélvico',
             'Técnicas de Controle Ejaculatório',
             'Guia de Nutrição e Vigor Sexual',
+            'Acesso ao Apex Vault (17+ Vídeos)',
             'Acesso ao Painel de Progresso'
           ].map(item => `
             <div class="flex items-center gap-4 text-sm font-bold text-white/80">
@@ -970,6 +971,19 @@ function showProtocol() {
               <span>${item}</span>
             </div>
           `).join('')}
+        </div>
+
+        <!-- Apex Vault Preview Card -->
+        <div class="bg-primary/10 border border-primary/20 rounded-3xl p-6 mb-10 flex items-center gap-4 group cursor-pointer hover:bg-primary/20 transition-all" onclick="window.location.href = 'vault.html'">
+          <div class="w-12 h-12 rounded-2xl bg-black/40 flex items-center justify-center text-primary shrink-0 transition-transform group-hover:scale-110">
+            <i data-lucide="shield-check" class="w-6 h-6"></i>
+          </div>
+          <div class="flex-1">
+             <div class="text-[10px] font-black text-primary uppercase tracking-[0.2em] mb-1">Bónus Exclusivo</div>
+             <h4 class="text-sm font-black uppercase tracking-tight">O Cofre Digital (The Apex Vault)</h4>
+             <p class="text-[10px] text-white/40 uppercase font-bold tracking-tighter">Acesso Vitalício a 17+ Vídeos e Ferramentas</p>
+          </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-white/20"></i>
         </div>
 
         <div class="bg-black/40 rounded-3xl pt-9 pb-6 px-6 mb-10 border border-white/5 relative text-center">

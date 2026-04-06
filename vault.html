@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Apex Vault | Banco de Recursos Dr. Apex</title>
+    <link rel="stylesheet" href="style.css?v=1.30">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <!-- Scripts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#00E0FF',
+              accent: '#34D399',
+            },
+            fontFamily: {
+              main: ['Outfit', 'sans-serif'],
+            },
+            borderRadius: {
+              'pill': '500px',
+            }
+          }
+        }
+      }
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-black text-white font-main overflow-x-hidden selection:bg-primary/30">
+    
+    <!-- Navbar Minimalista -->
+    <nav class="p-6 flex justify-between items-center max-w-[1000px] mx-auto">
+        <a href="index.html" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
+            <i data-lucide="chevron-left" class="w-5 h-5 text-primary"></i>
+            <span class="text-[10px] font-black uppercase tracking-widest text-primary">Voltar ao Plano</span>
+        </a>
+        <img src="logo_apexcore.png" alt="ApexCore Logo" class="h-8">
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="py-16 px-6 text-center max-w-[800px] mx-auto relative">
+        <div class="absolute -top-10 left-1/2 -translate-x-1/2 w-64 h-64 bg-primary/10 rounded-full blur-[100px]"></div>
+        
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-pill bg-primary/10 border border-primary/20 mb-6 animate-pulse">
+            <i data-lucide="shield-check" class="w-3.5 h-3.5 text-primary"></i>
+            <span class="text-[10px] font-black uppercase tracking-widest text-primary">Cofre Digital Ativo</span>
+        </div>
+        
+        <h1 class="text-4xl md:text-5xl font-black tracking-tighter mb-4">THE APEX VAULT</h1>
+        <p class="text-white/50 text-sm md:text-base max-w-[500px] mx-auto leading-relaxed uppercase tracking-wide font-medium">
+            Banco Curado de Recursos Científicos, Práticos e Bio-Hacks de Alta Performance.
+        </p>
+    </header>
+
+    <main class="max-w-[800px] mx-auto px-6 pb-32 space-y-24">
+        
+        <!-- LIVRO 1 -->
+        <section id="book1" class="space-y-8">
+            <div class="flex items-center gap-4">
+                <div class="w-10 h-10 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-primary">
+                    <i data-lucide="book-open" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <h2 class="text-xl font-black uppercase tracking-tight">Fundação & Protocolo Apex</h2>
+                    <p class="text-xs text-white/30 uppercase tracking-widest font-black">Baseado no Ebook 01 // 10 Recursos</p>
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                ${[
+                    { title: "Anatomia Pélvica 3D: Como tudo funciona", channel: "Dr. Lucas Fustenberg", url: "https://www.youtube.com/results?search_query=Dr+Lucas+Fustenberg+Kegel+Homens" },
+                    { title: "Os 3 Erros Fatais nos Exercícios de Kegel", channel: "Dr. Alexandre Cavalcanti", url: "https://www.youtube.com/results?search_query=Alexandre+Cavalcanti+Exercicios+Kegel" },
+                    { title: "Fisioterapia Pélvica: Localizando os Músculos PC", channel: "Cássio Siqueira", url: "https://www.youtube.com/results?search_query=Cassio+Siqueira+Assoalho+Pelvico" },
+                    { title: "Respiração Diafragmática e a Libido", channel: "Dr. Lair Ribeiro", url: "https://www.youtube.com/results?search_query=Lair+Ribeiro+Respiracao+Performance" },
+                    { title: "Guia Prático: O Seu Primeiro Dia de Treino", channel: "Homem com Saúde", url: "https://www.youtube.com/results?search_query=Kegel+para+Iniciantes+Homens" },
+                    { title: "Como ter Controle Total em 4 Semanas", channel: "Tiago Rocha", url: "https://www.youtube.com/results?search_query=Tiago+Rocha+Performance+Masculina" },
+                    { title: "Exercícios de Kegel para Fortalecimento Geral", channel: "Dra. Maura Seleme", url: "https://www.youtube.com/results?search_query=Maura+Seleme+Kegel+Masculino" },
+                    { title: "Kegel Funciona Contra Impotência?", channel: "Dr. Paulo Egiidio", url: "https://www.youtube.com/results?search_query=Paulo+Egiidio+Kegel" },
+                    { title: "A Ciência dos Músculos Ísquios e Pubocoxígenos", channel: "Dr. Alexandre Saadeh", url: "https://www.youtube.com/results?search_query=Alexandre+Saadeh+Anatomia+Sexual" },
+                    { title: "Rotina Expressa de 5 Minutos Diários", channel: "Protocolo Apex", url: "https://www.youtube.com" }
+                ].map((v, i) => `
+                    <a href="${v.url}" target="_blank" class="flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-primary/30 transition-all group">
+                        <div class="flex items-center gap-4">
+                            <span class="text-[10px] font-black text-white/20 tabular-nums">${(i+1).toString().padStart(2, '0')}</span>
+                            <div class="flex flex-col">
+                                <span class="text-sm font-bold group-hover:text-primary transition-colors">${v.title}</span>
+                                <span class="text-[10px] text-white/30 uppercase tracking-widest font-black">${v.channel}</span>
+                            </div>
+                        </div>
+                        <i data-lucide="play" class="w-4 h-4 text-white/20 group-hover:text-primary transition-colors"></i>
+                    </a>
+                `).join('')}
+            </div>
+        </section>
+
+        <!-- LIVRO 2 -->
+        <section id="book2" class="space-y-8">
+            <div class="flex items-center gap-4">
+                <div class="w-10 h-10 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-accent">
+                    <i data-lucide="zap" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <h2 class="text-xl font-black uppercase tracking-tight">Otimização Biológica</h2>
+                    <p class="text-xs text-white/30 uppercase tracking-widest font-black">Baseado no Ebook 02 // 02 Recursos</p>
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                ${[
+                    { title: "Melancia e Citrulina: O 'Gasolina' Natural", channel: "Dr. Lair Ribeiro", url: "https://www.youtube.com/results?search_query=Lair+Ribeiro+Melancia+Performance" },
+                    { title: "Suplementação Inteligente para Vigor", channel: "Dr. Samuel Dalle Laste", url: "https://www.youtube.com/results?search_query=Samuel+Dalle+Laste+Suplementos+Masculinos" }
+                ].map((v, i) => `
+                    <a href="${v.url}" target="_blank" class="flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-accent/30 transition-all group">
+                        <div class="flex items-center gap-4">
+                            <span class="text-[10px] font-black text-white/20 tabular-nums">${(i+1).toString().padStart(2, '0')}</span>
+                            <div class="flex flex-col">
+                                <span class="text-sm font-bold group-hover:text-accent transition-colors">${v.title}</span>
+                                <span class="text-[10px] text-white/30 uppercase tracking-widest font-black">${v.channel}</span>
+                            </div>
+                        </div>
+                        <i data-lucide="play" class="w-4 h-4 text-white/20 group-hover:text-accent transition-colors"></i>
+                    </a>
+                `).join('')}
+            </div>
+        </section>
+
+        <!-- LIVRO 3 -->
+        <section id="book3" class="space-y-8">
+            <div class="flex items-center gap-4">
+                <div class="w-10 h-10 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-[#f59e0b]">
+                    <i data-lucide="brain" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <h2 class="text-xl font-black uppercase tracking-tight">Domínio Psicológico & Avançado</h2>
+                    <p class="text-xs text-white/30 uppercase tracking-widest font-black">Baseado no Ebook 03 // 05 Recursos</p>
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                ${[
+                    { title: "Como Eliminar a Ansiedade de Performance", channel: "Dr. Alexandre Saadeh", url: "https://www.youtube.com/results?search_query=Alexandre+Saadeh+Ansiedade+Sexual" },
+                    { title: "Estresse Mental: O Inimigo Silencioso", channel: "Flávio Passos", url: "https://www.youtube.com/results?search_query=Flavio+Passos+Estresse+Cortisol" },
+                    { title: "Meditação e Foco: Bio-hacking para Homens", channel: "Dr. Mohamad Barakat", url: "https://www.youtube.com/results?search_query=Mohamad+Barakat+Biohacking+Masculino" },
+                    { title: "Liberação de Tensão Pélvica e Relaxamento", channel: "Urogineco Especializada", url: "https://www.youtube.com/results?search_query=Fisioterapia+Pelvica+Relaxamento" },
+                    { title: "O Segredo da Longevidade e Vigor Permanente", channel: "Dr. Dráuzio Varella", url: "https://www.youtube.com/results?search_query=Drauzio+Varella+Saude+Masculina" }
+                ].map((v, i) => `
+                    <a href="${v.url}" target="_blank" class="flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-[#f59e0b]/30 transition-all group">
+                        <div class="flex items-center gap-4">
+                            <span class="text-[10px] font-black text-white/20 tabular-nums">${(i+1).toString().padStart(2, '0')}</span>
+                            <div class="flex flex-col">
+                                <span class="text-sm font-bold group-hover:text-[#f59e0b] transition-colors">${v.title}</span>
+                                <span class="text-[10px] text-white/30 uppercase tracking-widest font-black">${v.channel}</span>
+                            </div>
+                        </div>
+                        <i data-lucide="play" class="w-4 h-4 text-white/20 group-hover:text-[#f59e0b] transition-colors"></i>
+                    </a>
+                `).join('')}
+            </div>
+        </section>
+
+        <!-- APPS & TOOLS -->
+        <section id="tools" class="pt-16 border-t border-white/5 space-y-12">
+            <div class="text-center">
+                <h3 class="text-2xl font-black uppercase tracking-tighter mb-2">Ecossistema Apex</h3>
+                <p class="text-white/30 text-[10px] font-black uppercase tracking-widest">Aplicações sugeridas para otimização.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- App 1 -->
+                <div class="p-8 rounded-3xl bg-white/5 border border-white/5 text-center flex flex-col items-center group hover:bg-white/10 transition-all">
+                    <i data-lucide="activity" class="w-10 h-10 text-primary mb-4 group-hover:scale-110 transition-transform"></i>
+                    <h4 class="font-black text-sm uppercase tracking-tight mb-2">Dr. Kegel</h4>
+                    <p class="text-[10px] text-white/40 uppercase leading-relaxed font-bold">Monitorização diária e estudos contínuos.</p>
+                </div>
+                <!-- App 2 -->
+                <div class="p-8 rounded-3xl bg-white/5 border border-white/5 text-center flex flex-col items-center group hover:bg-white/10 transition-all">
+                    <i data-lucide="moon" class="w-10 h-10 text-accent mb-4 group-hover:scale-110 transition-transform"></i>
+                    <h4 class="font-black text-sm uppercase tracking-tight mb-2">Calm / Headspace</h4>
+                    <p class="text-[10px] text-white/40 uppercase leading-relaxed font-bold">Gestão de Ansiedade e Sono Bio-otimizado.</p>
+                </div>
+                <!-- App 3 -->
+                <div class="p-8 rounded-3xl bg-white/5 border border-white/5 text-center flex flex-col items-center group hover:bg-white/10 transition-all">
+                    <i data-lucide="utensils" class="w-10 h-10 text-[#fca5a1] mb-4 group-hover:scale-110 transition-transform"></i>
+                    <h4 class="font-black text-sm uppercase tracking-tight mb-2">Zero / Yazio</h4>
+                    <p class="text-[10px] text-white/40 uppercase leading-relaxed font-bold">Controlo de Jejum e Nutrição Energética.</p>
+                </div>
+            </div>
+
+            <div class="p-10 rounded-[2.5rem] bg-gradient-to-br from-primary/10 to-accent/10 border border-white/10 text-center">
+                <i data-lucide="lock" class="w-12 h-12 text-primary/30 mx-auto mb-6"></i>
+                <h4 class="text-xl font-black mb-2 uppercase tracking-tight">O Cofre Está Vivo</h4>
+                <p class="text-white/40 text-xs leading-relaxed max-w-[400px] mx-auto uppercase tracking-wide font-medium font-black">
+                    Novas referências e links são adicionados aqui com base no feedback da comunidade. Tens acesso vitalício a este banco.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="py-12 border-t border-white/5 text-center">
+        <p class="text-[10px] text-white/20 font-black uppercase tracking-[0.3em]">
+            ApexCore © 2026 // Reservado ao Domínio Masculino
+        </p>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
