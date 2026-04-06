@@ -30,7 +30,7 @@ html, body {
   overflow-x: hidden;
   overflow-y: auto !important;
   height: auto !important;
-  min-height: 100%;
+  min-height: 100dvh; /* Dynamic Viewport Height */
 }
 
 /* Pill Navbar */
@@ -241,8 +241,8 @@ html, body {
 .quiz-container {
   max-width: 600px;
   margin: 0 auto;
-  padding: 100px 24px 40px;
-  min-height: 100vh;
+  padding: 100px 24px 200px; /* Aumentado PB para o footer */
+  min-height: 100dvh;
   position: relative;
 }
 
@@ -357,7 +357,7 @@ html, body {
   border: 1px solid var(--surface-border);
   border-radius: 20px;
   padding: 1.25rem 1.5rem; /* Better proportions */
-  min-height: 4rem; /* Ensure minimum touch target height */
+  min-height: 3.5rem; /* Slightly reduced */
   cursor: pointer;
   display: flex;
   justify-content: space-between;
@@ -366,6 +366,13 @@ html, body {
   position: relative;
   overflow: hidden;
   user-select: none; /* Prevent text selection on tap */
+}
+
+@media (max-width: 768px) {
+  .option-card {
+    padding: 1rem 1.25rem;
+    min-height: 3rem;
+  }
 }
 
 .option-card::after {
