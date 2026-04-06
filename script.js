@@ -1097,3 +1097,50 @@ backBtn.onclick = () => {
 
 // Initial state - Don't call renderStep here, startQuiz handles it
 // renderStep();
+
+/* --- SOCIAL PROOF SYSTEM --- */
+const socialProofData = {
+  names: ["Ricardo M.", "Paulo G.", "Carlos S.", "André L.", "Marcos R.", "João P.", "Roberto F.", "Bruno D.", "Sérgio V.", "Fernando A.", "Gustavo H.", "Marcelo K.", "Denis J.", "Thiago B.", "Vanderlei O.", "Renato C.", "Hugo T.", "Eduardo N."],
+  cities: ["São Paulo, SP", "Rio de Janeiro, RJ", "Curitiba, PR", "Belo Horizonte, MG", "Porto Alegre, RS", "Brasília, DF", "Fortaleza, CE", "Salvador, BA", "Manaus, AM", "Recife, PE", "Florianópolis, SC", "Goiânia, GO"],
+  times: ["agora mesmo", "há 2 minutos", "há 5 minutos", "há 10 minutos", "há 15 minutos", "há 30 minutos"]
+};
+
+function showSocialNotification() {
+  const toast = document.getElementById('social-proof-toast');
+  if (!toast) return;
+
+  const name = socialProofData.names[Math.floor(Math.random() * socialProofData.names.length)];
+  const city = socialProofData.cities[Math.floor(Math.random() * socialProofData.cities.length)];
+  const time = socialProofData.times[Math.floor(Math.random() * socialProofData.times.length)];
+
+  toast.innerHTML = `
+    <span class="social-name">${name}</span>
+    <span class="social-action">Adquiriu o Protocolo Dr. Apex</span>
+    <span class="social-location">${city} - ${time}</span>
+  `;
+
+  toast.classList.add('show');
+
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 6000);
+}
+
+// Timing Logic: 5s initial, 15s second, then 45s interval
+window.addEventListener('load', () => {
+  // First notification at 5s
+  setTimeout(() => {
+    showSocialNotification();
+    
+    // Second notification at 15s after the first one
+    setTimeout(() => {
+      showSocialNotification();
+      
+      // Subsequent ones every 45s
+      setInterval(() => {
+        showSocialNotification();
+      }, 45000);
+      
+    }, 15000);
+  }, 5000);
+});
