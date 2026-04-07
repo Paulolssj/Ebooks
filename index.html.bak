@@ -76,7 +76,8 @@
         <div class="flex-container flex justify-between items-center w-full gap-10">
             <img src="logo_apexcore.png" alt="ApexCore Logo" class="h-12 md:h-16" loading="lazy">
             <div class="hidden md:flex gap-10">
-                <a href="#science" class="text-xs font-bold text-white/90 hover:text-white transition-colors uppercase tracking-[0.2em]">Ciência</a>
+                <a href="#about" class="text-xs font-bold text-white/70 hover:text-white transition-colors uppercase tracking-[0.2em]">Método</a>
+                <a href="#science" class="text-xs font-bold text-white/70 hover:text-white transition-colors uppercase tracking-[0.2em]">Ciência</a>
             </div>
             <button class="bg-white text-black px-6 py-3 rounded-pill text-[12px] font-black uppercase tracking-widest hover:scale-105 hover:bg-primary transition-all" onclick="startQuiz()">Começar</button>
         </div>
@@ -108,17 +109,47 @@
                     <span class="drama-text font-drama italic font-normal text-primary/90 block mt-2 text-[0.8em]">Através da Ciência.</span>
                 </h1>
 
-                <p class="hero-subtitle text-lg text-white/80 max-w-[450px] leading-relaxed">Protocolo de bio-otimização personalizado para restaurar seu vigor e controle natural.</p>
+                <p class="hero-subtitle text-lg text-white/40 max-w-[450px] leading-relaxed">Protocolo de bio-otimização personalizado para restaurar seu vigor e controle natural.</p>
             </div>
 
             <button class="hero-cta-btn group bg-white text-black px-12 py-6 rounded-pill text-xl font-black flex items-center justify-center gap-4 hover:scale-[1.05] hover:bg-primary transition-all shadow-[0_20px_50px_rgba(0,224,255,0.2)]" onclick="startQuiz()">
                 Personalizar Meu Plano
                 <i data-lucide="arrow-right" class="w-6 h-6 group-hover:translate-x-1 transition-transform"></i>
             </button>
+            <button class="btn-skip-pill" onclick="skipQuiz()">
+                PULAR QUIZ E IR PARA O DESCONTO
+            </button>
         </div>
     </section>
 
-
+    <!-- Features / Social Proof Section -->
+    <section class="py-24 px-[5%] bg-black border-t border-white/5 relative overflow-hidden" id="about">
+        <div class="max-w-[1200px] mx-auto">
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="p-8 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
+                    <div class="w-12 h-12 bg-primary/20 rounded-2xl flex items-center justify-center mb-6">
+                        <i data-lucide="shield" class="text-primary w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Base Científica</h3>
+                    <p class="text-white/50 text-sm leading-relaxed">Protocolos baseados em estudos urológicos recentes para resultados reais e duradouros.</p>
+                </div>
+                <div class="p-8 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
+                    <div class="w-12 h-12 bg-accent/20 rounded-2xl flex items-center justify-center mb-6">
+                        <i data-lucide="activity" class="text-accent w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Personalização IA</h3>
+                    <p class="text-white/50 text-sm leading-relaxed">Nossa tecnologia analisa seu perfil biológico para criar um plano 100% sob medida.</p>
+                </div>
+                <div class="p-8 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
+                    <div class="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center mb-6">
+                        <i data-lucide="lock" class="text-white w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Privacidade Total</h3>
+                    <p class="text-white/50 text-sm leading-relaxed">Seus dados são protegidos com criptografia de ponta a ponta e anonimato garantido.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Quiz Container -->
     <div id="quiz-root" class="hidden max-w-[600px] mx-auto pt-10 px-6 pb-[250px] min-h-dvh relative">
@@ -127,7 +158,7 @@
                 <div class="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
                 <span id="social-proof-indicator">128 homens iniciaram seu plano nas últimas 24h</span>
             </div>
-            <div id="step-counter" class="text-[10px] font-black tracking-widest text-white/90 uppercase">
+            <div id="step-counter" class="text-[10px] font-black tracking-widest text-white/30 uppercase">
                 01 / 15
             </div>
         </header>
@@ -150,7 +181,10 @@
                 <button id="next-btn" class="w-full py-5 rounded-pill font-black text-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed">
                     Continuar
                 </button>
-                <button id="back-btn" class="hidden w-full text-center text-white/90 text-xs font-bold uppercase tracking-widest hover:text-white transition-colors py-2">
+                <button onclick="skipQuiz()" class="btn-skip-pill mt-2">
+                    Pular quiz e ir para o desconto
+                </button>
+                <button id="back-btn" class="hidden w-full text-center text-white/50 text-xs font-bold uppercase tracking-widest hover:text-white transition-colors py-2">
                     Voltar
                 </button>
             </div>
