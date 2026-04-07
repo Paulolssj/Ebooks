@@ -550,10 +550,10 @@ function showInspiration(data) {
   setTimeout(() => {
     questionEl.style.display = 'none';
     optionsEl.innerHTML = `
-      <div class="inspiration-container flex flex-col items-center text-center mt-2">
-        <img src="${data.image}" class="inspiration-img step-${data.step}-img w-full h-auto max-h-[40vh] object-cover rounded-3xl mb-6 shadow-xl" alt="Inspiration">
-        <h2 class="text-[28px] font-extrabold leading-tight mb-2 tracking-tighter">${data.title || "Progresso!"}</h2>
-        <p class="inspiration-text text-base text-white/90 mb-0">${data.text}</p>
+      <div class="inspiration-container flex flex-col items-center text-center mt-2 px-2">
+        <img src="${data.image}" class="inspiration-img step-${data.step}-img w-full h-auto max-h-[42vh] object-cover rounded-3xl mb-12 shadow-xl" alt="Inspiration">
+        <h2 class="text-[28px] font-extrabold leading-tight mb-6 tracking-tighter">${data.title || "Progresso!"}</h2>
+        <p class="inspiration-text text-[17px] leading-relaxed text-white/90 mb-4">${data.text}</p>
       </div>
     `;
     nextBtn.classList.remove('disabled');
