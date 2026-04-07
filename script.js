@@ -550,8 +550,8 @@ function showInspiration(data) {
   setTimeout(() => {
     questionEl.style.display = 'none';
     optionsEl.innerHTML = `
-      <div class="inspiration-container flex flex-col items-center text-center justify-center min-h-[60vh] mt-4">
-        <img src="${data.image}" class="inspiration-img step-${data.step}-img w-full h-[45vh] object-cover rounded-3xl mb-8 shadow-2xl" alt="Inspiration">
+      <div class="inspiration-container flex flex-col items-center text-center justify-center min-h-[72vh] mt-4">
+        <img src="${data.image}" class="inspiration-img step-${data.step}-img w-full h-[55vh] object-cover rounded-3xl mb-12 shadow-2xl" alt="Inspiration">
         <h2 class="text-[32px] font-extrabold leading-tight mb-4 tracking-tighter">${data.title || "Progresso!"}</h2>
         <p class="inspiration-text text-lg text-white/90">${data.text}</p>
       </div>
