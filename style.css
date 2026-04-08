@@ -1598,118 +1598,334 @@ html, body {
 }
 
 /* --- Social Proof Carousel --- */
+/* --- Social Proof Carousel (Chat Prints) --- */
 .social-proof-section {
   width: 100%;
   max-width: 600px;
-  margin: 40px auto;
-  padding: 0 20px;
+  margin: 20px auto;
+  padding: 0;
   overflow: hidden;
 }
 
 .proof-slider {
   display: flex;
-  gap: 16px;
+  gap: 20px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  padding: 20px 0;
+  padding: 20px 10px;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  scroll-behavior: smooth;
 }
 
-.proof-slider::-webkit-scrollbar {
-  display: none;
-}
+.proof-slider::-webkit-scrollbar { display: none; }
 
-.social-card {
-  flex: 0 0 280px;
+.chat-print {
+  flex: 0 0 320px;
   scroll-snap-align: center;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 24px;
-  padding: 20px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  border: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
   transition: transform 0.3s ease;
 }
 
-.social-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(255, 255, 255, 0.2);
+@media (max-width: 768px) {
+  .chat-print { flex: 0 0 85%; }
 }
 
-.card-header {
+.chat-header {
+  padding: 12px 16px;
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
-.user-avatar {
-  width: 40px;
-  height: 40px;
+.chat-avatar {
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   object-fit: cover;
-  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.user-info {
+.chat-user {
   flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
-.user-name {
+.chat-name {
   font-size: 14px;
-  font-weight: 800;
+  font-weight: 700;
   color: #fff;
-  display: block;
 }
 
-.user-handle {
-  font-size: 11px;
-  color: rgba(255, 255, 255, 0.4);
+.chat-status {
+  font-size: 10px;
+  color: rgba(255,255,255,0.4);
 }
 
-.platform-icon {
-  width: 20px;
-  height: 20px;
-  opacity: 0.6;
+.chat-icons {
+  display: flex;
+  gap: 15px;
+  color: #fff;
+  opacity: 0.7;
 }
 
-.card-content {
+.chat-body {
+  padding: 16px;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* WhatsApp Theme */
+.chat-wa { background: #0b141a; }
+.chat-wa .chat-body { background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png'); background-size: contain; }
+.message.received {
+  background: #202c33;
+  color: #e9edef;
+  padding: 8px 12px;
+  border-radius: 0 10px 10px 10px;
   font-size: 13px;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.85);
-  margin-bottom: 15px;
+  max-width: 90%;
+  position: relative;
+  line-height: 1.4;
+}
+.chat-print {
+  flex: 0 0 320px;
+  background: #0b141a;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-.card-footer {
+/* Mobile Status Bar Simulation */
+.chat-status-bar {
+  height: 24px;
+  padding: 0 12px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 11px;
-  color: rgba(255, 255, 255, 0.4);
+  font-family: sans-serif;
+  font-size: 10px;
   font-weight: 600;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  padding-top: 12px;
+  color: #fff;
+  background: rgba(0,0,0,0.2);
+}
+.status-icons { display: flex; gap: 4px; align-items: center; }
+
+.chat-header {
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  background: #202c33; /* WhatsApp header */
+  z-index: 2;
 }
 
-/* Platform Colors */
-.card-fb .platform-icon { color: #1877F2; opacity: 1; }
-.card-ig .platform-icon { color: #E4405F; opacity: 1; }
-.card-wa .platform-icon { color: #25D366; opacity: 1; }
+.chat-fb .chat-header { background: #18191a; border-bottom: none; }
+.chat-ig .chat-header { background: #000; border-bottom: none; }
 
-.verified-badge {
-  color: #3897f0;
-  width: 14px;
-  height: 14px;
-  display: inline-block;
-  vertical-align: middle;
-  margin-left: 2px;
+.chat-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
-.wa-bubble {
-  background: rgba(37, 211, 102, 0.05);
-  border-radius: 0 15px 15px 15px;
-  padding: 10px;
-  margin-top: 5px;
-  border-left: 3px solid #25D366;
+.chat-user {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.chat-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chat-status {
+  font-size: 10px;
+  color: rgba(255,255,255,0.5);
+}
+
+.chat-icons {
+  display: flex;
+  gap: 12px;
+  opacity: 0.7;
+}
+
+.chat-body {
+  flex: 1;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow-y: auto;
+}
+
+/* WhatsApp Theme Detail */
+.chat-wa .chat-body {
+  background-color: #0b141a;
+  background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.message.received {
+  background: #202c33;
+  color: #e9edef;
+  padding: 8px 12px;
+  border-radius: 0 8px 8px 8px;
+  font-size: 13px;
+  max-width: 85%;
+  line-height: 1.4;
+  position: relative;
+  margin-left: 6px;
+}
+
+.message.received::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -6px;
+  border-width: 0 6px 10px 0;
+  border-style: solid;
+  border-color: transparent #202c33 transparent transparent;
+}
+
+.msg-time-wa {
+  font-size: 9px;
+  color: rgba(255,255,255,0.4);
+  margin-top: 4px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 3px;
+}
+
+/* Messenger Theme Detail */
+.chat-fb { background: #000; }
+.chat-intro {
+  text-align: center;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.chat-intro-avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1fa2ff, #12d8fa, #a6ffcb);
+  margin-bottom: 8px;
+}
+.chat-intro-name { font-size: 16px; font-weight: 800; color: #fff; }
+.chat-intro-handle { font-size: 12px; color: rgba(255,255,255,0.5); }
+.chat-intro-action {
+  font-size: 11px;
+  background: #242526;
+  padding: 6px 12px;
+  border-radius: 6px;
+  margin-top: 10px;
+  font-weight: 700;
+}
+
+.message.bubble-fb {
+  background: #303030;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 18px;
+  font-size: 14px;
+  align-self: flex-start;
+  max-width: 85%;
+}
+
+/* Bottom Input Bars */
+.chat-footer {
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 2;
+}
+
+.chat-wa-footer {
+  background: #0b141a;
+  padding-bottom: 12px;
+}
+.wa-input {
+  flex: 1;
+  background: #2a3942;
+  border-radius: 24px;
+  height: 40px;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: rgba(255,255,255,0.4);
+}
+
+.chat-fb-footer {
+  background: #000;
+  padding: 12px;
+}
+.fb-input {
+  flex: 1;
+  background: #242526;
+  border-radius: 20px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  padding-left: 12px;
+  color: rgba(255,255,255,0.5);
+  font-size: 13px;
+}
+
+.verified-badge { color: #0095f6; }
+
+@media (max-width: 768px) {
+  .chat-print { flex: 0 0 280px; }
+}
+
+/* Marquee Smooth Motion */
+.marquee-container {
+  mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 20px 0;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 1.5rem;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
