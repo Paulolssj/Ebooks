@@ -151,8 +151,7 @@ window.addEventListener('DOMContentLoaded', () => {
   tl.from(".hero-badge", { y: 20, opacity: 0, duration: 0.8 }, 0.5)
     .from(".hero-title", { y: 40, opacity: 0, stagger: 0.1 }, "-=0.4")
     .from(".hero-subtitle", { y: 20, opacity: 0 }, "-=0.6")
-    .from(".hero-cta-btn", { scale: 0.9, opacity: 0 }, "-=0.8")
-    .from("#social-proof-section", { y: 20, opacity: 0, duration: 1 }, "-=0.2");
+    .from(".hero-cta-btn", { scale: 0.9, opacity: 0 }, "-=0.8");
 
 });
 
