@@ -927,7 +927,7 @@ function showProtocol() {
         
         <div class="space-y-5 mb-10">
           ${[
-            { title: 'Protocolo de Força Pélvica', desc: 'Volte a ficar duro como antes — rigidez real em 30 dias' },
+            { title: 'Protocolo de Força Pélvica', desc: 'Recupere sua Rigidez como antes — resultados reais em 30 dias' },
             { title: 'Controle Ejaculatório', desc: 'Dure o tempo que quiser, sem ansiedade e sem remédio' },
             { title: 'Guia de Nutrição e Testosterona', desc: 'Energia e libido de dentro para fora — alimentação que funciona' },
             { title: 'Painel de Acompanhamento', desc: 'Saiba exatamente como está evoluindo, semana a semana' }
@@ -1010,7 +1010,7 @@ function showProtocol() {
                 </div>
                 <span class="text-[10px] font-bold text-white/60">Carlos F., 41 — SP</span>
               </div>
-              <h4 class="font-bold text-sm mb-2">Voltei a ficar duro de verdade</h4>
+              <h4 class="font-bold text-sm mb-2">Recuperei minha rigidez de verdade</h4>
               <p class="text-white/80 text-xs leading-relaxed">Eu achava que era da idade. Tentei suplemento, tentei remédio. Nada. Com o protocolo, em 3 semanas acordei com uma ereção matinal que não via há anos. Minha mulher percebeu antes de mim.</p>
             </div>
             
