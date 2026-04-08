@@ -867,10 +867,10 @@ html, body {
   text-transform: uppercase;
 }
 
-.label-top { top: 10px; left: 50%; transform: translateX(-50%); }
-.label-bottom { bottom: 10px; left: 50%; transform: translateX(-50%); }
-.label-left { left: 15px; top: 50%; transform: translateY(-50%); text-align: left; width: 60px; }
-.label-right { right: 15px; top: 50%; transform: translateY(-50%); text-align: right; width: 60px; }
+.label-top { top: -20px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
+.label-bottom { bottom: -20px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
+.label-left { right: calc(100% + 15px); top: 50%; transform: translateY(-50%); text-align: right; white-space: nowrap; }
+.label-right { left: calc(100% + 15px); top: 50%; transform: translateY(-50%); text-align: left; white-space: nowrap; }
 
 .xy-handle {
   width: 32px;
