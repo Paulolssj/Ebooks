@@ -142,7 +142,6 @@ const progressFill = document.getElementById('progress-fill');
 const socialTicker = document.getElementById('social-ticker');
 const heroSection = document.getElementById('hero');
 const quizRoot = document.getElementById('quiz-root');
-const pillNav = document.querySelector('.pill-nav');
 
 // --- GEMINI Best Practices: GSAP Entrance ---
 window.addEventListener('DOMContentLoaded', () => {
@@ -155,14 +154,6 @@ window.addEventListener('DOMContentLoaded', () => {
     .from(".hero-cta-btn", { scale: 0.9, opacity: 0 }, "-=0.8")
     .from("#social-proof-section", { y: 20, opacity: 0, duration: 1 }, "-=0.2");
 
-  // Navbar Scroll Effect
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-      pillNav.classList.add('scrolled');
-    } else {
-      pillNav.classList.remove('scrolled');
-    }
-  });
 });
 
 
@@ -175,8 +166,6 @@ function startQuiz() {
     ease: "power3.inOut",
     onComplete: () => {
       heroSection.style.display = 'none';
-      const navEl = document.querySelector('.pill-nav');
-      if (navEl) navEl.classList.add('nav-hidden');
       quizRoot.style.display = 'block';
       gsap.from(quizRoot, { opacity: 0, y: 30, duration: 0.6 });
       renderStep();
