@@ -1,18 +1,19 @@
-import React from 'react';
 import { Composition } from 'remotion';
-import { PromoComposition } from './PromoComposition';
+import { Main } from './Main';
+import { TIMING, TOTAL_DURATION } from './constants/timing';
 
 export const RemotionRoot: React.FC = () => {
-	return (
-		<>
-			<Composition
-				id="PromoVideo"
-				component={PromoComposition}
-				durationInFrames={30 * 30}
-				fps={30}
-				width={1080}
-				height={1920}
-			/>
-		</>
-	);
+  return (
+    <>
+      <Composition
+        id="ApexCore_Promo"
+        component={Main}
+        durationInFrames={TOTAL_DURATION}
+        fps={TIMING.FPS}
+        width={1080}
+        height={1920}
+        defaultProps={{}}
+      />
+    </>
+  );
 };
