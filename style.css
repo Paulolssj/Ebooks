@@ -519,7 +519,7 @@ html, body {
   border: 1px solid rgba(255, 255, 255, 0.1);
   position: relative;
   border-radius: 8px;
-  overflow: hidden;
+  overflow: visible;
   transition: background 0.1s ease-out; /* Smooth glow transition */
 }
 
@@ -844,7 +844,7 @@ html, body {
   position: relative;
   margin: 20px 0;
   cursor: crosshair;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .xy-grid {
@@ -867,10 +867,10 @@ html, body {
   text-transform: uppercase;
 }
 
-.label-top { top: -20px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
-.label-bottom { bottom: -20px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
-.label-left { right: calc(100% + 15px); top: 50%; transform: translateY(-50%); text-align: right; white-space: nowrap; }
-.label-right { left: calc(100% + 15px); top: 50%; transform: translateY(-50%); text-align: left; white-space: nowrap; }
+.label-top { top: -15px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
+.label-bottom { bottom: -15px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
+.label-left { right: calc(100% + 10px); top: 50%; transform: translateY(-50%); text-align: right; white-space: nowrap; }
+.label-right { left: calc(100% + 10px); top: 50%; transform: translateY(-50%); text-align: left; white-space: nowrap; }
 
 .xy-handle {
   width: 32px;
