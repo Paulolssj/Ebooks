@@ -869,8 +869,8 @@ html, body {
 
 .label-top { top: 10px; left: 50%; transform: translateX(-50%); }
 .label-bottom { bottom: 10px; left: 50%; transform: translateX(-50%); }
-.label-left { left: 10px; top: 50%; transform: translateY(-50%) rotate(-90deg); }
-.label-right { right: 10px; top: 50%; transform: translateY(-50%) rotate(90deg); }
+.label-left { left: 15px; top: 50%; transform: translateY(-50%); text-align: left; width: 60px; }
+.label-right { right: 15px; top: 50%; transform: translateY(-50%); text-align: right; width: 60px; }
 
 .xy-handle {
   width: 32px;
