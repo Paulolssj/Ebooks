@@ -12,7 +12,9 @@
       
       // 2. Verificação de Domínio (Anti-Clone)
       const currentHost = window.location.hostname;
-      if (official && currentHost !== official && currentHost !== 'localhost' && !currentHost.includes('vercel.app')) {
+      const isLocal = currentHost === 'localhost' || currentHost === '127.0.0.1' || currentHost === '0.0.0.0';
+      
+      if (official && currentHost !== official && !isLocal && !currentHost.includes('vercel.app')) {
         console.warn('Ambiente não autorizado detectado.');
         // Reporta o clone silenciosamente
         fetch('/api/report', {
@@ -151,7 +153,7 @@ window.addEventListener('DOMContentLoaded', () => {
     .from(".hero-title", { y: 40, opacity: 0, stagger: 0.1 }, "-=0.4")
     .from(".hero-subtitle", { y: 20, opacity: 0 }, "-=0.6")
     .from(".hero-cta-btn", { scale: 0.9, opacity: 0 }, "-=0.8")
-    .from(".hero-cta-btn", { scale: 0.9, opacity: 0 }, "-=0.8");
+    .from("#social-proof-section", { y: 20, opacity: 0, duration: 1 }, "-=0.2");
 
   // Navbar Scroll Effect
   window.addEventListener('scroll', () => {
@@ -1085,6 +1087,49 @@ function showProtocol() {
               <span class="text-[9px] font-bold text-white/50 uppercase tracking-widest">${badge.text}</span>
             </div>
           `).join('')}
+        </div>
+
+        <div class="mt-8 pt-8 border-t border-white/5 w-full">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="h-px flex-1 bg-white/10"></div>
+                <span class="text-[9px] font-black uppercase tracking-[3px] text-white/40">Comentários</span>
+                <div class="h-px flex-1 bg-white/10"></div>
+            </div>
+            <div class="proof-slider !p-0">
+                <div class="social-card card-fb !flex-0 !w-[240px] !p-4 !rounded-2xl">
+                    <div class="card-header !mb-3">
+                        <img src="user_profile_1.png" class="user-avatar !w-8 !h-8">
+                        <div class="user-info">
+                            <span class="user-name !text-[12px] text-left">Ricardo M.</span>
+                            <span class="user-handle !text-[9px] text-left">Facebook</span>
+                        </div>
+                        <i data-lucide="facebook" class="!w-4 !h-4 text-white/20"></i>
+                    </div>
+                    <p class="card-content !text-[11px] !mb-0 text-left">Finalmente algo que funciona de verdade. Valeu cada centavo. 💪</p>
+                </div>
+                <div class="social-card card-ig !flex-0 !w-[240px] !p-4 !rounded-2xl">
+                    <div class="card-header !mb-3">
+                        <img src="user_profile_2.png" class="user-avatar !w-8 !h-8" alt="Avatar">
+                        <div class="user-info">
+                            <span class="user-name !text-[12px] text-left">Paulo G.</span>
+                            <span class="user-handle !text-[9px] text-left">@paulog_oficial</span>
+                        </div>
+                        <i data-lucide="instagram" class="!w-4 !h-4 text-white/20"></i>
+                    </div>
+                    <p class="card-content !text-[11px] !mb-0 text-left">As dicas de nutrição e exercícios são matadoras. Prático e rápido! 🔥</p>
+                </div>
+                <div class="social-card card-wa !flex-0 !w-[240px] !p-4 !rounded-2xl">
+                    <div class="card-header !mb-3">
+                        <img src="user_profile_3.png" class="user-avatar !w-8 !h-8" alt="Avatar">
+                        <div class="user-info">
+                            <span class="user-name !text-[12px] text-left">Carlos S.</span>
+                            <span class="user-handle !text-[9px] text-left">WhatsApp</span>
+                        </div>
+                        <i data-lucide="message-circle" class="!w-4 !h-4 text-white/20"></i>
+                    </div>
+                    <p class="card-content !text-[11px] !mb-0 text-left">Até minha esposa comentou a diferença. Protocolo nota 10! 👊</p>
+                </div>
+            </div>
         </div>
       </div>
 
