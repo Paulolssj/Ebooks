@@ -63,6 +63,41 @@
         }
     }
 
+    // 4. Proteções CRIABR (Anti-Cópia/Anti-Clone)
+    function applyCRIABRProtections() {
+        // Bloqueia botão direito
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        
+        // Bloqueia atalhos de desenvolvedor (F12, Ctrl+Shift+I, Ctrl+U, etc.)
+        document.addEventListener('keydown', e => {
+            if (e.key === 'F12' || 
+               (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || 
+               (e.ctrlKey && (e.key === 'U' || e.key === 'u' || e.key === 'S' || e.key === 's'))) {
+                e.preventDefault();
+            }
+        });
+        
+        // Impede arrastar imagens
+        document.addEventListener('dragstart', e => e.preventDefault());
+        
+        // Desabilita seleção de texto no body inteiro via CSS injection
+        const style = document.createElement('style');
+        style.innerText = `
+            body { 
+                -webkit-user-select: none; 
+                -moz-user-select: none; 
+                -ms-user-select: none; 
+                user-select: none; 
+            }
+            input, textarea { 
+                -webkit-user-select: auto; 
+                user-select: auto; 
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    applyCRIABRProtections();
+
     // Aguarda o DOM estar pronto
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initGuard);
