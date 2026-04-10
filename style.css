@@ -168,13 +168,12 @@ html, body {
 
 /* Hero Section Styles Consolidated - Moved to bottom for better layering */
 .hero {
-  min-height: 100dvh;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding: 60px 5% 40px 5%;
+  padding: 40px 5% 15px 5%;
   background-color: #0A0A0B !important;
   overflow: visible !important;
 }
@@ -280,7 +279,7 @@ html, body {
 .quiz-container {
   max-width: 600px;
   margin: 0 auto;
-  padding: 100px 24px 200px; /* Aumentado PB para o footer */
+  padding: 30px 20px 100px;
   min-height: 100dvh;
   position: relative;
 }
@@ -1641,8 +1640,8 @@ html, body {
 .social-proof-section {
   width: 100%;
   max-width: 600px;
-  margin: 20px auto;
-  padding: 0;
+  margin: 10px auto 20px;
+  padding: 0 20px;
   overflow: hidden;
 }
 
@@ -2058,11 +2057,73 @@ html, body {
 /* Response Overrides for Mobile */
 @media (max-width: 640px) {
   .card-stitch {
-    padding: 1.25rem !important; /* Force override for mobile */
+    padding: 1.25rem !important;
   }
   
   .show-protocol-container {
     padding-left: 1rem !important;
+  }
+
+  .hero {
+    padding: 30px 5% 10px 5% !important;
+    gap: 8px !important;
+  }
+
+  .hero-cta-btn {
+    padding: 14px 28px !important;
+    font-size: 15px !important;
+  }
+
+  .hero-subtitle {
+    font-size: 14px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .hero-title {
+    margin-bottom: 8px !important;
+  }
+
+  #quiz-root {
+    padding-top: 8px !important;
+    padding-bottom: 100px !important;
+  }
+
+  #quiz-header {
+    margin-bottom: 4px !important;
+  }
+
+  #progress-container {
+    margin-bottom: 12px !important;
+  }
+
+  #footer-controls {
+    padding: 8px 12px !important;
+  }
+
+  #footer-controls .max-w-\[600px\] {
+    gap: 4px !important;
+  }
+
+  #next-btn {
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+    font-size: 15px !important;
+  }
+
+  .social-proof-section {
+    margin: 2px auto 8px !important;
+    padding: 0 8px !important;
+  }
+
+  .social-card {
+    flex: 0 0 260px !important;
+    padding: 16px !important;
+  }
+
+  .question-title,
+  #question {
+    font-size: clamp(1.25rem, 5.5vw, 1.75rem) !important;
+    margin-bottom: 16px !important;
   }
 }
 
@@ -2070,7 +2131,7 @@ html, body {
 .social-proof-section {
   width: 100%;
   max-width: 600px;
-  margin: 40px auto;
+  margin: 10px auto 20px;
   padding: 0 20px;
   overflow: hidden;
 }
