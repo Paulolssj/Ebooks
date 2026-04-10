@@ -1077,7 +1077,7 @@ function showProtocol() {
         <!-- 5.5 Detailed Chat Prints (NOW WITH AUTO-MOVEMENT) -->
         <div class="marquee-container relative py-4">
           <div class="marquee-track flex gap-8" id="chat-marquee-track">
-            <!-- Maria (WhatsApp) -->
+            <!-- Mario (WhatsApp) -->
             <div class="chat-print chat-wa flex-shrink-0">
                 <div class="chat-status-bar !bg-[#0b141a]">
                     <span>20:53</span>
@@ -1085,9 +1085,9 @@ function showProtocol() {
                 </div>
                 <div class="chat-header !bg-[#202c33] !border-none !py-3">
                     <i data-lucide="arrow-left" class="w-4 h-4 mr-1"></i>
-                    <img src="user_profile_1.png" class="chat-avatar !w-9 !h-9" onerror="this.src='https://ui-avatars.com/api/?name=Maria&background=random'">
+                    <img src="user_profile_1.png" class="chat-avatar !w-9 !h-9" onerror="this.src='https://ui-avatars.com/api/?name=Mario&background=random'">
                     <div class="chat-user">
-                        <span class="chat-name !text-[15px]">Maria 💛</span>
+                        <span class="chat-name !text-[15px]">Mario</span>
                         <span class="chat-status !text-[10px]">online</span>
                     </div>
                     <div class="chat-icons !opacity-100 !gap-5">
