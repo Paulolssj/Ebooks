@@ -34,7 +34,7 @@
   initSecurity();
 })();
 
-// 15 Core Questions with Image-based types
+// 12 Core Questions with new Image-based types
 const quizData = [
   {
     type: "multi-slider", 
@@ -131,7 +131,7 @@ const inspirations = [
 let currentStep = 0;
 let selections = {};
 let isShowingInspiration = false;
-let finalAnalysisData = null;
+let finalAnalysisData = null; // Store randomized results for consistency between loading and result screens
 
 const mainContent = document.getElementById('main-content');
 const questionEl = document.getElementById('question');
@@ -143,412 +143,1135 @@ const socialTicker = document.getElementById('social-ticker');
 const heroSection = document.getElementById('hero');
 const quizRoot = document.getElementById('quiz-root');
 
-// --- Optimized GSAP Entrance ---
+// --- GEMINI Best Practices: GSAP Entrance ---
 window.addEventListener('DOMContentLoaded', () => {
+  // Hero Entrance
   const tl = gsap.timeline({ defaults: { ease: "power3.out", duration: 1 } });
   
-  // Community Feedback appears ALMOST instantly (0.1s offset)
-  tl.from("#social-proof-section", { y: 15, opacity: 0, duration: 0.5 }, 0.1)
-    .from(".hero-badge", { y: 20, opacity: 0, duration: 0.6 }, "-=0.2")
-    .from(".hero-title", { y: 30, opacity: 0, stagger: 0.08 }, "-=0.4")
-    .from(".hero-subtitle", { y: 15, opacity: 0 }, "-=0.4")
-    .from(".hero-cta-btn", { scale: 0.95, opacity: 0, duration: 0.4 }, "-=0.3");
+  tl.from(".hero-badge", { y: 20, opacity: 0, duration: 0.8 }, 0.5)
+    .from(".hero-title", { y: 40, opacity: 0, stagger: 0.1 }, "-=0.4")
+    .from(".hero-subtitle", { y: 20, opacity: 0 }, "-=0.6")
+    .from(".hero-cta-btn", { scale: 0.9, opacity: 0 }, "-=0.8")
+    .from("#social-proof-section", { y: 20, opacity: 0, duration: 1 }, "-=0.2");
 });
 
+
+
 function startQuiz() {
-  const socialProof = document.getElementById('social-proof-section');
-  if (socialProof) socialProof.style.display = 'none';
-  
   gsap.to(heroSection, {
     opacity: 0,
-    y: -30,
-    duration: 0.5,
+    y: -50,
+    duration: 0.8,
     ease: "power3.inOut",
     onComplete: () => {
       heroSection.style.display = 'none';
       quizRoot.style.display = 'block';
-      gsap.fromTo(quizRoot, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4 });
-      renderStep(true); // Initial scroll to top
+      gsap.from(quizRoot, { opacity: 0, y: 30, duration: 0.6 });
+      renderStep();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   });
 }
 
-/**
- * Renders the current quiz step.
- * @param {boolean} shouldScroll - Whether to scroll to the top of the page.
- */
-function renderStep(shouldScroll = false) {
+function renderStep() {
   const step = quizData[currentStep];
   
+  // Transition using GSAP
+  const mainContent = document.getElementById('main-content');
   gsap.to(mainContent, { 
     opacity: 0, 
-    y: 5, 
-    duration: 0.15, 
+    y: 10, 
+    duration: 0.2, 
     onComplete: () => {
-      // Dynamic Social Proof Indicator
-      if (!window.globalProofVal) {
-        window.globalProofVal = Math.floor(Math.random() * (142 - 110 + 1)) + 110;
-      }
-      const proofEl = document.getElementById('social-proof-indicator');
-      if (proofEl) proofEl.innerText = `${window.globalProofVal} homens iniciaram seu plano nas últimas 24h`;
-      
-      // ONLY scroll if explicitly requested (e.g., new step)
-      if (shouldScroll) {
-        window.scrollTo({ top: 0, behavior: 'instant' });
-      }
-
-      isShowingInspiration = false;
-      nextBtn.innerText = "Continuar";
-      
-      questionEl.style.display = 'block';
-      questionEl.innerText = step.question;
-      optionsEl.innerHTML = '';
-      
-      const totalSteps = quizData.length;
-      const progress = ((currentStep + 1) / totalSteps) * 100;
-      progressFill.style.width = `${progress}%`;
-      document.getElementById('step-counter').innerText = `${String(currentStep + 1).padStart(2, '0')} / ${String(totalSteps).padStart(2, '0')}`;
-
-      if (step.type === 'multi-slider') {
-        renderMultiSlider(step);
-      } else if (step.type === 'gradient-slider') {
-        renderGradientSlider(step);
-      } else if (step.type === 'multi-choice') {
-        renderMultiChoice(step);
-      } else if (step.type === 'xy-pad') {
-        renderXYPad(step);
-      } else if (step.type === 'choice') {
-        renderChoice(step);
-      } else if (step.type === 'rating') {
-        renderRating(step);
-      } else if (step.type === 'visual-choice') {
-        renderVisualChoice(step);
-      }
-
-      backBtn.style.display = currentStep > 0 ? 'block' : 'none';
-      updateNextButton();
-      
-      gsap.to(mainContent, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" });
+    // Update Social Proof Urgency (static per session)
+    if (!window.globalProofVal) {
+      window.globalProofVal = Math.floor(Math.random() * (142 - 110 + 1)) + 110;
     }
-  });
-}
-
-// --- Specific Renderers ---
-
-function renderMultiSlider(step) {
-  const container = document.createElement('div');
-  container.className = 'dual-slider-container';
-  const currentVals = selections[currentStep] || {};
-  
-  step.sliders.forEach(s => {
-    if (currentVals[s.id] === undefined) currentVals[s.id] = s.initial;
-    const group = document.createElement('div');
-    group.className = 'slider-group';
+    const proofEl = document.getElementById('social-proof-indicator');
+    if (proofEl) proofEl.innerText = `${window.globalProofVal} homens iniciaram seu plano nas últimas 24h`;
     
-    const getStatus = (val) => {
-      let label = "";
-      Object.keys(s.statusLabels).forEach(k => { if (val >= parseFloat(k)) label = s.statusLabels[k]; });
-      return label;
-    };
-
-    group.innerHTML = `
-      <div class="slider-header"><span class="slider-label">${s.label}</span><span class="slider-status-tag" id="status-${s.id}">${getStatus(currentVals[s.id])}</span></div>
-      <div class="slider-large-value"><span id="val-${s.id}">${currentVals[s.id]}</span>${s.unit}</div>
-      <input type="range" class="custom-slider" min="${s.min}" max="${s.max}" step="1" value="${currentVals[s.id]}">
-    `;
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    isShowingInspiration = false;
+    nextBtn.innerText = "Continuar";
     
-    const input = group.querySelector('input');
-    input.oninput = (e) => {
-      currentVals[s.id] = e.target.value;
-      group.querySelector(`#val-${s.id}`).innerText = e.target.value;
-      group.querySelector(`#status-${s.id}`).innerText = getStatus(e.target.value);
-      selections[currentStep] = { ...currentVals };
+    questionEl.style.display = 'block';
+    questionEl.innerText = step.question;
+    optionsEl.innerHTML = '';
+    
+    const totalSteps = quizData.length;
+    const progress = ((currentStep + 1) / totalSteps) * 100;
+    progressFill.style.width = `${progress}%`;
+    document.getElementById('step-counter').innerText = `${String(currentStep + 1).padStart(2, '0')} / ${String(totalSteps).padStart(2, '0')}`;
+
+    if (step.type === 'multi-slider') {
+      const container = document.createElement('div');
+      container.className = 'dual-slider-container';
+      
+      const currentVals = selections[currentStep] || {};
+      step.sliders.forEach(s => {
+        if (currentVals[s.id] === undefined) currentVals[s.id] = s.initial;
+        
+        const group = document.createElement('div');
+        group.className = 'slider-group';
+        
+        const getStatus = (val) => {
+          let label = "";
+          Object.keys(s.statusLabels).forEach(k => {
+            if (val >= parseFloat(k)) label = s.statusLabels[k];
+          });
+          return label;
+        };
+
+        group.innerHTML = `
+          <div class="slider-header">
+            <span class="slider-label">${s.label}</span>
+            <span class="slider-status-tag" id="status-${s.id}">${getStatus(currentVals[s.id])}</span>
+          </div>
+          <div class="slider-large-value"><span id="val-${s.id}">${currentVals[s.id]}</span>${s.unit}</div>
+          <input type="range" class="custom-slider" min="${s.min}" max="${s.max}" step="${s.id === 'height' ? '0.01' : '1'}" value="${currentVals[s.id]}">
+          <div class="slider-limits">
+            <span>${s.min}${s.unit}</span>
+            <span>${s.max}${s.unit}</span>
+          </div>
+        `;
+        
+        const input = group.querySelector('input');
+        input.oninput = (e) => {
+          const val = e.target.value;
+          currentVals[s.id] = val;
+          group.querySelector(`#val-${s.id}`).innerText = val;
+          group.querySelector(`#status-${s.id}`).innerText = getStatus(val);
+          selections[currentStep] = { ...currentVals };
+          updateSummary();
+        };
+        container.appendChild(group);
+      });
+
+      const summary = document.createElement('div');
+      summary.className = 'summary-box';
+      const updateSummary = () => {
+        const age = currentVals.age || 32;
+        const weightValue = currentVals.weight || 80;
+        summary.innerHTML = `
+          <span class="summary-label">Resumo</span>
+          <span class="summary-content">${age} anos • ${weightValue}kg</span>
+        `;
+      };
+      updateSummary();
+      container.appendChild(summary);
+      optionsEl.appendChild(container);
+      if (selections[currentStep] === undefined) selections[currentStep] = { ...currentVals };
       updateNextButton();
-    };
-    container.appendChild(group);
-  });
-  optionsEl.appendChild(container);
-  if (selections[currentStep] === undefined) selections[currentStep] = { ...currentVals };
-}
 
-function renderGradientSlider(step) {
-  if (selections[currentStep] === undefined) selections[currentStep] = step.initial;
-  const val = selections[currentStep];
-  const getStatus = (v) => {
-    let label = "";
-    Object.keys(step.statusLabels).forEach(k => { if (v >= parseFloat(k)) label = step.statusLabels[k]; });
-    return label;
-  };
+    } else if (step.type === 'gradient-slider') {
+      if (selections[currentStep] === undefined) selections[currentStep] = step.initial;
+      const val = selections[currentStep];
+      const getStatus = (v) => {
+        let label = "";
+        Object.keys(step.statusLabels).forEach(k => {
+          if (v >= parseFloat(k)) label = step.statusLabels[k];
+        });
+        return label;
+      };
 
-  const container = document.createElement('div');
-  container.innerHTML = `
-    <div class="slider-large-value" style="margin-top: 20px;"><span id="grad-val">${val}</span>${step.unit}</div>
-    <div style="text-align: center; color: rgba(255,255,255,0.5); margin-bottom: 30px; font-weight: 600;" id="grad-status">${getStatus(val)}</div>
-    <div class="gradient-slider-track relative"><input type="range" class="custom-slider" min="${step.min}" max="${step.max}" value="${val}" style="position: absolute; top: -12px; left: 0; width: 100%; height: 30px; z-index: 10;"></div>
-  `;
-  
-  const input = container.querySelector('input');
-  input.oninput = (e) => {
-    selections[currentStep] = e.target.value;
-    container.querySelector('#grad-val').innerText = e.target.value;
-    container.querySelector('#grad-status').innerText = getStatus(e.target.value);
-    nextBtn.innerText = `Confirmar ${e.target.value}${step.unit} >`;
-  };
-  nextBtn.innerText = `Confirmar ${val}${step.unit} >`;
-  optionsEl.appendChild(container);
-}
-
-function renderMultiChoice(step) {
-  const sub = document.createElement('p');
-  sub.className = 'sub-question';
-  sub.innerText = step.subtitle;
-  optionsEl.appendChild(sub);
-
-  const grid = document.createElement('div');
-  grid.className = 'multi-choice-grid';
-  const selected = selections[currentStep] || [];
-  
-  step.options.forEach((opt, idx) => {
-    const card = document.createElement('div');
-    card.className = `option-card ${selected.includes(idx) ? 'multi-selected' : ''}`;
-    card.innerHTML = `<span class="option-text">${opt}</span><div class="check-circle" style="${selected.includes(idx) ? 'background:#000;' : ''}"><i data-lucide="check" class="w-3 h-3 text-white ${selected.includes(idx) ? '' : 'hidden'}"></i></div>`;
-    card.onclick = () => {
-      if (selected.includes(idx)) selected.splice(selected.indexOf(idx), 1);
-      else selected.push(idx);
-      selections[currentStep] = selected;
-      renderStep(false); // DO NOT SCROLL on multi-choice selection
-    };
-    grid.appendChild(card);
-  });
-  optionsEl.appendChild(grid);
-  lucide.createIcons();
-}
-
-function renderXYPad(step) {
-  const headerInfo = document.createElement('div');
-  headerInfo.style.textAlign = 'center';
-  headerInfo.style.marginBottom = '20px';
-  headerInfo.innerHTML = `<h3 id="xy-sub" style="font-size: 24px; color: #fff; margin-bottom: 5px;">...</h3><p id="xy-desc" style="color: rgba(255,255,255,0.4); font-size: 14px;">...</p>`;
-  optionsEl.appendChild(headerInfo);
-
-  const padContainer = document.createElement('div');
-  padContainer.className = 'xy-pad-modern';
-  padContainer.innerHTML = `
-    <div class="xy-axis-modern xy-axis-v"></div><div class="xy-axis-modern xy-axis-h"></div>
-    <div class="xy-axis-label label-top">${step.labels.top}</div><div class="xy-axis-label label-bottom">${step.labels.bottom}</div>
-    <div class="xy-axis-label label-left">${step.labels.left}</div><div class="xy-axis-label label-right">${step.labels.right}</div>
-    <div id="xy-handle" class="xy-handle-target" style="left: 50%; top: 50%;"><div class="target-outer"></div><div class="target-inner"></div><div class="target-dot"></div></div>
-  `;
-  
-  const handleMove = (e) => {
-    const rect = padContainer.getBoundingClientRect();
-    const x = Math.max(0, Math.min(100, ((e.clientX || (e.touches && e.touches[0].clientX)) - rect.left) / rect.width * 100));
-    const y = Math.max(0, Math.min(100, ((e.clientY || (e.touches && e.touches[0].clientY)) - rect.top) / rect.height * 100));
-    const handle = padContainer.querySelector('#xy-handle');
-    handle.style.left = `${x}%`; handle.style.top = `${y}%`;
-    selections[currentStep] = { x, y };
-    updateDynamicLabels(x, y);
-    updateNextButton();
-  };
-
-  const updateDynamicLabels = (x, y) => {
-    let sub = "", desc = "";
-    if (x >= 50 && y <= 50) { sub = step.subtitles.top; desc = step.descriptions.top; }
-    else if (x < 50 && y <= 50) { sub = step.subtitles.left; desc = step.descriptions.left; }
-    else if (x < 50 && y > 50) { sub = step.subtitles.bottom; desc = step.descriptions.bottom; }
-    else { sub = step.subtitles.right; desc = step.descriptions.right; }
-    headerInfo.querySelector('#xy-sub').innerText = sub;
-    headerInfo.querySelector('#xy-desc').innerText = desc;
-  };
-
-  padContainer.onmousedown = (e) => { handleMove(e); window.onmousemove = handleMove; window.onmouseup = () => window.onmousemove = null; };
-  padContainer.ontouchmove = (e) => { e.preventDefault(); handleMove(e); };
-
-  if (selections[currentStep]) {
-    const {x, y} = selections[currentStep];
-    setTimeout(() => {
-      const handle = padContainer.querySelector('#xy-handle');
-      if (handle) { handle.style.left = `${x}%`; handle.style.top = `${y}%`; updateDynamicLabels(x, y); }
-    }, 0);
-  } else {
-    selections[currentStep] = { x: 50, y: 50 };
-    updateDynamicLabels(50, 50);
-  }
-  optionsEl.appendChild(padContainer);
-}
-
-function renderChoice(step) {
-  step.options.forEach((option, index) => {
-    const card = document.createElement('div');
-    card.className = `option-card ${selections[currentStep] === index ? 'selected' : ''}`;
-    card.innerHTML = `<span class="option-text">${option}</span><div class="check-circle"><i data-lucide="check" class="w-3 h-3 text-white ${selections[currentStep] === index ? '' : 'hidden'}"></i></div>`;
-    card.onclick = () => selectOption(index);
-    optionsEl.appendChild(card);
-  });
-  lucide.createIcons();
-}
-
-function renderRating(step) {
-  const grid = document.createElement('div');
-  grid.className = 'rating-grid';
-  step.options.forEach((option, index) => {
-    const item = document.createElement('div');
-    item.className = `rating-item ${selections[currentStep] === index ? 'selected' : ''}`;
-    item.innerText = option;
-    item.onclick = () => selectOption(index);
-    grid.appendChild(item);
-  });
-  optionsEl.appendChild(grid);
-}
-
-function renderVisualChoice(step) {
-  const container = document.createElement('div');
-  container.className = 'visual-choice-container';
-  container.innerHTML = `
-    <div class="visual-choice-img-wrapper"><img src="${step.image}" class="visual-choice-img" alt="Scan Pélvico"><div class="visual-glow-overlay"></div></div>
-    <div class="visual-choice-options">
-      ${step.options.map((option, index) => `
-        <div class="option-card ${selections[currentStep] === index ? 'selected' : ''}" onclick="selectOption(${index})">
-          <span class="option-text">${option}</span>
-          <div class="check-circle"><i data-lucide="check" class="w-3 h-3 text-white ${selections[currentStep] === index ? '' : 'hidden'}"></i></div>
+      const container = document.createElement('div');
+      container.innerHTML = `
+        <div class="slider-large-value" style="margin-top: 40px;"><span id="grad-val">${val}</span>${step.unit}</div>
+        <div style="text-align: center; color: rgba(255,255,255,0.5); margin-bottom: 40px; font-weight: 600;" id="grad-status">${getStatus(val)}</div>
+        <div class="gradient-slider-track relative">
+           <input type="range" class="custom-slider" min="${step.min}" max="${step.max}" value="${val}" style="position: absolute; top: -12px; left: 0; width: 100%; height: 30px; opacity: 1; z-index: 10; cursor: pointer;">
         </div>
-      `).join('')}
-    </div>
-  `;
-  optionsEl.appendChild(container);
-  lucide.createIcons();
+        <div class="slider-limits" style="margin-top: 20px;">
+          <span>${step.min}${step.unit}</span>
+          <span>${step.max}${step.unit}+</span>
+        </div>
+      `;
+      
+      const input = container.querySelector('input');
+      input.oninput = (e) => {
+        const v = e.target.value;
+        selections[currentStep] = v;
+        container.querySelector('#grad-val').innerText = v;
+        container.querySelector('#grad-status').innerText = getStatus(v);
+        nextBtn.innerText = `Confirmar ${v}${step.unit} >`;
+      };
+      nextBtn.innerText = `Confirmar ${val}${step.unit} >`;
+      optionsEl.appendChild(container);
+      updateNextButton();
+
+    } else if (step.type === 'multi-choice') {
+      const sub = document.createElement('p');
+      sub.className = 'sub-question';
+      sub.innerText = step.subtitle;
+      optionsEl.appendChild(sub);
+
+      const grid = document.createElement('div');
+      grid.className = 'multi-choice-grid';
+      const selected = selections[currentStep] || [];
+      
+      step.options.forEach((opt, idx) => {
+        const card = document.createElement('div');
+        card.className = `option-card ${selected.includes(idx) ? 'multi-selected' : ''}`;
+        card.innerHTML = `
+          <span class="option-text">${opt}</span>
+          <div class="check-circle" style="${selected.includes(idx) ? 'background:#000;border-color:#000;' : ''}">
+             <svg viewBox="0 0 24 24" style="${selected.includes(idx) ? 'display:block;fill:#fff' : ''}"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+          </div>
+        `;
+        card.onclick = () => {
+          if (selected.includes(idx)) {
+            selected.splice(selected.indexOf(idx), 1);
+          } else {
+            selected.push(idx);
+          }
+          selections[currentStep] = selected;
+          renderStep(); // Refresh for selection state
+        };
+        grid.appendChild(card);
+      });
+      optionsEl.appendChild(grid);
+      
+      const counter = document.createElement('div');
+      counter.className = 'selection-counter';
+      counter.innerText = `${selected.length} selecionados`;
+      optionsEl.appendChild(counter);
+      updateNextButton();
+
+    } else if (step.type === 'xy-pad') {
+      const headerInfo = document.createElement('div');
+      headerInfo.style.textAlign = 'center';
+      headerInfo.style.marginBottom = '20px';
+      headerInfo.innerHTML = `
+        <h3 id="xy-sub" style="font-size: 24px; color: #fff; margin-bottom: 5px;">...</h3>
+        <p id="xy-desc" style="color: rgba(255,255,255,0.4); font-size: 14px;">...</p>
+      `;
+      optionsEl.appendChild(headerInfo);
+
+      const padContainer = document.createElement('div');
+      padContainer.className = 'xy-pad-modern';
+      padContainer.innerHTML = `
+        <div class="xy-axis-modern xy-axis-v"></div>
+        <div class="xy-axis-modern xy-axis-h"></div>
+        <div class="xy-axis-label label-top">${step.labels.top}</div>
+        <div class="xy-axis-label label-bottom">${step.labels.bottom}</div>
+        <div class="xy-axis-label label-left">${step.labels.left}</div>
+        <div class="xy-axis-label label-right">${step.labels.right}</div>
+        <div id="xy-handle" class="xy-handle-target" style="left: 50%; top: 50%;">
+          <div class="target-outer"></div>
+          <div class="target-inner"></div>
+          <div class="target-dot"></div>
+        </div>
+      `;
+      
+      const handleMove = (e) => {
+        const rect = padContainer.getBoundingClientRect();
+        const x = Math.max(0, Math.min(100, ((e.clientX || e.touches[0].clientX) - rect.left) / rect.width * 100));
+        const y = Math.max(0, Math.min(100, ((e.clientY || e.touches[0].clientY) - rect.top) / rect.height * 100));
+        const handle = padContainer.querySelector('#xy-handle');
+        handle.style.left = `${x}%`;
+        handle.style.top = `${y}%`;
+        selections[currentStep] = { x, y };
+        updateDynamicLabels(x, y);
+        
+        // Dynamic Backdrop Glow
+        padContainer.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(0, 224, 255, 0.15) 0%, transparent 70%)`;
+        
+        updateNextButton();
+      };
+
+      const updateDynamicLabels = (x, y) => {
+        let sub = "", desc = "";
+        if (x >= 50 && y <= 50) { sub = step.subtitles.top; desc = step.descriptions.top; }
+        else if (x < 50 && y <= 50) { sub = step.subtitles.left; desc = step.descriptions.left; }
+        else if (x < 50 && y > 50) { sub = step.subtitles.bottom; desc = step.descriptions.bottom; }
+        else { sub = step.subtitles.right; desc = step.descriptions.right; }
+        headerInfo.querySelector('#xy-sub').innerText = sub;
+        headerInfo.querySelector('#xy-desc').innerText = desc;
+      };
+
+      padContainer.onmousedown = (e) => {
+        handleMove(e);
+        window.onmousemove = handleMove;
+        window.onmouseup = () => window.onmousemove = null;
+      };
+      
+      if (selections[currentStep]) {
+        const {x, y} = selections[currentStep];
+        setTimeout(() => {
+          const handle = padContainer.querySelector('#xy-handle');
+          handle.style.left = `${x}%`;
+          handle.style.top = `${y}%`;
+          updateDynamicLabels(x, y);
+        }, 0);
+      } else {
+        selections[currentStep] = { x: 50, y: 50 };
+        updateDynamicLabels(50, 50);
+      }
+
+      optionsEl.appendChild(padContainer);
+      nextBtn.innerText = "CONFIRMAR ESTILO >";
+
+    } else if (step.type === 'choice') {
+      step.options.forEach((option, index) => {
+        const card = document.createElement('div');
+        card.className = `option-card ${selections[currentStep] === index ? 'selected' : ''}`;
+        card.innerHTML = `
+          <span class="option-text">${option}</span>
+          <div class="check-circle">
+            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+          </div>
+        `;
+        card.onclick = () => selectOption(index);
+        optionsEl.appendChild(card);
+      });
+    } else if (step.type === 'rating') {
+      const grid = document.createElement('div');
+      grid.className = 'rating-grid';
+      step.options.forEach((option, index) => {
+        const item = document.createElement('div');
+        item.className = `rating-item ${selections[currentStep] === index ? 'selected' : ''}`;
+        item.innerText = option;
+        item.onclick = () => selectOption(index);
+        grid.appendChild(item);
+      });
+      optionsEl.appendChild(grid);
+    } else if (step.type === 'visual-choice') {
+      const container = document.createElement('div');
+      container.className = 'visual-choice-container';
+      
+      container.innerHTML = `
+        <div class="visual-choice-img-wrapper">
+          <img src="${step.image}" class="visual-choice-img" alt="Scan Pélvico">
+          <div class="visual-glow-overlay"></div>
+        </div>
+        <div class="visual-choice-options">
+          ${step.options.map((option, index) => `
+            <div class="option-card ${selections[currentStep] === index ? 'selected' : ''}" onclick="selectOption(${index})">
+              <span class="option-text">${option}</span>
+              <div class="check-circle">
+                <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+      optionsEl.appendChild(container);
+    }
+
+    backBtn.style.display = currentStep > 0 ? 'block' : 'none';
+    updateNextButton();
+    
+    gsap.to(mainContent, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" });
+  } // End onComplete
+  }); // End gsap.to
 }
 
 function selectOption(index) {
+  const card = optionsEl.children[index];
+  if (card) {
+    gsap.to(card, { scale: 0.98, duration: 0.1, yoyo: true, repeat: 1 });
+  }
+  
   selections[currentStep] = index;
-  renderStep(false); // DO NOT SCROLL on quick selection
+  renderStep();
+  
+  // Subtle auto-advance removed to allow explicit 'Continue' click
 }
 
 function updateNextButton() {
   const step = quizData[currentStep];
   let isEnabled = false;
 
-  if (isShowingInspiration) isEnabled = true;
-  else if (step.type === 'multi-choice') isEnabled = (selections[currentStep] && selections[currentStep].length > 0);
-  else if (step.type === 'multi-slider' || step.type === 'gradient-slider' || step.type === 'xy-pad') isEnabled = true;
-  else if (selections[currentStep] !== undefined) isEnabled = true;
+  if (isShowingInspiration) {
+    isEnabled = true;
+  } else if (step.type === 'multi-choice') {
+    isEnabled = selections[currentStep] && selections[currentStep].length > 0;
+  } else if (step.type === 'multi-slider') {
+    isEnabled = true; // Always has initial values
+  } else if (selections[currentStep] !== undefined) {
+    isEnabled = true;
+  }
 
-  nextBtn.disabled = !isEnabled;
   if (isEnabled) {
     nextBtn.classList.remove('opacity-50', 'bg-white/10', 'text-white');
-    nextBtn.classList.add('bg-white', 'text-black');
+    nextBtn.classList.add('bg-white', 'text-black', 'hover:scale-[1.03]', 'active:scale-[0.98]');
+    nextBtn.disabled = false;
   } else {
     nextBtn.classList.add('opacity-50', 'bg-white/10', 'text-white');
-    nextBtn.classList.remove('bg-white', 'text-black');
+    nextBtn.classList.remove('bg-white', 'text-black', 'hover:scale-[1.03]', 'active:scale-[0.98]');
+    nextBtn.disabled = true;
   }
 }
 
 function navigateNext() {
+  // If we just clicked "Continue" on an inspiration screen
   if (isShowingInspiration) {
-    if (currentStep < quizData.length - 1) { currentStep++; renderStep(true); }
-    else showAnalyzing();
+    if (currentStep < quizData.length - 1) {
+      currentStep++;
+      renderStep();
+    } else {
+      showAnalyzing();
+    }
     return;
   }
 
+  // Check if we should show an inspiration for the COMPLETED step
   const inspiration = inspirations.find(i => i.step === currentStep + 1);
   if (inspiration && selections[currentStep] !== undefined) {
     showInspiration(inspiration);
     return;
   }
 
+  // Otherwise, just move to next question if selected
   if (selections[currentStep] !== undefined) {
-    if (currentStep < quizData.length - 1) { currentStep++; renderStep(true); }
-    else showAnalyzing();
+    if (currentStep < quizData.length - 1) {
+      currentStep++;
+      renderStep();
+    } else {
+      showAnalyzing();
+    }
   }
 }
 
 function showInspiration(data) {
   isShowingInspiration = true;
   mainContent.style.opacity = '0';
+  
   setTimeout(() => {
     questionEl.style.display = 'none';
     optionsEl.innerHTML = `
       <div class="inspiration-container flex flex-col items-center text-center mt-2 px-2">
-        <img src="${data.image}" class="inspiration-img w-full rounded-3xl mb-8 shadow-xl" alt="Inspiration">
-        <h2 class="text-3xl font-black mb-4">${data.title}</h2>
-        <p class="text-white/80 leading-relaxed">${data.text}</p>
+        <img src="${data.image}" class="inspiration-img step-${data.step}-img w-full h-auto max-h-[42vh] object-cover rounded-3xl mb-12 shadow-xl" alt="Inspiration">
+        <h2 class="text-[28px] font-extrabold leading-tight mb-6 tracking-tighter">${data.title || "Progresso!"}</h2>
+        <p class="inspiration-text text-[17px] leading-relaxed text-white/90 mb-4">${data.text}</p>
       </div>
     `;
+    nextBtn.classList.remove('disabled');
+    nextBtn.disabled = false;
     nextBtn.innerText = "Continuar →";
     mainContent.style.opacity = '1';
   }, 200);
 }
 
+function updateStatusItem(id, value) {
+  const item = document.getElementById(`status-${id}`);
+  if (item) {
+    item.querySelector('.status-value').innerText = value;
+    if (value === "CONCLUÍDO") {
+      item.classList.add('done');
+    }
+  }
+}
+
 function showAnalyzing() {
   if (window.analysisActive) return;
   window.analysisActive = true;
+  
+  // Clear any existing intervals
+  if (window.analysisInterval) clearInterval(window.analysisInterval);
+
+  // Hide UI elements
   document.getElementById('footer-controls').style.display = 'none';
+  if (window.socialTicker) socialTicker.style.display = 'none';
   document.getElementById('step-counter').style.display = 'none';
 
-  mainContent.innerHTML = `<div class="flex flex-col items-center">
-    <div class="w-20 h-20 mb-10 relative flex items-center justify-center"><div class="absolute inset-0 border-2 border-primary/20 rounded-full animate-ping"></div><i data-lucide="shield" class="w-8 h-8 text-primary"></i></div>
-    <div class="text-center mb-10"><h2 class="text-2xl font-black text-accent mb-2">Análise Completa</h2><p>Preparando seu diagnóstico...</p></div>
-    <div class="w-full bg-white/5 p-8 rounded-3xl">
-      <div class="h-2 bg-white/10 rounded-full overflow-hidden mb-4"><div id="load-bar-fill" class="h-full w-0 bg-accent transition-all duration-300"></div></div>
-      <div class="flex justify-between text-[10px] font-bold text-white uppercase tracking-widest"><span id="load-status-text">Processando</span><span id="load-pct-text">0%</span></div>
+  mainContent.innerHTML = `
+    <div class="flex flex-col items-center">
+      <div class="w-24 h-24 mb-8 relative flex items-center justify-center">
+        <div class="absolute inset-0 border border-primary/20 rounded-full animate-[ping_2s_infinite]"></div>
+        <div class="absolute inset-0 border border-primary/40 rounded-full scale-75 animate-[pulse_2s_infinite]"></div>
+        <i data-lucide="shield" class="w-8 h-8 text-primary drop-shadow-[0_0_10px_rgba(0,224,255,0.8)]"></i>
+      </div>
+
+      <div class="text-center mb-10">
+        <h2 class="text-2xl font-black text-accent flex items-center justify-center gap-2 mb-2">
+          <i data-lucide="check-circle" class="w-6 h-6 stroke-[3]"></i>
+          Análise Completa
+        </h2>
+        <p class="text-white">Preparando seu diagnóstico...</p>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4 mb-10 w-full">
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-4">
+          <span class="text-[10px] text-white uppercase tracking-widest block mb-2">Variáveis</span>
+          <div class="flex items-center gap-2 text-sm font-bold">
+            <div class="w-1.5 h-1.5 bg-primary rounded-full shadow-[0_0_8px_#38BDF8]"></div> 
+            15 inputs
+          </div>
+        </div>
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-4">
+          <span class="text-[10px] text-white uppercase tracking-widest block mb-2">Base</span>
+          <div class="flex items-center gap-2 text-sm font-bold">
+            <div class="w-1.5 h-1.5 bg-primary rounded-full shadow-[0_0_8px_#38BDF8]"></div> 
+            +50k perfis
+          </div>
+        </div>
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-4">
+          <span class="text-[10px] text-white uppercase tracking-widest block mb-2">Precisão</span>
+          <div class="flex items-center gap-2 text-sm font-bold">
+            <div class="w-1.5 h-1.5 bg-primary rounded-full shadow-[0_0_8px_#38BDF8]"></div> 
+            94.7%
+          </div>
+        </div>
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-4">
+          <span class="text-[10px] text-white uppercase tracking-widest block mb-2">Módulos</span>
+          <div class="flex items-center gap-2 text-sm font-bold" id="load-modules">
+            <div class="w-1.5 h-1.5 bg-primary rounded-full shadow-[0_0_8px_#38BDF8]"></div> 
+            Calculando...
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white/5 border border-white/10 rounded-3xl p-8 w-full">
+        <div class="flex justify-between mb-6 relative">
+          ${[1, 2, 3, 4, 5].map(i => `
+            <div class="flex flex-col items-center gap-2 z-10" id="step-node-${i}">
+              <div class="w-6 h-6 rounded-full border border-white/20 flex items-center justify-center bg-black transition-all duration-300 node-circle">
+                <i data-lucide="check" class="w-3 h-3 text-white hidden"></i>
+              </div>
+              <span class="text-[9px] text-white font-bold">${i}/5</span>
+            </div>
+          `).join('')}
+        </div>
+
+        <div class="h-2.5 bg-white/5 rounded-full overflow-hidden mb-3">
+          <div id="load-bar-fill" class="h-full w-0 bg-accent shadow-[0_0_15px_rgba(16,185,129,0.4)] transition-all duration-300"></div>
+        </div>
+
+        <div class="flex justify-between text-[10px] font-bold text-white uppercase tracking-widest">
+          <span id="load-status-text">Processando</span>
+          <span class="text-accent" id="load-pct-text">0%</span>
+        </div>
+      </div>
+
+      <div class="mt-10 text-white text-[10px] tracking-widest uppercase text-center font-mono">
+        Powered by ApexCore Neural Engine
+      </div>
     </div>
-  </div>`;
+  `;
   lucide.createIcons();
 
   let progress = 0;
   const fill = document.getElementById('load-bar-fill');
   const pctText = document.getElementById('load-pct-text');
+  const statusEl = document.getElementById('load-status-text');
   
   if (!finalAnalysisData) {
-    const g = () => 75 + Math.floor(Math.random() * 21);
-    finalAnalysisData = { ejac: g(), erect: g(), vigor: g() };
-    finalAnalysisData.score = parseFloat(((finalAnalysisData.ejac + finalAnalysisData.erect + finalAnalysisData.vigor) / 30).toFixed(1));
+    const getRandom = () => 75 + Math.floor(Math.random() * 21);
+    finalAnalysisData = {
+      ejac: getRandom(),
+      erect: getRandom(),
+      vigor: getRandom()
+    };
+    finalAnalysisData.score = parseFloat(((finalAnalysisData.ejac + finalAnalysisData.erect + finalAnalysisData.vigor) / 3 / 10).toFixed(1));
   }
 
-  const interval = setInterval(() => {
-    progress += 2; if (progress > 100) progress = 100;
+  window.analysisInterval = setInterval(() => {
+    progress += 2;
+    if (progress > 100) progress = 100;
+    
     if (fill) fill.style.width = `${progress}%`;
     if (pctText) pctText.innerText = `${progress}%`;
-    if (progress >= 100) { clearInterval(interval); setTimeout(showPlan, 600); }
-  }, 40);
+    
+    const step = Math.floor(progress / 20) + 1;
+    for (let i = 1; i <= 5; i++) {
+      const nodeEl = document.getElementById(`step-node-${i}`);
+      if (!nodeEl) continue;
+      const nodeCircle = nodeEl.querySelector('.node-circle');
+      if (i < step) {
+        nodeCircle.className = 'node-circle done';
+      } else if (i === step) {
+        nodeCircle.className = 'node-circle active';
+      }
+    }
+
+    if (progress === 30) if (statusEl) statusEl.innerText = "Cruzando Dados Corporais...";
+    if (progress === 60) if (statusEl) statusEl.innerText = "Processando Algoritmos...";
+    if (progress === 90) if (statusEl) statusEl.innerText = "Finalizando Diagnóstico...";
+
+    if (progress >= 100) {
+      clearInterval(window.analysisInterval);
+      window.analysisActive = false; // Allow future re-runs if needed (though usually we won't)
+      if (statusEl) statusEl.innerText = "FINALIZADO";
+      const modulesEl = document.getElementById('load-modules');
+      if (modulesEl) modulesEl.innerHTML = '<div class="dot-indicator"></div> Concluído';
+      setTimeout(showPlan, 600);
+    }
+  }, 40); // Faster loading for verification
+}
+
+function drawRadarChart() {
+  const mount = document.getElementById('chart-mount');
+  const size = 240;
+  const center = size / 2;
+  const radius = 90;
+  const levels = 4;
+  const labels = ["Estamina", "Controle", "Rigidez", "Saúde", "Confiança"];
+  
+  // Calculate dynamic values based on answers (mock logic for demo)
+  const values = [
+    selections[4] !== undefined ? (selections[4].x / 100) * 100 : 60, // Stamina (from XY Pad)
+    selections[5] !== undefined ? (selections[5] + 1) * 20 : 50, // Control
+    selections[6] !== undefined ? (selections[6] + 1) * 20 : 70, // Rigidez
+    selections[12] !== undefined ? (selections[12] + 1) * 25 : 80, // Health (Alimentação/Lifestlye)
+    selections[14] !== undefined ? (selections[14] + 1) * 20 : 40  // Confidence
+  ];
+
+  let svgHtml = `<svg class="radar-chart" viewBox="0 0 ${size} ${size}">`;
+  
+  // Circles for levels
+  for (let l = 1; l <= levels; l++) {
+    const r = (radius / levels) * l;
+    svgHtml += `<circle cx="${center}" cy="${center}" r="${r}" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1" />`;
+  }
+
+  // Axes and Labels
+  labels.forEach((label, i) => {
+    const angle = (Math.PI * 2 * i) / labels.length - Math.PI / 2;
+    const x = center + Math.cos(angle) * radius;
+    const y = center + Math.sin(angle) * radius;
+    svgHtml += `<line x1="${center}" y1="${center}" x2="${x}" y2="${y}" stroke="rgba(255,255,255,0.1)" stroke-width="1" />`;
+    
+    // Label positioning
+    const lx = center + Math.cos(angle) * (radius + 25);
+    const ly = center + Math.sin(angle) * (radius + 25);
+    const labelEl = document.createElement('div');
+    labelEl.className = 'radar-label';
+    labelEl.innerText = label;
+    labelEl.style.left = `${(lx / size) * 100}%`;
+    labelEl.style.top = `${(ly / size) * 100}%`;
+    labelEl.style.transform = 'translate(-50%, -50%)';
+    labelEl.style.color = 'var(--text-muted)';
+    labelEl.style.fontSize = '9px';
+    mount.appendChild(labelEl);
+  });
+
+  // Data Shape
+  let points = "";
+  values.forEach((v, i) => {
+    const angle = (Math.PI * 2 * i) / labels.length - Math.PI / 2;
+    const x = center + Math.cos(angle) * (radius * (v / 100));
+    const y = center + Math.sin(angle) * (radius * (v / 100));
+    points += `${x},${y} `;
+  });
+
+  svgHtml += `<polygon points="${points}" fill="rgba(74, 222, 128, 0.15)" stroke="var(--primary)" stroke-width="2" style="filter: drop-shadow(0 0 5px var(--primary-glow));" />`;
+  svgHtml += `</svg>`;
+  
+  mount.innerHTML += svgHtml;
 }
 
 function showPlan() {
-  const s = finalAnalysisData;
+  const finalScore = finalAnalysisData ? finalAnalysisData.score : 8.5;
+  const symmetry = finalAnalysisData ? finalAnalysisData.ejac : 92;
+  const proportions = finalAnalysisData ? finalAnalysisData.erect : 88;
+  const texture = finalAnalysisData ? finalAnalysisData.vigor : 95;
+
   mainContent.innerHTML = `
     <div class="flex flex-col items-center">
-      <h2 class="text-2xl font-bold mb-10">Análise de Performance</h2>
-      <div class="card-stitch w-full mb-8 flex flex-col items-center gap-4">
-        <div class="text-5xl font-black text-white" id="score-counter">${s.score}</div>
-        <span class="text-[10px] font-bold text-primary uppercase tracking-widest">Apex Score</span>
+      <div class="text-center mb-10 w-full">
+        <h2 class="text-2xl font-display font-bold tracking-tight text-white mb-2">Análise de Bio-Performance</h2>
+        <div class="h-1 w-12 bg-primary mx-auto rounded-full"></div>
       </div>
-      <div class="w-full space-y-4 mb-10">
+
+      <div class="card-stitch w-full mb-8 relative overflow-hidden group">
+        <div class="absolute top-0 right-0 p-4 opacity-5 pointer-events-none group-hover:rotate-12 transition-transform duration-700">
+          <i data-lucide="activity" class="w-32 h-32"></i>
+        </div>
+        
+        <div class="flex flex-col items-center py-4">
+          <div class="relative w-48 h-48 flex items-center justify-center">
+            <svg class="w-full h-full -rotate-90" viewBox="0 0 220 220">
+              <circle class="text-white/5 stroke-current" stroke-width="10" fill="transparent" r="95" cx="110" cy="110" />
+              <circle id="premium-circle-fill" class="text-primary stroke-current transition-all duration-1000 ease-out" stroke-width="10" stroke-linecap="round" fill="transparent" r="95" cx="110" cy="110" style="stroke-dasharray: 597; stroke-dashoffset: 597;" />
+            </svg>
+            <div class="absolute flex flex-col items-center text-center">
+              <span class="text-5xl font-display font-black tracking-tighter text-white" id="score-counter">0.0</span>
+              <span class="text-[10px] font-bold text-primary uppercase tracking-widest mt-1">Apex Score</span>
+            </div>
+          </div>
+          
+          <div class="mt-8 grid grid-cols-2 gap-8 w-full">
+            <div class="text-center">
+              <div class="text-2xl font-display font-bold text-white mb-1">94%</div>
+              <div class="text-[9px] text-white/40 uppercase font-black tracking-wider">Precisão</div>
+            </div>
+            <div class="text-center border-l border-white/10">
+              <div class="text-2xl font-display font-bold text-accent mb-1">A+</div>
+              <div class="text-[9px] text-white/40 uppercase font-black tracking-wider">Potencial</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="w-full space-y-5 mb-10">
         ${[
-          { l: 'Controle', v: s.ejac, i: 'zap' },
-          { l: 'Rigidez', v: s.erect, i: 'shield' },
-          { l: 'Vigor', v: s.vigor, i: 'flame' }
-        ].map(item => `
-          <div class="bg-white/5 p-4 rounded-xl border border-white/5">
-            <div class="flex justify-between text-[10px] font-bold text-white/60 mb-2"><span>${item.l}</span><span>${item.v}%</span></div>
-            <div class="h-2 bg-white/5 rounded-full overflow-hidden"><div class="h-full bg-primary" style="width: ${item.v}%"></div></div>
+          { label: 'Controle Neuromuscular', id: 'sym', val: symmetry, icon: 'zap' },
+          { label: 'Capacidade Erétil', id: 'prop', val: proportions, icon: 'shield' },
+          { label: 'Vigor e Resistência', id: 'text', val: texture, icon: 'flame' }
+        ].map(s => `
+          <div class="bg-white/5 border border-white/5 p-4 rounded-xl">
+            <div class="flex justify-between items-center mb-3">
+              <div class="flex items-center gap-2">
+                <i data-lucide="${s.icon}" class="w-3 h-3 text-primary"></i>
+                <span class="text-[10px] font-bold text-white/60 uppercase tracking-widest">${s.label}</span>
+              </div>
+              <span class="text-xs font-display font-bold text-primary" id="${s.id}-percent">0%</span>
+            </div>
+            <div class="chart-bar-container">
+              <div id="${s.id}-fill" class="chart-bar-fill w-0 transition-all duration-1000"></div>
+            </div>
           </div>
         `).join('')}
       </div>
-      <button class="w-full py-5 rounded-xl bg-white text-black font-bold text-lg" id="btn-show-proto">VER PROTOCOLO EXATO ></button>
+
+      <button class="w-full py-5 rounded-xl bg-white text-black font-display font-bold text-lg hover:scale-[1.02] active:scale-[0.98] transition-all shadow-xl shadow-white/10 mb-6 flex items-center justify-center gap-2" id="btn-show-proto">
+        <span>VER SOLUÇÃO EXATA</span>
+        <i data-lucide="chevron-right" class="w-5 h-5"></i>
+      </button>
+
+      <p class="text-[9px] font-display text-white/30 uppercase tracking-[0.2em]">Diagnóstico de Performance Finalizado</p>
     </div>
   `;
+
+  // Re-init icons for the new content
   lucide.createIcons();
-  document.getElementById('btn-show-proto').onclick = showProtocol;
+
+
+  // Use event listener instead of onclick to avoid scope issues
+  document.getElementById('btn-show-proto').addEventListener('click', showProtocol);
+
+  // Faster Animations (1 second duration)
+  const scoreElem = document.getElementById('score-counter');
+  let currentScore = 0;
+  const duration = 1000;
+  const interval = 20;
+  const steps = duration / interval;
+  const increment = finalScore / steps;
+
+  const timer = setInterval(() => {
+    currentScore += increment;
+    if (currentScore >= finalScore) {
+      currentScore = finalScore;
+      clearInterval(timer);
+    }
+    if (scoreElem) scoreElem.innerText = currentScore.toFixed(1);
+    
+    // Smooth Circle Fill
+    const dashArray = 628;
+    const offset = dashArray * (1 - currentScore / 10);
+    const circle = document.getElementById('premium-circle-fill');
+    if (circle) circle.style.strokeDashoffset = offset;
+  }, interval);
+
+  // Bars Animation
+  setTimeout(() => {
+    const sFill = document.getElementById('sym-fill');
+    const sPct = document.getElementById('sym-percent');
+    if (sFill) sFill.style.width = symmetry + '%';
+    if (sPct) sPct.innerText = symmetry + '%';
+  }, 300);
+
+  setTimeout(() => {
+    const pFill = document.getElementById('prop-fill');
+    const pPct = document.getElementById('prop-percent');
+    if (pFill) pFill.style.width = proportions + '%';
+    if (pPct) pPct.innerText = proportions + '%';
+  }, 600);
+
+  setTimeout(() => {
+    const tFill = document.getElementById('text-fill');
+    const tPct = document.getElementById('text-percent');
+    if (tFill) tFill.style.width = texture + '%';
+    if (tPct) tPct.innerText = texture + '%';
+  }, 900);
 }
 
 function showProtocol() {
-  // Simple redirect or full rendering
-  window.location.href = window.apex_checkout_url;
+  mainContent.innerHTML = '';
+  mainContent.insertAdjacentHTML('beforeend', `
+    <div class="flex flex-col items-center">
+      <!-- 0. Premium Header -->
+      <div class="text-center mb-10">
+        <div class="inline-block px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-[10px] font-display font-bold text-primary uppercase tracking-[0.2em] mb-4">Protocolo Nível 3 Ativado</div>
+        <h2 class="text-3xl font-display font-bold tracking-tight text-white leading-tight">Seu Plano de Bio-<br><span class="text-primary">Otimização Pronto.</span></h2>
+      </div>
+
+      <!-- 1. Stats Grid (Restored) -->
+      <div class="grid grid-cols-3 gap-3 mb-8 w-full">
+        <div class="card-stitch !p-3 text-center flex flex-col items-center justify-center">
+          <div class="flex text-[#f59e0b] mb-1">
+            <i data-lucide="star" class="w-2.5 h-2.5 fill-current"></i>
+            <i data-lucide="star" class="w-2.5 h-2.5 fill-current"></i>
+            <i data-lucide="star" class="w-2.5 h-2.5 fill-current"></i>
+            <i data-lucide="star" class="w-2.5 h-2.5 fill-current"></i>
+            <i data-lucide="star-half" class="w-2.5 h-2.5 fill-current"></i>
+          </div>
+          <div class="text-lg font-display font-bold text-white">4.7</div>
+          <div class="text-[8px] text-white/30 uppercase font-black tracking-widest">Avaliação Média</div>
+        </div>
+        <div class="card-stitch !p-3 text-center flex flex-col items-center justify-center">
+          <i data-lucide="users" class="w-4 h-4 text-primary mb-1"></i>
+          <div class="text-lg font-display font-bold text-white">10k+</div>
+          <div class="text-[8px] text-white/30 uppercase font-black tracking-widest">Homens Ativos</div>
+        </div>
+        <div class="card-stitch !p-3 text-center flex flex-col items-center justify-center border-accent/20">
+          <i data-lucide="award" class="w-4 h-4 text-accent mb-1"></i>
+          <div class="text-lg font-display font-bold text-accent">A+</div>
+          <div class="text-[8px] text-white/30 uppercase font-black tracking-widest text-accent/60">Potencial</div>
+        </div>
+      </div>
+
+      <!-- 2. Knowledge Bridge Recommendation -->
+      <div class="card-stitch w-full mb-8 relative border-primary/20 bg-primary/5">
+        <div class="flex items-center gap-2 text-primary font-display font-bold mb-4">
+          <i data-lucide="sparkles" class="w-5 h-5"></i>
+          <h2 class="text-[11px] uppercase tracking-wider text-primary">Diagnóstico Algorítmico</h2>
+        </div>
+        <p class="text-white/80 text-sm leading-relaxed mb-6 font-display">
+          Identificamos <span class="text-primary font-bold">Fluxo Restrito</span> e <span class="text-primary font-bold">Instabilidade Pélvica</span>. O Protocolo Apex foi configurado para reverter esses sinais em até 21 dias.
+        </p>
+        
+        <div class="bg-black/40 rounded-xl border border-white/10 p-4 mb-4 flex items-center gap-4">
+          <div class="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center shrink-0">
+            <i data-lucide="file-check" class="w-5 h-5 text-primary"></i>
+          </div>
+          <div class="flex-1">
+            <h4 class="text-[10px] font-bold text-white uppercase tracking-[0.15em]">Plano Validado</h4>
+            <p class="text-[9px] text-white/40 leading-tight">Configuração personalizada concluída.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Benefits List (Full Restoration) -->
+      <div class="w-full mb-10">
+        <h3 class="text-xs font-display font-bold text-white/40 uppercase tracking-[0.2em] mb-6 pl-4">O que você recebe hoje:</h3>
+        <div class="space-y-3">
+          ${[
+            { title: 'Protocolo de Força Nível 3', desc: 'Recuperação de RIGIDEZ extrema e controle total.', icon: 'zap' },
+            { title: 'Método Anti-Ansiedade', desc: 'Dobre seu tempo de performance sem remédios.', icon: 'shield-check' },
+            { title: 'Guia de Libido Explosiva', desc: 'Nutrição celular para energia e vigor imediatos.', icon: 'flame' },
+            { title: 'Dashboard de Bio-Status', desc: 'Acompanhe cada evolução pelo seu painel.', icon: 'bar-chart-3' }
+          ].map(item => `
+            <div class="card-stitch !py-4 !px-6 flex items-start gap-4 hover:border-primary/30 transition-all bg-white/[0.01]">
+              <div class="w-8 h-8 rounded-lg bg-primary/10 flex-shrink-0 flex items-center justify-center text-primary mt-0.5">
+                <i data-lucide="${item.icon}" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <span class="text-[13px] font-display font-bold text-white block mb-0.5">${item.title}</span>
+                <span class="text-[11px] text-white/40 leading-relaxed">${item.desc}</span>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+
+        <div class="mt-8 pt-8 border-t border-white/5 w-full">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="h-px flex-1 bg-white/10"></div>
+                <span class="text-[9px] font-black uppercase tracking-[3px] text-white/40">Comentários</span>
+                <div class="h-px flex-1 bg-white/10"></div>
+            </div>
+            <div class="proof-slider !p-0">
+                <div class="social-card card-fb !flex-0 !w-[240px] !p-4 !rounded-2xl">
+                    <div class="card-header !mb-3">
+                        <img src="user_profile_1.png" class="user-avatar !w-8 !h-8">
+                        <div class="user-info">
+                            <span class="user-name !text-[12px] text-left">Ricardo M.</span>
+                            <span class="user-handle !text-[9px] text-left">Facebook</span>
+                        </div>
+                        <i data-lucide="facebook" class="!w-4 !h-4 text-white/20"></i>
+                    </div>
+                    <p class="card-content !text-[11px] !mb-0 text-left">Finalmente algo que funciona de verdade. Valeu cada centavo. 💪</p>
+                </div>
+                <div class="social-card card-ig !flex-0 !w-[240px] !p-4 !rounded-2xl">
+                    <div class="card-header !mb-3">
+                        <img src="user_profile_2.png" class="user-avatar !w-8 !h-8" alt="Avatar">
+                        <div class="user-info">
+                            <span class="user-name !text-[12px] text-left">Paulo G.</span>
+                            <span class="user-handle !text-[9px] text-left">@paulog_oficial</span>
+                        </div>
+                        <i data-lucide="instagram" class="!w-4 !h-4 text-white/20"></i>
+                    </div>
+                    <p class="card-content !text-[11px] !mb-0 text-left">As dicas de nutrição e exercícios são matadoras. Prático e rápido! 🔥</p>
+                </div>
+                <div class="social-card card-wa !flex-0 !w-[240px] !p-4 !rounded-2xl">
+                    <div class="card-header !mb-3">
+                        <img src="user_profile_3.png" class="user-avatar !w-8 !h-8" alt="Avatar">
+                        <div class="user-info">
+                            <span class="user-name !text-[12px] text-left">Carlos S.</span>
+                            <span class="user-handle !text-[9px] text-left">WhatsApp</span>
+                        </div>
+                        <i data-lucide="message-circle" class="!w-4 !h-4 text-white/20"></i>
+                    </div>
+                    <p class="card-content !text-[11px] !mb-0 text-left">Até minha esposa comentou a diferença. Protocolo nota 10! 👊</p>
+                </div>
+            </div>
+        </div>
+      </div>
+
+      <!-- 4. Before/After Comparison Progress -->
+      <div class="card-stitch w-full mb-12 !p-8">
+        <h3 class="text-[12px] font-display font-bold text-white/30 uppercase tracking-[0.3em] text-center mb-10">Projeção Biológica: 30 Dias</h3>
+        <div class="grid grid-cols-2 gap-6 relative">
+          <div class="absolute left-1/2 top-4 bottom-4 w-px bg-white/5"></div>
+          <div class="text-center">
+            <div class="text-[10px] font-display font-bold text-red-500/80 uppercase tracking-widest mb-6">Estado Crítico</div>
+            <div class="relative aspect-[3/4] mb-6">
+              <img src="performance_before_sad_man_1774114625856.png" class="w-full h-full object-cover rounded-2xl grayscale opacity-50 shadow-inner">
+              <div class="absolute inset-0 rounded-2xl border border-white/5"></div>
+            </div>
+            <div class="flex justify-center gap-1.5">
+              <div class="h-1 w-5 bg-red-500 rounded-full"></div>
+              <div class="h-1 w-5 bg-white/5 rounded-full"></div>
+              <div class="h-1 w-5 bg-white/5 rounded-full"></div>
+            </div>
+            <p class="text-[9px] text-white/20 italic font-medium mt-4 tracking-wide">Desempenho Estagnado</p>
+          </div>
+          <div class="text-center">
+            <div class="text-[10px] font-display font-bold text-accent uppercase tracking-widest mb-6">Meta Dr. Apex</div>
+            <div class="relative aspect-[3/4] mb-6">
+              <img src="performance_after_happy_couple_1774114685383.png" class="w-full h-full object-cover rounded-2xl shadow-xl border border-accent/20">
+              <div class="absolute inset-0 rounded-2xl shadow-[inset_0_0_20px_rgba(0,168,132,0.1)]"></div>
+            </div>
+            <div class="flex justify-center gap-1.5">
+              <div class="h-1 w-5 bg-accent rounded-full"></div>
+              <div class="h-1 w-5 bg-accent rounded-full"></div>
+              <div class="h-1 w-5 bg-accent rounded-full shadow-[0_0_8px_var(--accent)]"></div>
+            </div>
+            <p class="text-[9px] text-accent font-bold uppercase tracking-[0.2em] mt-4">Protocolo Ativo</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Social Proof (Combined Marquee + Cases) -->
+      <div class="w-full mb-16">
+        <h3 class="text-xs font-display font-bold text-white/40 uppercase tracking-[0.2em] mb-10 text-center">Relatos de Resultados Reais</h3>
+        
+        <div class="marquee-container relative py-4 mb-14">
+          <div class="marquee-track flex gap-4" id="results-marquee-track">
+            ${[
+              { text: "Recuperei minha rigidez. Em 3 semanas minha vida mudou.", user: "Carlos F., 41" },
+              { text: "Acabou a ansiedade de acabar rápido. Controle total.", user: "Ricardo T., 35" },
+              { text: "Não é mágica, é método. Funciona se seguir.", user: "Marcelo P., 48" },
+              { text: "Minha esposa percebeu antes de mim. Absurdo.", user: "Felipe A., 32" }
+            ].map(item => `
+              <div class="bg-white/5 border border-white/10 p-5 rounded-2xl min-w-[260px] backdrop-blur-sm">
+                <div class="flex text-[#f59e0b] mb-3">
+                  <i data-lucide="star" class="w-2.5 h-2.5 fill-current"></i><i data-lucide="star" class="w-2.5 h-2.5 fill-current"></i><i data-lucide="star" class="w-2.5 h-2.5 fill-current"></i><i data-lucide="star" class="w-2.5 h-2.5 fill-current"></i><i data-lucide="star" class="w-2.5 h-2.5 fill-current"></i>
+                </div>
+                <p class="text-xs text-white/80 italic mb-4 leading-relaxed">"${item.text}"</p>
+                <div class="flex items-center gap-2">
+                  <span class="text-[10px] font-bold text-primary font-display">${item.user}</span>
+                  <i data-lucide="check-circle" class="w-3 h-3 text-primary/40"></i>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <!-- 5.5 Detailed Chat Prints (NOW WITH AUTO-MOVEMENT) -->
+        <div class="marquee-container relative py-4">
+          <div class="marquee-track flex gap-8" id="chat-marquee-track">
+            <!-- Maria (WhatsApp) -->
+            <div class="chat-print chat-wa flex-shrink-0">
+                <div class="chat-status-bar !bg-[#0b141a]">
+                    <span>20:53</span>
+                    <div class="status-icons"><i data-lucide="signal" class="w-3 h-3"></i><i data-lucide="wifi" class="w-3 h-3"></i><i data-lucide="battery" class="w-2.5 h-2.5"></i></div>
+                </div>
+                <div class="chat-header !bg-[#202c33] !border-none !py-3">
+                    <i data-lucide="arrow-left" class="w-4 h-4 mr-1"></i>
+                    <img src="user_profile_1.png" class="chat-avatar !w-9 !h-9" onerror="this.src='https://ui-avatars.com/api/?name=Maria&background=random'">
+                    <div class="chat-user">
+                        <span class="chat-name !text-[15px]">Maria 💛</span>
+                        <span class="chat-status !text-[10px]">online</span>
+                    </div>
+                    <div class="chat-icons !opacity-100 !gap-5">
+                      <i data-lucide="video" class="w-5 h-5"></i>
+                      <i data-lucide="phone" class="w-4 h-4"></i>
+                      <i data-lucide="more-vertical" class="w-4 h-4"></i>
+                    </div>
+                </div>
+                <div class="chat-body !p-5 !bg-[#0b141a]">
+                    <div class="text-[10px] text-white/20 text-center mb-6 uppercase tracking-widest">Hoje</div>
+                    <div class="message received !text-[13px] !bg-[#202c33]">
+                        Mano, finalmente algo que funciona de verdade. Achei q meus melhores dias tinham passado, mas o Protocolo Apex me provou o contrário. 💪
+                        <div class="msg-time-wa">22:09 <i data-lucide="check-check" class="w-3 h-3 text-[#53bdeb]"></i></div>
+                    </div>
+                </div>
+                <div class="chat-footer chat-wa-footer bg-[#0b141a] p-3 flex gap-2">
+                  <div class="wa-input bg-[#2a3942] rounded-full flex-1 px-3 py-2 text-[13px] text-white/30 flex items-center gap-3">
+                    <i data-lucide="smile" class="w-5 h-5"></i>
+                    <span>Mensagem</span>
+                    <div class="flex-1"></div>
+                    <i data-lucide="paperclip" class="w-5 h-5 -rotate-45"></i>
+                    <i data-lucide="camera" class="w-5 h-5"></i>
+                  </div>
+                  <div class="w-10 h-10 bg-[#00a884] rounded-full flex items-center justify-center">
+                    <i data-lucide="mic" class="w-5 h-5 text-black"></i>
+                  </div>
+                </div>
+            </div>
+
+            <!-- Leonardo Mendes (Messenger) -->
+            <div class="chat-print chat-fb flex-shrink-0">
+                <div class="chat-status-bar !bg-black">
+                    <span>20:53</span>
+                    <div class="status-icons"><i data-lucide="signal" class="w-3 h-3"></i><i data-lucide="wifi" class="w-3 h-3"></i><i data-lucide="battery" class="w-2.5 h-2.5"></i></div>
+                </div>
+                <div class="chat-header !bg-black !border-none !py-4">
+                    <i data-lucide="arrow-left" class="w-5 h-5 text-[#0084ff]"></i>
+                    <img src="user_profile_2.png" class="chat-avatar !w-8 !h-8" onerror="this.src='https://ui-avatars.com/api/?name=Leonardo+Mendes&background=random'">
+                    <div class="chat-user">
+                        <span class="chat-name !text-[15px]">Leonardo Mendes</span>
+                        <span class="chat-status !text-[10px]">Ativo agora</span>
+                    </div>
+                    <div class="chat-icons !opacity-100 !gap-4 text-[#0084ff]">
+                      <i data-lucide="phone" class="w-5 h-5 fill-current"></i>
+                      <i data-lucide="video" class="w-5 h-5 fill-current"></i>
+                      <i data-lucide="info" class="w-5 h-5"></i>
+                    </div>
+                </div>
+                <div class="chat-body !p-0">
+                    <div class="chat-intro bg-black">
+                        <div class="chat-intro-avatar !w-20 !h-20" style="background: url('https://ui-avatars.com/api/?name=Leonardo+M&background=00E0FF&color=fff') center/cover;"></div>
+                        <span class="chat-intro-name !text-[18px]">Leonardo Mendes</span>
+                        <span class="chat-intro-handle">@leovazmendes</span>
+                        <span class="chat-intro-meta">São amigos no Facebook</span>
+                        <button class="chat-intro-action">Ver perfil</button>
+                    </div>
+                    <div class="text-[9px] text-white/20 text-center my-4 uppercase tracking-[0.2em]">20/10/2020 às 09:01</div>
+                    <div class="message bubble-fb !ml-5 !mb-4 !bg-[#242526] !text-[13px]">
+                        Melhor investimento que fiz. A confiança mudou 100%. Vale cada centavo! ✅
+                    </div>
+                </div>
+                <div class="chat-footer p-4 flex gap-4 text-[#0084ff] border-t border-white/5 bg-black">
+                  <i data-lucide="plus-circle" class="w-5 h-5 fill-current"></i>
+                  <i data-lucide="camera" class="w-5 h-5 fill-current"></i>
+                  <i data-lucide="image" class="w-5 h-5 fill-current"></i>
+                  <i data-lucide="mic" class="w-5 h-5 fill-current"></i>
+                  <div class="flex-1 bg-[#242526] rounded-full px-4 py-1.5 text-[12px] text-white/40">Mensagem</div>
+                  <i data-lucide="thumbs-up" class="w-5 h-5 fill-current"></i>
+                </div>
+            </div>
+
+            <!-- Carlos (WhatsApp) -->
+            <div class="chat-print chat-wa flex-shrink-0">
+                <div class="chat-status-bar !bg-[#0b141a]"><span>20:53</span><div class="status-icons"><i data-lucide="signal" class="w-3 h-3"></i><i data-lucide="wifi" class="w-3 h-3"></i><i data-lucide="battery" class="w-2.5 h-2.5"></i></div></div>
+                <div class="chat-header !bg-[#202c33] !border-none !py-3">
+                    <i data-lucide="arrow-left" class="w-4 h-4 mr-1"></i>
+                    <img src="user_profile_3.png" class="chat-avatar !w-9 !h-9" onerror="this.src='https://ui-avatars.com/api/?name=Carlos&background=random'">
+                    <div class="chat-user">
+                        <span class="chat-name !text-[15px]">Carlos Silveira</span>
+                        <span class="chat-status !text-[10px]">online</span>
+                    </div>
+                    <div class="chat-icons !opacity-100 !gap-5">
+                      <i data-lucide="video" class="w-5 h-5"></i>
+                      <i data-lucide="phone" class="w-4 h-4"></i>
+                      <i data-lucide="more-vertical" class="w-4 h-4"></i>
+                    </div>
+                </div>
+                <div class="chat-body !p-5 !bg-[#0b141a]">
+                    <div class="message received !text-[13px] !bg-[#202c33]">
+                        Até minha esposa comentou a diferença. Protocolo nota 10, mudou o jogo aqui em casa! 👊
+                        <div class="msg-time-wa">11:15 <i data-lucide="check-check" class="w-3 h-3 text-[#53bdeb]"></i></div>
+                    </div>
+                </div>
+                <div class="chat-footer chat-wa-footer bg-[#0b141a] p-3 flex gap-2">
+                  <div class="wa-input bg-[#2a3942] rounded-full flex-1 px-3 py-2 text-[13px] text-white/30 flex items-center gap-3">
+                    <i data-lucide="smile" class="w-5 h-5"></i>
+                    <span>Mensagem</span>
+                    <div class="flex-1"></div>
+                    <i data-lucide="paperclip" class="w-5 h-5 -rotate-45"></i>
+                    <i data-lucide="camera" class="w-5 h-5"></i>
+                  </div>
+                  <div class="w-10 h-10 bg-[#00a884] rounded-full flex items-center justify-center">
+                    <i data-lucide="mic" class="w-5 h-5 text-black"></i>
+                  </div>
+                </div>
+            </div>
+        </div>
+      </div>
+
+      <!-- 6. Guarantee Block (Full Restoration) -->
+      <div class="card-stitch w-full mb-10 border-accent/20 bg-accent/5 flex flex-col items-center text-center p-8">
+        <i data-lucide="shield-check" class="w-10 h-10 text-accent mb-4"></i>
+        <h4 class="text-sm font-display font-black text-accent uppercase tracking-widest mb-3">Garantia Blindada de 7 Dias</h4>
+        <p class="text-xs text-white/60 leading-relaxed max-w-[320px]">
+          Se por qualquer motivo você não estiver satisfeito, devolvemos 100% do valor. Sem perguntas, sem burocracia. O risco é ZERO.
+        </p>
+      </div>
+
+      <!-- 7. Pricing & Scarcity Block -->
+      <div class="card-stitch w-full mb-8 relative border-primary/10 bg-white/[0.02] flex flex-col items-center pt-10">
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-accent text-black text-[10px] font-black uppercase tracking-widest shadow-xl">56% DE DESCONTO</div>
+        
+        <div class="text-[11px] font-display font-bold text-white/30 line-through mb-1 uppercase tracking-widest">De R$ 49,90</div>
+        <div class="text-5xl font-display font-black text-white mb-2">R$ <span class="text-primary">21,90</span></div>
+        <p class="text-[10px] text-white/40 mb-10 uppercase tracking-widest">Pagamento único · Acesso Vitalício</p>
+
+        <!-- Scarcity Indicator -->
+        <div class="w-full space-y-3 mb-10 px-4">
+          <div class="flex justify-between items-center text-[10px] font-black uppercase tracking-wider">
+            <span class="text-white/40">Vagas remanescentes</span>
+            <span class="text-red-400">07 unidades</span>
+          </div>
+          <div class="h-1.5 bg-white/5 rounded-full overflow-hidden">
+            <div class="h-full w-[15%] bg-red-400 animate-pulse"></div>
+          </div>
+          <p class="text-[9px] text-red-400/60 font-medium text-center italic mt-2">A janela de oportunidade estipulada pelo algoritmo fecha em breve.</p>
+        </div>
+        
+        <button class="btn-apex-elite w-full py-7 rounded-2xl text-black font-display font-black text-xl hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-4 mb-8 tracking-widest" onclick="window.location.href = window.apex_checkout_url || 'https://lastlink.com/p/CAA303628/checkout-payment/'">
+          <span>GARANTIR MEU PROTOCOLO AGORA</span>
+          <i data-lucide="zap" class="w-6 h-6 fill-current"></i>
+        </button>
+
+        <div class="flex justify-center gap-8 opacity-30 pb-4">
+            <div class="flex flex-col items-center gap-1">
+                <i data-lucide="lock" class="w-4 h-4 text-white"></i>
+                <span class="text-[8px] font-bold uppercase">Seguro</span>
+            </div>
+            <div class="flex flex-col items-center gap-1">
+                <i data-lucide="check-square" class="w-4 h-4 text-white"></i>
+                <span class="text-[8px] font-bold uppercase">Verificado</span>
+            </div>
+            <div class="flex flex-col items-center gap-1">
+                <i data-lucide="credit-card" class="w-4 h-4 text-white"></i>
+                <span class="text-[8px] font-bold uppercase">PIX / Cartão</span>
+            </div>
+        </div>
+      </div>
+
+      <div class="mt-8 text-[9px] font-mono text-white/10 uppercase tracking-[0.5em] mb-12">
+        APEXCORE V1.1 // SYSTEM ENCRYPTED
+      </div>
+    </div>
+  `);
+  
+  lucide.createIcons();
+
+  // Marquee clone logic
+  setTimeout(() => {
+    ['results-marquee-track', 'chat-marquee-track'].forEach(id => {
+      const track = document.getElementById(id);
+      if (track) {
+        Array.from(track.children).forEach(child => {
+          track.appendChild(child.cloneNode(true));
+        });
+      }
+    });
+  }, 100);
 }
 
 nextBtn.onclick = navigateNext;
 backBtn.onclick = () => {
-  if (currentStep > 0) { currentStep--; renderStep(true); }
+  if (currentStep > 0 && !isShowingInspiration) {
+    currentStep--;
+    renderStep();
+  } else if (isShowingInspiration) {
+    isShowingInspiration = false;
+    renderStep();
+  }
 };
 
 /* --- SOCIAL PROOF SYSTEM --- */
@@ -561,18 +1284,41 @@ const socialProofData = {
 function showSocialNotification() {
   const toast = document.getElementById('social-proof-toast');
   if (!toast) return;
+
   const name = socialProofData.names[Math.floor(Math.random() * socialProofData.names.length)];
   const city = socialProofData.cities[Math.floor(Math.random() * socialProofData.cities.length)];
   const time = socialProofData.times[Math.floor(Math.random() * socialProofData.times.length)];
-  toast.innerHTML = `<span class="social-name">${name}</span><span class="social-action">Adquiriu o Protocolo Dr. Apex</span><span class="social-location">${city} - ${time}</span>`;
+
+  toast.innerHTML = `
+    <span class="social-name">${name}</span>
+    <span class="social-action">Adquiriu o Protocolo Dr. Apex</span>
+    <span class="social-location">${city} - ${time}</span>
+  `;
+
   toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 6000);
+
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 6000);
 }
 
 window.addEventListener('load', () => {
   function scheduleNext(isSecond = false) {
-    let delay = isSecond ? 12000 : Math.floor(Math.random() * 10000) + 10000;
-    setTimeout(() => { showSocialNotification(); scheduleNext(false); }, delay);
+    let delay;
+    if (isSecond) {
+      delay = 50000;
+    } else {
+      delay = Math.floor(Math.random() * (25000 - 15000 + 1)) + 15000;
+    }
+
+    setTimeout(() => {
+      showSocialNotification();
+      scheduleNext(false);
+    }, delay);
   }
-  setTimeout(() => { showSocialNotification(); scheduleNext(true); }, 2000);
+
+  setTimeout(() => {
+    showSocialNotification();
+    scheduleNext(true); // Schedule the 2nd one at 50s
+  }, 5000);
 });
