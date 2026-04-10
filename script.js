@@ -148,16 +148,19 @@ window.addEventListener('DOMContentLoaded', () => {
   // Hero Entrance
   const tl = gsap.timeline({ defaults: { ease: "power3.out", duration: 1 } });
   
-  tl.from(".hero-badge", { y: 20, opacity: 0, duration: 0.8 }, 0.5)
-    .from(".hero-title", { y: 40, opacity: 0, stagger: 0.1 }, "-=0.4")
-    .from(".hero-subtitle", { y: 20, opacity: 0 }, "-=0.6")
-    .from(".hero-cta-btn", { scale: 0.9, opacity: 0 }, "-=0.8")
-    .from("#social-proof-section", { y: 20, opacity: 0, duration: 1 }, "-=0.2");
+  tl.from("#social-proof-section", { y: 15, opacity: 0, duration: 0.4 }, 0.1)
+    .from(".hero-badge", { y: 20, opacity: 0, duration: 0.6 }, "-=0.2")
+    .from(".hero-title", { y: 30, opacity: 0, stagger: 0.08 }, "-=0.4")
+    .from(".hero-subtitle", { y: 15, opacity: 0 }, "-=0.4")
+    .from(".hero-cta-btn", { scale: 0.95, opacity: 0, duration: 0.4 }, "-=0.3");
 });
 
 
 
 function startQuiz() {
+  const socialProof = document.getElementById('social-proof-section');
+  if (socialProof) socialProof.style.display = 'none';
+
   gsap.to(heroSection, {
     opacity: 0,
     y: -50,
@@ -173,7 +176,7 @@ function startQuiz() {
   });
 }
 
-function renderStep() {
+function renderStep(shouldScroll = true) {
   const step = quizData[currentStep];
   
   // Transition using GSAP
@@ -190,7 +193,9 @@ function renderStep() {
     const proofEl = document.getElementById('social-proof-indicator');
     if (proofEl) proofEl.innerText = `${window.globalProofVal} homens iniciaram seu plano nas últimas 24h`;
     
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    if (shouldScroll) {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
     isShowingInspiration = false;
     nextBtn.innerText = "Continuar";
     
@@ -325,7 +330,7 @@ function renderStep() {
             selected.push(idx);
           }
           selections[currentStep] = selected;
-          renderStep(); // Refresh for selection state
+          renderStep(false); // Refresh for selection state without scrolling
         };
         grid.appendChild(card);
       });
@@ -473,7 +478,7 @@ function selectOption(index) {
   }
   
   selections[currentStep] = index;
-  renderStep();
+  renderStep(false);
   
   // Subtle auto-advance removed to allow explicit 'Continue' click
 }
