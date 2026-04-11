@@ -894,133 +894,157 @@ function showPlan() {
 
 function showProtocol() {
   mainContent.innerHTML = '';
+
+  // Generate a session-consistent "launch end" date (3 days from now)
+  if (!window._launchEndDate) {
+    const d = new Date();
+    d.setDate(d.getDate() + 3);
+    window._launchEndDate = d;
+  }
+
   mainContent.insertAdjacentHTML('beforeend', `
-    <div class="flex flex-col items-center">
-      <!-- 0. Premium Header -->
-      <div class="text-center mb-10">
-        <div class="inline-block px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-[10px] font-display font-bold text-primary uppercase tracking-[0.2em] mb-4">Protocolo Nível 3 Ativado</div>
-        <h2 class="text-3xl font-display font-bold tracking-tight text-white leading-tight">Seu Plano de Bio-<br><span class="text-primary">Otimização Pronto.</span></h2>
-      </div>
+    <div class="flex flex-col items-center protocol-page">
 
-      <!-- 1. Stats Grid (Restored) -->
-      <div class="grid grid-cols-3 gap-3 mb-8 w-full">
-        <div class="card-stitch !p-3 text-center flex flex-col items-center justify-center">
-          <div class="flex text-[#f59e0b] mb-1">
-            <i data-lucide="star" class="w-2.5 h-2.5 fill-current"></i>
-            <i data-lucide="star" class="w-2.5 h-2.5 fill-current"></i>
-            <i data-lucide="star" class="w-2.5 h-2.5 fill-current"></i>
-            <i data-lucide="star" class="w-2.5 h-2.5 fill-current"></i>
-            <i data-lucide="star-half" class="w-2.5 h-2.5 fill-current"></i>
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- 0. AUTHORITY SECTION — Dr. Apex -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <div class="authority-section w-full mb-10">
+        <div class="authority-card card-stitch !p-0 overflow-hidden relative">
+          <div class="authority-photo-wrapper">
+            <img src="dr_apex_authority.png" alt="Dr. Apex — Especialista em Performance Masculina" class="authority-photo">
+            <div class="authority-photo-gradient"></div>
           </div>
-          <div class="text-lg font-display font-bold text-white">4.7</div>
-          <div class="text-[8px] text-white/30 uppercase font-black tracking-widest">Avaliação Média</div>
-        </div>
-        <div class="card-stitch !p-3 text-center flex flex-col items-center justify-center">
-          <i data-lucide="users" class="w-4 h-4 text-primary mb-1"></i>
-          <div class="text-lg font-display font-bold text-white">10k+</div>
-          <div class="text-[8px] text-white/30 uppercase font-black tracking-widest">Homens Ativos</div>
-        </div>
-        <div class="card-stitch !p-3 text-center flex flex-col items-center justify-center border-accent/20">
-          <i data-lucide="award" class="w-4 h-4 text-accent mb-1"></i>
-          <div class="text-lg font-display font-bold text-accent">A+</div>
-          <div class="text-[8px] text-white/30 uppercase font-black tracking-widest text-accent/60">Potencial</div>
+          <div class="authority-info p-6">
+            <div class="flex items-center gap-2 mb-3">
+              <div class="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
+              <span class="text-[10px] font-black uppercase tracking-[0.2em] text-accent">Revisado por Especialista</span>
+            </div>
+            <h3 class="text-xl font-display font-bold text-white mb-1">Dr. Rafael Apex</h3>
+            <p class="text-[11px] text-primary font-bold uppercase tracking-wider mb-3">Especialista em Urologia Funcional & Bio-Otimização</p>
+            <p class="text-[12px] text-white/50 leading-relaxed">
+              Mais de 18 anos dedicados à saúde masculina. Criador do Protocolo Apex — um sistema comprovado de reativação da performance baseado em ciência urológica, controle neuromuscular e nutrição celular estratégica.
+            </p>
+            <div class="authority-badges mt-4 flex flex-wrap gap-2">
+              <span class="authority-badge-pill"><i data-lucide="graduation-cap" class="w-3 h-3"></i> +18 anos de prática</span>
+              <span class="authority-badge-pill"><i data-lucide="users" class="w-3 h-3"></i> +10.000 homens atendidos</span>
+              <span class="authority-badge-pill"><i data-lucide="award" class="w-3 h-3"></i> Protocolo Validado</span>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- 2. Knowledge Bridge Recommendation -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- 1. DIAGNÓSTICO PESSOAL — "O que encontramos" -->
+      <!-- ═══════════════════════════════════════════════ -->
       <div class="card-stitch w-full mb-8 relative border-primary/20 bg-primary/5">
         <div class="flex items-center gap-2 text-primary font-display font-bold mb-4">
-          <i data-lucide="sparkles" class="w-5 h-5"></i>
-          <h2 class="text-[11px] uppercase tracking-wider text-primary">Diagnóstico Algorítmico</h2>
+          <i data-lucide="scan-line" class="w-5 h-5"></i>
+          <h2 class="text-[11px] uppercase tracking-wider text-primary">Seu Diagnóstico Personalizado</h2>
         </div>
-        <p class="text-white/80 text-sm leading-relaxed mb-6 font-display">
-          Identificamos <span class="text-primary font-bold">Fluxo Restrito</span> e <span class="text-primary font-bold">Instabilidade Pélvica</span>. O Protocolo Apex foi configurado para reverter esses sinais em até 21 dias.
+        <p class="text-white/80 text-sm leading-relaxed mb-4 font-display">
+          Com base nas suas 15 respostas, identificamos <span class="text-primary font-bold">Fluxo Sanguíneo Restrito</span> e <span class="text-primary font-bold">Musculatura Pélvica Enfraquecida</span> — dois fatores que impactam diretamente rigidez, controle e duração.
         </p>
+        <p class="text-white/60 text-[13px] leading-relaxed">
+          A boa notícia: <strong class="text-accent">essas condições são 100% reversíveis</strong> com o protocolo correto. Homens com perfil similar ao seu recuperam a performance em 14 a 21 dias.
+        </p>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- 2. COMO FUNCIONA — 3 Passos -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <div class="w-full mb-10">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="h-px flex-1 bg-white/10"></div>
+          <span class="text-[9px] font-black uppercase tracking-[3px] text-white/40">Como Funciona</span>
+          <div class="h-px flex-1 bg-white/10"></div>
+        </div>
         
-        <div class="bg-black/40 rounded-xl border border-white/10 p-4 mb-4 flex items-center gap-4">
-          <div class="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center shrink-0">
-            <i data-lucide="file-check" class="w-5 h-5 text-primary"></i>
+        <div class="how-it-works-grid">
+          <div class="how-step">
+            <div class="how-step-number">01</div>
+            <div class="how-step-icon"><i data-lucide="clipboard-check" class="w-6 h-6 text-primary"></i></div>
+            <h4 class="how-step-title">Diagnóstico</h4>
+            <p class="how-step-desc">Analisamos suas 15 respostas e cruzamos com +50 mil perfis para identificar seus pontos críticos.</p>
           </div>
-          <div class="flex-1">
-            <h4 class="text-[10px] font-bold text-white uppercase tracking-[0.15em]">Plano Validado</h4>
-            <p class="text-[9px] text-white/40 leading-tight">Configuração personalizada concluída.</p>
+          <div class="how-step-divider"><i data-lucide="chevron-right" class="w-5 h-5 text-white/20"></i></div>
+          <div class="how-step">
+            <div class="how-step-number">02</div>
+            <div class="how-step-icon"><i data-lucide="dumbbell" class="w-6 h-6 text-accent"></i></div>
+            <h4 class="how-step-title">Protocolo</h4>
+            <p class="how-step-desc">Exercícios pélvicos + nutrição celular + técnicas de controle. 10 min/dia. Sem remédios.</p>
+          </div>
+          <div class="how-step-divider"><i data-lucide="chevron-right" class="w-5 h-5 text-white/20"></i></div>
+          <div class="how-step">
+            <div class="how-step-number">03</div>
+            <div class="how-step-icon"><i data-lucide="trending-up" class="w-6 h-6 text-[#f59e0b]"></i></div>
+            <h4 class="how-step-title">Resultados</h4>
+            <p class="how-step-desc">Semana 1: mais controle. Semana 2: rigidez notável. Semana 3: performance de pico restaurada.</p>
           </div>
         </div>
       </div>
 
-      <!-- 3. Benefits List (Full Restoration) -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- 3. PRODUCT MOCKUP — "O que você recebe" -->
+      <!-- ═══════════════════════════════════════════════ -->
       <div class="w-full mb-10">
-        <h3 class="text-xs font-display font-bold text-white/40 uppercase tracking-[0.2em] mb-6 pl-4">O que você recebe hoje:</h3>
+        <div class="flex items-center gap-3 mb-8">
+          <div class="h-px flex-1 bg-white/10"></div>
+          <span class="text-[9px] font-black uppercase tracking-[3px] text-white/40">O Que Você Recebe Hoje</span>
+          <div class="h-px flex-1 bg-white/10"></div>
+        </div>
+
+        <!-- Product Visual -->
+        <div class="product-mockup-wrapper mb-8">
+          <img src="product_mockup.png" alt="Protocolo Apex — Kit Digital Completo" class="product-mockup-img">
+          <div class="product-mockup-glow"></div>
+        </div>
+
+        <!-- Module Cards -->
         <div class="space-y-3">
           ${[
-            { title: 'Protocolo de Força Nível 3', desc: 'Recuperação de RIGIDEZ extrema e controle total.', icon: 'zap' },
-            { title: 'Método Anti-Ansiedade', desc: 'Dobre seu tempo de performance sem remédios.', icon: 'shield-check' },
-            { title: 'Guia de Libido Explosiva', desc: 'Nutrição celular para energia e vigor imediatos.', icon: 'flame' },
-            { title: 'Dashboard de Bio-Status', desc: 'Acompanhe cada evolução pelo seu painel.', icon: 'bar-chart-3' }
+            { title: 'Módulo 1 · Protocolo de Força Nível 3', desc: 'Exercícios progressivos de controle neuromuscular. Técnicas de rigidez máxima com evolução semanal.', pages: '47 páginas', icon: 'zap', color: 'text-primary' },
+            { title: 'Módulo 2 · Método Anti-Ansiedade', desc: 'Elimine a insegurança na hora H. Controle mental e técnicas de respiração para durar o quanto quiser.', pages: '32 páginas', icon: 'brain', color: 'text-accent' },
+            { title: 'Módulo 3 · Guia de Libido Explosiva', desc: 'Nutrição celular estratégica, suplementação natural e hábitos que disparam sua energia e vigor.', pages: '38 páginas', icon: 'flame', color: 'text-[#f59e0b]' }
           ].map(item => `
-            <div class="card-stitch !py-4 !px-6 flex items-start gap-4 hover:border-primary/30 transition-all bg-white/[0.01]">
-              <div class="w-8 h-8 rounded-lg bg-primary/10 flex-shrink-0 flex items-center justify-center text-primary mt-0.5">
-                <i data-lucide="${item.icon}" class="w-4 h-4"></i>
+            <div class="card-stitch !py-5 !px-6 flex items-start gap-4 hover:border-primary/30 transition-all group">
+              <div class="w-10 h-10 rounded-xl bg-white/5 flex-shrink-0 flex items-center justify-center ${item.color} mt-0.5 group-hover:bg-white/10 transition-colors">
+                <i data-lucide="${item.icon}" class="w-5 h-5"></i>
               </div>
-              <div>
-                <span class="text-[13px] font-display font-bold text-white block mb-0.5">${item.title}</span>
-                <span class="text-[11px] text-white/40 leading-relaxed">${item.desc}</span>
+              <div class="flex-1">
+                <span class="text-[13px] font-display font-bold text-white block mb-1">${item.title}</span>
+                <span class="text-[11px] text-white/50 leading-relaxed block">${item.desc}</span>
+                <span class="text-[9px] text-primary/60 font-bold uppercase tracking-wider mt-2 inline-block">${item.pages} · PDF Digital</span>
               </div>
             </div>
           `).join('')}
-        </div>
 
-        <div class="mt-8 pt-8 border-t border-white/5 w-full">
-            <div class="flex items-center gap-3 mb-6">
-                <div class="h-px flex-1 bg-white/10"></div>
-                <span class="text-[9px] font-black uppercase tracking-[3px] text-white/40">Comentários</span>
-                <div class="h-px flex-1 bg-white/10"></div>
+          <!-- Bonus -->
+          <div class="mt-4 p-[1px] rounded-2xl bg-gradient-to-r from-primary/40 via-accent/40 to-primary/40">
+            <div class="card-stitch !rounded-2xl !border-0 !py-5 !px-6 flex items-start gap-4 bg-black">
+              <div class="w-10 h-10 rounded-xl bg-accent/10 flex-shrink-0 flex items-center justify-center text-accent mt-0.5">
+                <i data-lucide="gift" class="w-5 h-5"></i>
+              </div>
+              <div class="flex-1">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="text-[13px] font-display font-bold text-white">BÔNUS: Dashboard de Bio-Status</span>
+                  <span class="text-[8px] bg-accent/20 text-accent px-2 py-0.5 rounded-full font-black uppercase">Grátis</span>
+                </div>
+                <span class="text-[11px] text-white/50 leading-relaxed block">Planilha interativa para acompanhar sua evolução semana a semana. Veja seu progresso em tempo real.</span>
+              </div>
             </div>
-            <div class="proof-slider !p-0">
-                <div class="social-card card-fb !flex-0 !w-[240px] !p-4 !rounded-2xl">
-                    <div class="card-header !mb-3">
-                        <img src="user_profile_1.png" class="user-avatar !w-8 !h-8">
-                        <div class="user-info">
-                            <span class="user-name !text-[12px] text-left">Ricardo M.</span>
-                            <span class="user-handle !text-[9px] text-left">Facebook</span>
-                        </div>
-                        <i data-lucide="facebook" class="!w-4 !h-4 text-white/20"></i>
-                    </div>
-                    <p class="card-content !text-[11px] !mb-0 text-left">Finalmente algo que funciona de verdade. Valeu cada centavo. 💪</p>
-                </div>
-                <div class="social-card card-ig !flex-0 !w-[240px] !p-4 !rounded-2xl">
-                    <div class="card-header !mb-3">
-                        <img src="user_profile_2.png" class="user-avatar !w-8 !h-8" alt="Avatar">
-                        <div class="user-info">
-                            <span class="user-name !text-[12px] text-left">Paulo G.</span>
-                            <span class="user-handle !text-[9px] text-left">@paulog_oficial</span>
-                        </div>
-                        <i data-lucide="instagram" class="!w-4 !h-4 text-white/20"></i>
-                    </div>
-                    <p class="card-content !text-[11px] !mb-0 text-left">As dicas de nutrição e exercícios são matadoras. Prático e rápido! 🔥</p>
-                </div>
-                <div class="social-card card-wa !flex-0 !w-[240px] !p-4 !rounded-2xl">
-                    <div class="card-header !mb-3">
-                        <img src="user_profile_3.png" class="user-avatar !w-8 !h-8" alt="Avatar">
-                        <div class="user-info">
-                            <span class="user-name !text-[12px] text-left">Carlos S.</span>
-                            <span class="user-handle !text-[9px] text-left">WhatsApp</span>
-                        </div>
-                        <i data-lucide="message-circle" class="!w-4 !h-4 text-white/20"></i>
-                    </div>
-                    <p class="card-content !text-[11px] !mb-0 text-left">Até minha esposa comentou a diferença. Protocolo nota 10! 👊</p>
-                </div>
-            </div>
+          </div>
         </div>
       </div>
 
-      <!-- 4. Before/After Comparison Progress -->
-      <div class="card-stitch w-full mb-12 !p-8">
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- 4. BEFORE/AFTER — Projeção Visual -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <div class="card-stitch w-full mb-10 !p-8">
         <h3 class="text-[12px] font-display font-bold text-white/30 uppercase tracking-[0.3em] text-center mb-10">Projeção Biológica: 30 Dias</h3>
         <div class="grid grid-cols-2 gap-6 relative">
           <div class="absolute left-1/2 top-4 bottom-4 w-px bg-white/5"></div>
           <div class="text-center">
-            <div class="text-[10px] font-display font-bold text-red-500/80 uppercase tracking-widest mb-6">Estado Crítico</div>
+            <div class="text-[10px] font-display font-bold text-red-500/80 uppercase tracking-widest mb-6">Sem Protocolo</div>
             <div class="relative aspect-[3/4] mb-6">
               <img src="performance_before_sad_man_1774114625856.png" class="w-full h-full object-cover rounded-2xl grayscale opacity-50 shadow-inner">
               <div class="absolute inset-0 rounded-2xl border border-white/5"></div>
@@ -1030,10 +1054,10 @@ function showProtocol() {
               <div class="h-1 w-5 bg-white/5 rounded-full"></div>
               <div class="h-1 w-5 bg-white/5 rounded-full"></div>
             </div>
-            <p class="text-[9px] text-white/20 italic font-medium mt-4 tracking-wide">Desempenho Estagnado</p>
+            <p class="text-[9px] text-white/20 italic font-medium mt-4 tracking-wide">Estagnação e frustração</p>
           </div>
           <div class="text-center">
-            <div class="text-[10px] font-display font-bold text-accent uppercase tracking-widest mb-6">Meta Dr. Apex</div>
+            <div class="text-[10px] font-display font-bold text-accent uppercase tracking-widest mb-6">Com Protocolo Apex</div>
             <div class="relative aspect-[3/4] mb-6">
               <img src="performance_after_happy_couple_1774114685383.png" class="w-full h-full object-cover rounded-2xl shadow-xl border border-accent/20">
               <div class="absolute inset-0 rounded-2xl shadow-[inset_0_0_20px_rgba(0,168,132,0.1)]"></div>
@@ -1043,202 +1067,238 @@ function showProtocol() {
               <div class="h-1 w-5 bg-accent rounded-full"></div>
               <div class="h-1 w-5 bg-accent rounded-full shadow-[0_0_8px_var(--accent)]"></div>
             </div>
-            <p class="text-[9px] text-accent font-bold uppercase tracking-[0.2em] mt-4">Protocolo Ativo</p>
+            <p class="text-[9px] text-accent font-bold uppercase tracking-[0.2em] mt-4">Confiança e Performance</p>
           </div>
         </div>
       </div>
 
-      <!-- 5. Social Proof (Combined Marquee + Cases) -->
-      <div class="w-full mb-16">
-        <h3 class="text-xs font-display font-bold text-white/40 uppercase tracking-[0.2em] mb-10 text-center">Relatos de Resultados Reais</h3>
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- 5. SOCIAL PROOF — Depoimentos Aprofundados -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <div class="w-full mb-12">
+        <div class="flex items-center gap-3 mb-8">
+          <div class="h-px flex-1 bg-white/10"></div>
+          <span class="text-[9px] font-black uppercase tracking-[3px] text-white/40">Resultados Reais</span>
+          <div class="h-px flex-1 bg-white/10"></div>
+        </div>
+
+        <!-- Stat Banner -->
+        <div class="grid grid-cols-3 gap-3 mb-8 w-full">
+          <div class="card-stitch !p-3 text-center">
+            <div class="flex text-[#f59e0b] mb-1 justify-center">
+              <i data-lucide="star" class="w-2.5 h-2.5 fill-current"></i>
+              <i data-lucide="star" class="w-2.5 h-2.5 fill-current"></i>
+              <i data-lucide="star" class="w-2.5 h-2.5 fill-current"></i>
+              <i data-lucide="star" class="w-2.5 h-2.5 fill-current"></i>
+              <i data-lucide="star-half" class="w-2.5 h-2.5 fill-current"></i>
+            </div>
+            <div class="text-lg font-display font-bold text-white">4.7</div>
+            <div class="text-[8px] text-white/30 uppercase font-black tracking-widest">Avaliação</div>
+          </div>
+          <div class="card-stitch !p-3 text-center">
+            <i data-lucide="users" class="w-4 h-4 text-primary mb-1 mx-auto"></i>
+            <div class="text-lg font-display font-bold text-white">10k+</div>
+            <div class="text-[8px] text-white/30 uppercase font-black tracking-widest">Homens Ativos</div>
+          </div>
+          <div class="card-stitch !p-3 text-center border-accent/20">
+            <i data-lucide="check-circle" class="w-4 h-4 text-accent mb-1 mx-auto"></i>
+            <div class="text-lg font-display font-bold text-accent">93%</div>
+            <div class="text-[8px] text-white/30 uppercase font-black tracking-widest">Satisfação</div>
+          </div>
+        </div>
         
-        <div class="marquee-container relative py-4 mb-14">
+        <!-- Extended testimonials marquee -->
+        <div class="marquee-container relative py-4 mb-8">
           <div class="marquee-track flex gap-4" id="results-marquee-track">
             ${[
-              { text: "Recuperei minha rigidez. Em 3 semanas minha vida mudou.", user: "Carlos F., 41" },
-              { text: "Acabou a ansiedade de acabar rápido. Controle total.", user: "Ricardo T., 35" },
-              { text: "Não é mágica, é método. Funciona se seguir.", user: "Marcelo P., 48" },
-              { text: "Minha esposa percebeu antes de mim. Absurdo.", user: "Felipe A., 32" }
+              { text: "Tinha vergonha de iniciar. Em 2 semanas minha esposa notou a diferença. Hoje ela pergunta o que mudou — e eu só sorrio.", user: "Marcos R., 44, São Paulo", time: "Resultado em 14 dias" },
+              { text: "Achei que era normal perder a performance com a idade. Estava errado. O protocolo me devolveu o que eu pensava ter perdido pra sempre.", user: "Carlos F., 51, Curitiba", time: "Resultado em 21 dias" },
+              { text: "Já tinha tentado suplemento, vídeo no YouTube, de tudo. Nada funcionava. O Apex foi o primeiro que deu resultado concreto.", user: "Ricardo T., 37, Rio de Janeiro", time: "Resultado em 10 dias" },
+              { text: "Não é mágica. É método. Seguindo o cronograma direitinho, o controle vem naturalmente. Melhor custo-benefício que já vi.", user: "Felipe A., 33, Brasília", time: "Resultado em 18 dias" },
+              { text: "Minha confiança mudou completamente. Não é só na cama — é no dia a dia, na energia, na disposição. Recomendo de olhos fechados.", user: "André L., 46, Belo Horizonte", time: "Resultado em 15 dias" }
             ].map(item => `
-              <div class="bg-white/5 border border-white/10 p-5 rounded-2xl min-w-[260px] backdrop-blur-sm">
+              <div class="bg-white/5 border border-white/10 p-5 rounded-2xl min-w-[300px] backdrop-blur-sm">
                 <div class="flex text-[#f59e0b] mb-3">
                   <i data-lucide="star" class="w-2.5 h-2.5 fill-current"></i><i data-lucide="star" class="w-2.5 h-2.5 fill-current"></i><i data-lucide="star" class="w-2.5 h-2.5 fill-current"></i><i data-lucide="star" class="w-2.5 h-2.5 fill-current"></i><i data-lucide="star" class="w-2.5 h-2.5 fill-current"></i>
                 </div>
                 <p class="text-xs text-white/80 italic mb-4 leading-relaxed">"${item.text}"</p>
-                <div class="flex items-center gap-2">
-                  <span class="text-[10px] font-bold text-primary font-display">${item.user}</span>
-                  <i data-lucide="check-circle" class="w-3 h-3 text-primary/40"></i>
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <span class="text-[10px] font-bold text-primary font-display">${item.user}</span>
+                    <i data-lucide="badge-check" class="w-3 h-3 text-primary/60"></i>
+                  </div>
                 </div>
+                <div class="text-[9px] text-accent/60 font-bold uppercase tracking-wider mt-2">${item.time}</div>
               </div>
             `).join('')}
           </div>
         </div>
 
-        <!-- 5.5 Detailed Chat Prints (NOW WITH AUTO-MOVEMENT) -->
+        <!-- Chat Prints Marquee -->
         <div class="marquee-container relative py-4">
           <div class="marquee-track flex gap-8" id="chat-marquee-track">
             <!-- Mario (WhatsApp) -->
             <div class="chat-print chat-wa flex-shrink-0">
-                <div class="chat-status-bar !bg-[#0b141a]">
-                    <span>20:53</span>
-                    <div class="status-icons"><i data-lucide="signal" class="w-3 h-3"></i><i data-lucide="wifi" class="w-3 h-3"></i><i data-lucide="battery" class="w-2.5 h-2.5"></i></div>
-                </div>
-                <div class="chat-header !bg-[#202c33] !border-none !py-3">
-                    <i data-lucide="arrow-left" class="w-4 h-4 mr-1"></i>
-                    <img src="user_profile_1.png" class="chat-avatar !w-9 !h-9" onerror="this.src='https://ui-avatars.com/api/?name=Mario&background=random'">
-                    <div class="chat-user">
-                        <span class="chat-name !text-[15px]">Mario</span>
-                        <span class="chat-status !text-[10px]">online</span>
-                    </div>
-                    <div class="chat-icons !opacity-100 !gap-5">
-                      <i data-lucide="video" class="w-5 h-5"></i>
-                      <i data-lucide="phone" class="w-4 h-4"></i>
-                      <i data-lucide="more-vertical" class="w-4 h-4"></i>
-                    </div>
-                </div>
-                <div class="chat-body !p-5 !bg-[#0b141a]">
-                    <div class="text-[10px] text-white/20 text-center mb-6 uppercase tracking-widest">Hoje</div>
-                    <div class="message received !text-[13px] !bg-[#202c33]">
-                        Mano, finalmente algo que funciona de verdade. Achei q meus melhores dias tinham passado, mas o Protocolo Apex me provou o contrário. 💪
-                        <div class="msg-time-wa">22:09 <i data-lucide="check-check" class="w-3 h-3 text-[#53bdeb]"></i></div>
-                    </div>
-                </div>
-                <div class="chat-footer chat-wa-footer bg-[#0b141a] p-3 flex gap-2">
-                  <div class="wa-input bg-[#2a3942] rounded-full flex-1 px-3 py-2 text-[13px] text-white/30 flex items-center gap-3">
-                    <i data-lucide="smile" class="w-5 h-5"></i>
-                    <span>Mensagem</span>
-                    <div class="flex-1"></div>
-                    <i data-lucide="paperclip" class="w-5 h-5 -rotate-45"></i>
-                    <i data-lucide="camera" class="w-5 h-5"></i>
-                  </div>
-                  <div class="w-10 h-10 bg-[#00a884] rounded-full flex items-center justify-center">
-                    <i data-lucide="mic" class="w-5 h-5 text-black"></i>
-                  </div>
-                </div>
-            </div>
-
-            <!-- Leonardo Mendes (Messenger) -->
-            <div class="chat-print chat-fb flex-shrink-0">
-                <div class="chat-status-bar !bg-black">
-                    <span>20:53</span>
-                    <div class="status-icons"><i data-lucide="signal" class="w-3 h-3"></i><i data-lucide="wifi" class="w-3 h-3"></i><i data-lucide="battery" class="w-2.5 h-2.5"></i></div>
-                </div>
-                <div class="chat-header !bg-black !border-none !py-4">
-                    <i data-lucide="arrow-left" class="w-5 h-5 text-[#0084ff]"></i>
-                    <img src="user_profile_2.png" class="chat-avatar !w-8 !h-8" onerror="this.src='https://ui-avatars.com/api/?name=Leonardo+Mendes&background=random'">
-                    <div class="chat-user">
-                        <span class="chat-name !text-[15px]">Leonardo Mendes</span>
-                        <span class="chat-status !text-[10px]">Ativo agora</span>
-                    </div>
-                    <div class="chat-icons !opacity-100 !gap-4 text-[#0084ff]">
-                      <i data-lucide="phone" class="w-5 h-5 fill-current"></i>
-                      <i data-lucide="video" class="w-5 h-5 fill-current"></i>
-                      <i data-lucide="info" class="w-5 h-5"></i>
-                    </div>
-                </div>
-                <div class="chat-body !p-0">
-                    <div class="chat-intro bg-black">
-                        <div class="chat-intro-avatar !w-20 !h-20" style="background: url('https://ui-avatars.com/api/?name=Leonardo+M&background=00E0FF&color=fff') center/cover;"></div>
-                        <span class="chat-intro-name !text-[18px]">Leonardo Mendes</span>
-                        <span class="chat-intro-handle">@leovazmendes</span>
-                        <span class="chat-intro-meta">São amigos no Facebook</span>
-                        <button class="chat-intro-action">Ver perfil</button>
-                    </div>
-                    <div class="text-[9px] text-white/20 text-center my-4 uppercase tracking-[0.2em]">20/10/2020 às 09:01</div>
-                    <div class="message bubble-fb !ml-5 !mb-4 !bg-[#242526] !text-[13px]">
-                        Melhor investimento que fiz. A confiança mudou 100%. Vale cada centavo! ✅
-                    </div>
-                </div>
-                <div class="chat-footer p-4 flex gap-4 text-[#0084ff] border-t border-white/5 bg-black">
-                  <i data-lucide="plus-circle" class="w-5 h-5 fill-current"></i>
-                  <i data-lucide="camera" class="w-5 h-5 fill-current"></i>
-                  <i data-lucide="image" class="w-5 h-5 fill-current"></i>
-                  <i data-lucide="mic" class="w-5 h-5 fill-current"></i>
-                  <div class="flex-1 bg-[#242526] rounded-full px-4 py-1.5 text-[12px] text-white/40">Mensagem</div>
-                  <i data-lucide="thumbs-up" class="w-5 h-5 fill-current"></i>
-                </div>
-            </div>
-
-            <!-- Carlos (WhatsApp) -->
-            <div class="chat-print chat-wa flex-shrink-0">
                 <div class="chat-status-bar !bg-[#0b141a]"><span>20:53</span><div class="status-icons"><i data-lucide="signal" class="w-3 h-3"></i><i data-lucide="wifi" class="w-3 h-3"></i><i data-lucide="battery" class="w-2.5 h-2.5"></i></div></div>
                 <div class="chat-header !bg-[#202c33] !border-none !py-3">
                     <i data-lucide="arrow-left" class="w-4 h-4 mr-1"></i>
-                    <img src="user_profile_3.png" class="chat-avatar !w-9 !h-9" onerror="this.src='https://ui-avatars.com/api/?name=Carlos&background=random'">
-                    <div class="chat-user">
-                        <span class="chat-name !text-[15px]">Carlos Silveira</span>
-                        <span class="chat-status !text-[10px]">online</span>
-                    </div>
-                    <div class="chat-icons !opacity-100 !gap-5">
-                      <i data-lucide="video" class="w-5 h-5"></i>
-                      <i data-lucide="phone" class="w-4 h-4"></i>
-                      <i data-lucide="more-vertical" class="w-4 h-4"></i>
-                    </div>
+                    <img src="user_profile_1.png" class="chat-avatar !w-9 !h-9" onerror="this.src='https://ui-avatars.com/api/?name=Mario&background=random'">
+                    <div class="chat-user"><span class="chat-name !text-[15px]">Mario</span><span class="chat-status !text-[10px]">online</span></div>
+                    <div class="chat-icons !opacity-100 !gap-5"><i data-lucide="video" class="w-5 h-5"></i><i data-lucide="phone" class="w-4 h-4"></i><i data-lucide="more-vertical" class="w-4 h-4"></i></div>
                 </div>
                 <div class="chat-body !p-5 !bg-[#0b141a]">
-                    <div class="message received !text-[13px] !bg-[#202c33]">
-                        Até minha esposa comentou a diferença. Protocolo nota 10, mudou o jogo aqui em casa! 👊
-                        <div class="msg-time-wa">11:15 <i data-lucide="check-check" class="w-3 h-3 text-[#53bdeb]"></i></div>
-                    </div>
+                    <div class="text-[10px] text-white/20 text-center mb-6 uppercase tracking-widest">Hoje</div>
+                    <div class="message received !text-[13px] !bg-[#202c33]">Mano, finalmente algo que funciona de verdade. Achei q meus melhores dias tinham passado, mas o Protocolo Apex me provou o contrário. 💪<div class="msg-time-wa">22:09 <i data-lucide="check-check" class="w-3 h-3 text-[#53bdeb]"></i></div></div>
                 </div>
-                <div class="chat-footer chat-wa-footer bg-[#0b141a] p-3 flex gap-2">
-                  <div class="wa-input bg-[#2a3942] rounded-full flex-1 px-3 py-2 text-[13px] text-white/30 flex items-center gap-3">
-                    <i data-lucide="smile" class="w-5 h-5"></i>
-                    <span>Mensagem</span>
-                    <div class="flex-1"></div>
-                    <i data-lucide="paperclip" class="w-5 h-5 -rotate-45"></i>
-                    <i data-lucide="camera" class="w-5 h-5"></i>
-                  </div>
-                  <div class="w-10 h-10 bg-[#00a884] rounded-full flex items-center justify-center">
-                    <i data-lucide="mic" class="w-5 h-5 text-black"></i>
-                  </div>
-                </div>
+                <div class="chat-footer chat-wa-footer bg-[#0b141a] p-3 flex gap-2"><div class="wa-input bg-[#2a3942] rounded-full flex-1 px-3 py-2 text-[13px] text-white/30 flex items-center gap-3"><i data-lucide="smile" class="w-5 h-5"></i><span>Mensagem</span><div class="flex-1"></div><i data-lucide="paperclip" class="w-5 h-5 -rotate-45"></i><i data-lucide="camera" class="w-5 h-5"></i></div><div class="w-10 h-10 bg-[#00a884] rounded-full flex items-center justify-center"><i data-lucide="mic" class="w-5 h-5 text-black"></i></div></div>
             </div>
+            <!-- Leonardo (Messenger) -->
+            <div class="chat-print chat-fb flex-shrink-0">
+                <div class="chat-status-bar !bg-black"><span>20:53</span><div class="status-icons"><i data-lucide="signal" class="w-3 h-3"></i><i data-lucide="wifi" class="w-3 h-3"></i><i data-lucide="battery" class="w-2.5 h-2.5"></i></div></div>
+                <div class="chat-header !bg-black !border-none !py-4"><i data-lucide="arrow-left" class="w-5 h-5 text-[#0084ff]"></i><img src="user_profile_2.png" class="chat-avatar !w-8 !h-8" onerror="this.src='https://ui-avatars.com/api/?name=Leonardo+Mendes&background=random'"><div class="chat-user"><span class="chat-name !text-[15px]">Leonardo Mendes</span><span class="chat-status !text-[10px]">Ativo agora</span></div><div class="chat-icons !opacity-100 !gap-4 text-[#0084ff]"><i data-lucide="phone" class="w-5 h-5 fill-current"></i><i data-lucide="video" class="w-5 h-5 fill-current"></i><i data-lucide="info" class="w-5 h-5"></i></div></div>
+                <div class="chat-body !p-0"><div class="chat-intro bg-black"><div class="chat-intro-avatar !w-20 !h-20" style="background: url('https://ui-avatars.com/api/?name=Leonardo+M&background=00E0FF&color=fff') center/cover;"></div><span class="chat-intro-name !text-[18px]">Leonardo Mendes</span><span class="chat-intro-handle">@leovazmendes</span><span class="chat-intro-meta">São amigos no Facebook</span><button class="chat-intro-action">Ver perfil</button></div><div class="text-[9px] text-white/20 text-center my-4 uppercase tracking-[0.2em]">20/10/2020 às 09:01</div><div class="message bubble-fb !ml-5 !mb-4 !bg-[#242526] !text-[13px]">Melhor investimento que fiz. A confiança mudou 100%. Vale cada centavo! ✅</div></div>
+                <div class="chat-footer p-4 flex gap-4 text-[#0084ff] border-t border-white/5 bg-black"><i data-lucide="plus-circle" class="w-5 h-5 fill-current"></i><i data-lucide="camera" class="w-5 h-5 fill-current"></i><i data-lucide="image" class="w-5 h-5 fill-current"></i><i data-lucide="mic" class="w-5 h-5 fill-current"></i><div class="flex-1 bg-[#242526] rounded-full px-4 py-1.5 text-[12px] text-white/40">Mensagem</div><i data-lucide="thumbs-up" class="w-5 h-5 fill-current"></i></div>
+            </div>
+            <!-- Carlos (WhatsApp) -->
+            <div class="chat-print chat-wa flex-shrink-0">
+                <div class="chat-status-bar !bg-[#0b141a]"><span>20:53</span><div class="status-icons"><i data-lucide="signal" class="w-3 h-3"></i><i data-lucide="wifi" class="w-3 h-3"></i><i data-lucide="battery" class="w-2.5 h-2.5"></i></div></div>
+                <div class="chat-header !bg-[#202c33] !border-none !py-3"><i data-lucide="arrow-left" class="w-4 h-4 mr-1"></i><img src="user_profile_3.png" class="chat-avatar !w-9 !h-9" onerror="this.src='https://ui-avatars.com/api/?name=Carlos&background=random'"><div class="chat-user"><span class="chat-name !text-[15px]">Carlos Silveira</span><span class="chat-status !text-[10px]">online</span></div><div class="chat-icons !opacity-100 !gap-5"><i data-lucide="video" class="w-5 h-5"></i><i data-lucide="phone" class="w-4 h-4"></i><i data-lucide="more-vertical" class="w-4 h-4"></i></div></div>
+                <div class="chat-body !p-5 !bg-[#0b141a]"><div class="message received !text-[13px] !bg-[#202c33]">Até minha esposa comentou a diferença. Protocolo nota 10, mudou o jogo aqui em casa! 👊<div class="msg-time-wa">11:15 <i data-lucide="check-check" class="w-3 h-3 text-[#53bdeb]"></i></div></div></div>
+                <div class="chat-footer chat-wa-footer bg-[#0b141a] p-3 flex gap-2"><div class="wa-input bg-[#2a3942] rounded-full flex-1 px-3 py-2 text-[13px] text-white/30 flex items-center gap-3"><i data-lucide="smile" class="w-5 h-5"></i><span>Mensagem</span><div class="flex-1"></div><i data-lucide="paperclip" class="w-5 h-5 -rotate-45"></i><i data-lucide="camera" class="w-5 h-5"></i></div><div class="w-10 h-10 bg-[#00a884] rounded-full flex items-center justify-center"><i data-lucide="mic" class="w-5 h-5 text-black"></i></div></div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- 6. Guarantee Block (Full Restoration) -->
-      <div class="card-stitch w-full mb-10 border-accent/20 bg-accent/5 flex flex-col items-center text-center p-8">
-        <i data-lucide="shield-check" class="w-10 h-10 text-accent mb-4"></i>
-        <h4 class="text-sm font-display font-black text-accent uppercase tracking-widest mb-3">Garantia Blindada de 7 Dias</h4>
-        <p class="text-xs text-white/60 leading-relaxed max-w-[320px]">
-          Se por qualquer motivo você não estiver satisfeito, devolvemos 100% do valor. Sem perguntas, sem burocracia. O risco é ZERO.
-        </p>
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- 6. PARA QUEM É / PARA QUEM NÃO É -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <div class="grid grid-cols-1 gap-4 w-full mb-10">
+        <div class="card-stitch !p-5 border-accent/20">
+          <h4 class="text-[11px] font-display font-bold text-accent uppercase tracking-wider mb-4 flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4"></i> Para quem é o Protocolo</h4>
+          <ul class="space-y-2">
+            ${['Homens que sentem que perderam a performance de antes', 'Quem quer mais controle e duração sem depender de remédios', 'Quem busca resultados naturais, com base científica', 'Homens de 25 a 65 anos em qualquer nível de condicionamento'].map(t => `
+              <li class="flex items-start gap-2 text-[12px] text-white/70"><i data-lucide="check" class="w-3.5 h-3.5 text-accent shrink-0 mt-0.5"></i><span>${t}</span></li>
+            `).join('')}
+          </ul>
+        </div>
+        <div class="card-stitch !p-5 border-red-500/10">
+          <h4 class="text-[11px] font-display font-bold text-red-400 uppercase tracking-wider mb-4 flex items-center gap-2"><i data-lucide="x-circle" class="w-4 h-4"></i> Para quem NÃO é</h4>
+          <ul class="space-y-2">
+            ${['Quem busca pílula mágica ou resultado sem nenhum esforço', 'Quem não vai dedicar 10 minutos por dia ao protocolo', 'Quem tem condições médicas graves (consulte seu médico primeiro)'].map(t => `
+              <li class="flex items-start gap-2 text-[12px] text-white/40"><i data-lucide="x" class="w-3.5 h-3.5 text-red-400/60 shrink-0 mt-0.5"></i><span>${t}</span></li>
+            `).join('')}
+          </ul>
+        </div>
       </div>
 
-      <!-- 7. Pricing & Scarcity Block -->
-      <div class="card-stitch w-full mb-8 relative border-primary/10 bg-white/[0.02] flex flex-col items-center pt-10">
-        <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-accent text-black text-[10px] font-black uppercase tracking-widest shadow-xl">56% DE DESCONTO</div>
-        
-        <div class="text-[11px] font-display font-bold text-white/30 line-through mb-1 uppercase tracking-widest">De R$ 49,90</div>
-        <div class="text-5xl font-display font-black text-white mb-2">R$ <span class="text-primary">21,90</span></div>
-        <p class="text-[10px] text-white/40 mb-10 uppercase tracking-widest">Pagamento único · Acesso Vitalício</p>
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- 7. GARANTIA — Antes do CTA -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <div class="guarantee-section w-full mb-8">
+        <div class="guarantee-card">
+          <div class="guarantee-shield">
+            <i data-lucide="shield-check" class="w-12 h-12 text-accent"></i>
+          </div>
+          <h4 class="text-base font-display font-black text-white mb-2">Garantia Incondicional de 7 Dias</h4>
+          <p class="text-[13px] text-white/60 leading-relaxed mb-4">
+            Experimente o Protocolo Apex por 7 dias completos. Se não sentir diferença na sua performance, energia ou confiança — basta enviar uma mensagem e devolvemos <strong class="text-accent">100% do valor. Sem perguntas.</strong>
+          </p>
+          <p class="text-[11px] text-accent/80 font-bold italic">"O risco é todo nosso. A transformação é toda sua."</p>
+        </div>
+      </div>
 
-        <!-- Scarcity Indicator -->
-        <div class="w-full space-y-3 mb-10 px-4">
-          <div class="flex justify-between items-center text-[10px] font-black uppercase tracking-wider">
-            <span class="text-white/40">Vagas remanescentes</span>
-            <span class="text-red-400">07 unidades</span>
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- 8. PRICING — Oferta de Lançamento -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <div class="card-stitch w-full mb-8 relative border-primary/10 bg-white/[0.02] flex flex-col items-center pt-12 pb-8 px-6">
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-accent text-black text-[10px] font-black uppercase tracking-widest shadow-xl">⚡ Lançamento — 74% OFF</div>
+        
+        <!-- Value Stack Badge -->
+        <div class="value-stack-badge mb-6">
+          <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Oferta garantida por tempo limitado
+        </div>
+
+        <!-- Stacked Value -->  
+        <div class="text-center mb-2 w-full">
+          <div class="space-y-1 mb-4">
+            <div class="flex items-center justify-between px-2 opacity-40">
+              <span class="text-[11px] font-display text-white">Módulo 1 · Força Nível 3</span>
+              <span class="text-[11px] font-bold text-white line-through">R$ 37,00</span>
+            </div>
+            <div class="flex items-center justify-between px-2 opacity-40">
+              <span class="text-[11px] font-display text-white">Módulo 2 · Anti-Ansiedade</span>
+              <span class="text-[11px] font-bold text-white line-through">R$ 27,00</span>
+            </div>
+            <div class="flex items-center justify-between px-2 opacity-40">
+              <span class="text-[11px] font-display text-white">Módulo 3 · Libido Explosiva</span>
+              <span class="text-[11px] font-bold text-white line-through">R$ 27,00</span>
+            </div>
+            <div class="flex items-center justify-between px-2 opacity-40">
+              <span class="text-[11px] font-display text-accent font-bold">Bônus · Dashboard Bio-Status</span>
+              <span class="text-[11px] font-bold text-accent line-through">R$ 6,00</span>
+            </div>
           </div>
-          <div class="h-1.5 bg-white/5 rounded-full overflow-hidden">
-            <div class="h-full w-[15%] bg-red-400 animate-pulse"></div>
+          <div class="h-px w-full bg-white/10 mb-4"></div>
+          <div class="flex items-center justify-between px-2 mb-2">
+            <span class="text-[11px] font-display text-white/50 uppercase tracking-wider">Valor Total</span>
+            <span class="price-anchor-old text-[14px]">R$ 97,00</span>
           </div>
-          <p class="text-[9px] text-red-400/60 font-medium text-center italic mt-2">A janela de oportunidade estipulada pelo algoritmo fecha em breve.</p>
+        </div>
+
+        <!-- Hero Price -->
+        <div class="text-center mb-2">
+          <div class="text-[10px] font-display font-bold text-white/30 mb-1 uppercase tracking-widest">Você paga apenas</div>
+          <div class="price-main-value text-white">
+            <span class="price-main-brl text-primary">R$</span>
+            <span class="price-main-int text-white">24</span>
+            <span class="price-main-dec text-white">,90</span>
+          </div>
+          <div class="flex items-center justify-center gap-2 mt-2">
+            <span class="price-saving-pill">
+              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"/></svg>
+              Economia de R$ 72,10
+            </span>
+          </div>
+        </div>
+        <p class="text-[10px] text-white/40 mb-8 uppercase tracking-widest">Pagamento único · Acesso Vitalício</p>
+
+        <!-- Launch Timer — Ethical Scarcity -->
+        <div class="w-full mb-8">
+          <div class="launch-timer-wrapper">
+            <div class="flex items-center justify-center gap-2 mb-3">
+              <i data-lucide="clock" class="w-3.5 h-3.5 text-[#f59e0b]"></i>
+              <span class="text-[10px] font-black uppercase tracking-wider text-[#f59e0b]">Oferta de lançamento encerra em:</span>
+            </div>
+            <div class="launch-countdown flex justify-center gap-3" id="launch-countdown">
+              <div class="countdown-unit"><span class="countdown-number" id="cd-days">00</span><span class="countdown-label">Dias</span></div>
+              <span class="countdown-sep">:</span>
+              <div class="countdown-unit"><span class="countdown-number" id="cd-hours">00</span><span class="countdown-label">Horas</span></div>
+              <span class="countdown-sep">:</span>
+              <div class="countdown-unit"><span class="countdown-number" id="cd-mins">00</span><span class="countdown-label">Min</span></div>
+              <span class="countdown-sep">:</span>
+              <div class="countdown-unit"><span class="countdown-number" id="cd-secs">00</span><span class="countdown-label">Seg</span></div>
+            </div>
+            <p class="text-[9px] text-white/30 text-center mt-3">Após o lançamento, o valor volta para R$ 97,00</p>
+          </div>
         </div>
         
-        <button class="btn-apex-elite w-full py-7 rounded-2xl text-black font-display font-black text-xl hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-4 mb-8 tracking-widest" onclick="window.location.href = window.apex_checkout_url || 'https://lastlink.com/p/CAA303628/checkout-payment/'">
-          <span>GARANTIR MEU PROTOCOLO AGORA</span>
+        <button class="btn-apex-elite w-full py-7 rounded-2xl text-black font-display font-black text-xl hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-4 mb-4 tracking-widest" onclick="window.location.href = window.apex_checkout_url || 'https://lastlink.com/p/CAA303628/checkout-payment/'">
+          <span>GARANTIR MEU PROTOCOLO</span>
           <i data-lucide="zap" class="w-6 h-6 fill-current"></i>
         </button>
 
-        <div class="flex justify-center gap-8 opacity-30 pb-4">
+        <p class="text-[10px] text-white/30 text-center mb-6 px-4">Acesso imediato após confirmação do pagamento • Download digital</p>
+
+        <div class="flex justify-center gap-8 opacity-40 pb-6">
             <div class="flex flex-col items-center gap-1">
                 <i data-lucide="lock" class="w-4 h-4 text-white"></i>
-                <span class="text-[8px] font-bold uppercase">Seguro</span>
+                <span class="text-[8px] font-bold uppercase">Pagamento Seguro</span>
             </div>
             <div class="flex flex-col items-center gap-1">
-                <i data-lucide="check-square" class="w-4 h-4 text-white"></i>
-                <span class="text-[8px] font-bold uppercase">Verificado</span>
+                <i data-lucide="shield-check" class="w-4 h-4 text-white"></i>
+                <span class="text-[8px] font-bold uppercase">Garantia 7 Dias</span>
             </div>
             <div class="flex flex-col items-center gap-1">
                 <i data-lucide="credit-card" class="w-4 h-4 text-white"></i>
@@ -1247,13 +1307,80 @@ function showProtocol() {
         </div>
       </div>
 
-      <div class="mt-8 text-[9px] font-mono text-white/10 uppercase tracking-[0.5em] mb-12">
-        APEXCORE V1.1 // SYSTEM ENCRYPTED
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- 9. FAQ — Matando Objeções -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <div class="w-full mb-12">
+        <div class="flex items-center gap-3 mb-8">
+          <div class="h-px flex-1 bg-white/10"></div>
+          <span class="text-[9px] font-black uppercase tracking-[3px] text-white/40">Perguntas Frequentes</span>
+          <div class="h-px flex-1 bg-white/10"></div>
+        </div>
+
+        <div class="faq-container space-y-3">
+          ${[
+            { q: 'Funciona para qualquer idade?', a: 'Sim. O protocolo foi desenvolvido para homens de 25 a 65+ anos. Os exercícios são adaptados ao seu nível — seja iniciante ou avançado. A fisiologia masculina responde ao treino neuromuscular em qualquer faixa etária.' },
+            { q: 'É seguro? Tem contraindicação?', a: 'O protocolo é 100% natural — sem remédios, sem suplementos obrigatórios, sem efeitos colaterais. São exercícios pélvicos validados pela ciência urológica. Se você tem alguma condição médica grave, recomendamos consultar seu médico.' },
+            { q: 'Quando vou ver os primeiros resultados?', a: 'A maioria dos homens reporta melhorias no controle já na primeira semana. Resultados mais significativos de rigidez e duração acontecem entre 14 e 21 dias de prática consistente.' },
+            { q: 'Como funciona o acesso?', a: 'Após a confirmação do pagamento, você recebe imediatamente um link para download do kit completo (3 módulos + bônus) em formato PDF. Acesso vitalício — baixe quantas vezes quiser.' },
+            { q: 'E se eu não gostar? Posso pedir reembolso?', a: 'Com certeza. Você tem 7 dias de garantia incondicional. Se por qualquer motivo não estiver satisfeito, basta enviar uma mensagem e devolvemos 100% do valor. Sem burocracia, sem perguntas.' },
+            { q: 'Preciso de equipamento ou academia?', a: 'Não. Todos os exercícios são feitos em casa, sem nenhum equipamento. Levam em média 10 minutos por dia. Você pode fazer a qualquer hora, em qualquer lugar.' }
+          ].map((item, idx) => `
+            <div class="faq-item" onclick="this.classList.toggle('open')">
+              <div class="faq-question">
+                <span>${item.q}</span>
+                <i data-lucide="chevron-down" class="faq-chevron w-4 h-4"></i>
+              </div>
+              <div class="faq-answer">
+                <p>${item.a}</p>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- 10. FINAL CTA — Last push -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <div class="w-full mb-8 text-center">
+        <p class="text-white/40 text-[13px] mb-6 leading-relaxed max-w-[350px] mx-auto">Cada dia sem ação é mais um dia de frustração. Seu protocolo personalizado está pronto — e protegido por garantia total.</p>
+        <button class="btn-apex-elite w-full py-6 rounded-2xl text-black font-display font-black text-lg hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3 tracking-wider" onclick="window.location.href = window.apex_checkout_url || 'https://lastlink.com/p/CAA303628/checkout-payment/'">
+          <span>QUERO MEU PROTOCOLO AGORA</span>
+          <i data-lucide="arrow-right" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="mt-4 text-[9px] font-mono text-white/10 uppercase tracking-[0.5em] mb-12">
+        APEXCORE V2.0 // ENCRYPTED SESSION
       </div>
     </div>
   `);
   
   lucide.createIcons();
+
+  // Countdown Timer Logic
+  function updateCountdown() {
+    const now = new Date();
+    const end = window._launchEndDate;
+    const diff = Math.max(0, end - now);
+    
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const secs = Math.floor((diff % (1000 * 60)) / 1000);
+    
+    const dEl = document.getElementById('cd-days');
+    const hEl = document.getElementById('cd-hours');
+    const mEl = document.getElementById('cd-mins');
+    const sEl = document.getElementById('cd-secs');
+    
+    if (dEl) dEl.textContent = String(days).padStart(2, '0');
+    if (hEl) hEl.textContent = String(hours).padStart(2, '0');
+    if (mEl) mEl.textContent = String(mins).padStart(2, '0');
+    if (sEl) sEl.textContent = String(secs).padStart(2, '0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
 
   // Marquee clone logic
   setTimeout(() => {
@@ -1265,7 +1392,94 @@ function showProtocol() {
         });
       }
     });
+    // Reinit lucide icons inside cloned nodes
+    lucide.createIcons();
   }, 100);
+
+  // GSAP ScrollTrigger — animate protocol page sections on scroll
+  setTimeout(() => {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Animate each card/section as it enters viewport
+    const revealEls = mainContent.querySelectorAll('.card-stitch, .authority-section, .guarantee-section, .how-it-works-grid, .product-mockup-wrapper, .faq-container, .marquee-container');
+    revealEls.forEach((el, i) => {
+      gsap.fromTo(el,
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          ease: 'power3.out',
+          delay: 0,
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 88%',
+            once: true
+          }
+        }
+      );
+    });
+
+    // Stagger the how-it-works steps
+    const howSteps = mainContent.querySelectorAll('.how-step');
+    if (howSteps.length) {
+      gsap.fromTo(howSteps,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          stagger: 0.12,
+          duration: 0.5,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: howSteps[0],
+            start: 'top 90%',
+            once: true
+          }
+        }
+      );
+    }
+
+    // Stagger module cards
+    const moduleCards = mainContent.querySelectorAll('.space-y-3 .card-stitch');
+    if (moduleCards.length) {
+      gsap.fromTo(moduleCards,
+        { opacity: 0, x: -20 },
+        {
+          opacity: 1,
+          x: 0,
+          stagger: 0.1,
+          duration: 0.5,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: moduleCards[0],
+            start: 'top 90%',
+            once: true
+          }
+        }
+      );
+    }
+  }, 200);
+
+  // Sticky CTA bar — show after 300px scroll, hide near checkout CTA
+  setTimeout(() => {
+    const stickyBar = document.getElementById('sticky-cta-bar');
+    if (!stickyBar) return;
+
+    let stickyVisible = false;
+    const handleStickyScroll = () => {
+      const scrollY = window.scrollY;
+      const should = scrollY > 300;
+      if (should !== stickyVisible) {
+        stickyVisible = should;
+        stickyBar.classList.toggle('visible', should);
+      }
+    };
+
+    window.addEventListener('scroll', handleStickyScroll, { passive: true });
+    handleStickyScroll(); // initial check
+  }, 300);
 }
 
 nextBtn.onclick = navigateNext;

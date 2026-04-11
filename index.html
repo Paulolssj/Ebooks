@@ -38,7 +38,7 @@
     <!-- End Meta Pixel Code -->
 
     <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="stylesheet" href="style.css?v=1.30">
+    <link rel="stylesheet" href="style.css?v=1.31">
     <!-- Google Fonts: Inter & Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -223,8 +223,23 @@
       // Initialize Lucide icons
       lucide.createIcons();
     </script>
+    <!-- Sticky CTA Bar — Protocol Page -->
+    <div id="sticky-cta-bar">
+      <div class="sticky-bar-inner">
+        <div class="sticky-bar-price-group">
+          <span class="sticky-bar-old-price">R$ 97,00</span>
+          <span class="sticky-bar-new-price">R$ 24,90</span>
+        </div>
+        <button class="sticky-bar-btn" onclick="window.location.href = window.apex_checkout_url || 'https://lastlink.com/p/CAA303628/checkout-payment/'">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          GARANTIR PROTOCOLO
+        </button>
+        <button onclick="document.getElementById('sticky-cta-bar').classList.remove('visible'); document.getElementById('sticky-cta-bar').style.display='none';" style="background:none;border:none;color:rgba(255,255,255,0.2);cursor:pointer;padding:4px;flex-shrink:0;font-size:18px;line-height:1;">✕</button>
+      </div>
+    </div>
+
     <div id="social-proof-toast" class="social-toast"></div>
-    <script src="script.js?v=1.30"></script>
+    <script src="script.js?v=1.31"></script>
     <!-- ApexGuard: Proteção de Funil e Sequestro de Checkout -->
     <script src="apex-guard.js"></script>
 </body>
