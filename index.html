@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dr. Apex | Plano de Performance Personalizado</title>
+    <link rel="preload" as="image" href="hero_vitality_gym_collage_v3_no_text_1774109672234.webp" fetchpriority="high">
+    <style id="critical-css">
+        body{background-color:#0A0A0B;color:#fff;font-family:'Outfit',sans-serif;margin:0;padding:0;overflow-x:hidden}
+        .hero{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:40px 5% 15px 5%;background-color:#0A0A0B;}
+        .hero-banner-collage{position:relative;width:100%;aspect-ratio:16/10;border-radius:2rem;overflow:hidden;border:1px solid rgba(255,255,255,0.1);background:#111;}
+        @media (min-width:768px){.hero-banner-collage{aspect-ratio:21/9;}}
+        .hero-title{font-size:clamp(40px,8vw,84px);font-weight:900;line-height:0.95;margin-bottom:20px;letter-spacing:-3px;text-align:center;}
+        .hero-subtitle{font-size:18px;color:rgba(255,255,255,0.5);max-width:500px;margin-bottom:40px;text-align:center;}
+        .hero-badge{display:inline-block;background:#00E0FF;color:#000;padding:6px 12px;border-radius:500px;font-size:12px;font-weight:900;text-transform:uppercase;margin-bottom:20px;}
+        .hero-cta-btn{background:#fff;color:#000;border:none;padding:20px 40px;border-radius:500px;font-size:18px;font-weight:900;display:flex;align-items:center;justify-content:center;gap:15px;box-shadow:0 20px 40px rgba(0,0,0,0.5);}
+    </style>
     <meta name="description" content="Recupere seu vigor e controle com o protocolo de bio-otimização personalizado do Dr. Apex. Ciência urológica e performance masculina.">
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -38,14 +49,18 @@
     <!-- End Meta Pixel Code -->
 
     <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="stylesheet" href="style.css?v=1.31">
-    <link rel="preload" as="image" href="hero_vitality_gym_collage_v3_no_text_1774109672234.webp" fetchpriority="high">
+    <!-- Async load main CSS -->
+    <link rel="stylesheet" href="style.css?v=1.31" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="tailwind.css" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="style.css?v=1.31">
+        <link rel="stylesheet" href="tailwind.css">
+    </noscript>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,900;1,400&family=Outfit:wght@400;700;900&family=Lexend:wght@400;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,900;1,400&family=Outfit:wght@400;700;900&family=Lexend:wght@400;700;800&display=swap" rel="stylesheet"></noscript>
-    <!-- Styles: Tailwind, Custom -->
-    <link rel="stylesheet" href="tailwind.css">
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script defer src="https://unpkg.com/lucide@latest"></script>
@@ -59,7 +74,7 @@
         <div class="absolute inset-0 bg-gradient-to-b from-black/0 via-black/20 to-black z-0"></div>
         
         <!-- Digital Grid Overlay -->
-        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-[0.03] pointer-events-none"></div>
+        <div class="absolute inset-0 bg-[url('carbon-fibre.png')] opacity-[0.03] pointer-events-none"></div>
 
         <div class="relative z-10 max-w-[600px] w-full text-center flex flex-col items-center gap-6">
             <div class="w-full">
@@ -68,6 +83,7 @@
                          alt="Homem em performance física - Dr. Apex" 
                          class="w-full h-full object-cover"
                          fetchpriority="high"
+                         decoding="sync"
                          loading="eager">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10"></div>
                 </div>
