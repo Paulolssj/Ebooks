@@ -42,7 +42,8 @@
     <!-- Google Fonts: Inter & Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Outfit:wght@100..900&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Outfit:wght@100..900&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Outfit:wght@100..900&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
     <!-- Scripts: Tailwind, GSAP & Lucide -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -68,9 +69,9 @@
         }
       }
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script defer src="https://unpkg.com/lucide@latest"></script>
     <!-- Vercel Speed Insights -->
     <script defer src="/_vercel/insights/script.js"></script>
 </head>
@@ -221,7 +222,11 @@
 
     <script>
       // Initialize Lucide icons
-      lucide.createIcons();
+      document.addEventListener('DOMContentLoaded', () => {
+        if(typeof lucide !== 'undefined' && lucide.createIcons) {
+          lucide.createIcons();
+        }
+      });
     </script>
     <!-- Sticky CTA Bar — Protocol Page -->
     <div id="sticky-cta-bar">
@@ -239,8 +244,8 @@
     </div>
 
     <div id="social-proof-toast" class="social-toast"></div>
-    <script src="script.js?v=1.31"></script>
+    <script defer src="script.js?v=1.31"></script>
     <!-- ApexGuard: Proteção de Funil e Sequestro de Checkout -->
-    <script src="apex-guard.js"></script>
+    <script defer src="apex-guard.js"></script>
 </body>
 </html>
