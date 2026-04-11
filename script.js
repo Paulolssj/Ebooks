@@ -1002,7 +1002,7 @@ function showProtocol() {
         <!-- Module Cards -->
         <div class="space-y-3">
           ${[
-            { title: 'Protocolo de Força Apex (Ebook Principal)', desc: 'Exercícios progressivos de controle neuromuscular. Técnicas de rigidez máxima com evolução semanal.', icon: 'zap', color: 'text-primary' }
+            { title: 'Protocolo de Força Nível 3', desc: 'Exercícios progressivos de controle neuromuscular. Técnicas de rigidez máxima com evolução semanal.', icon: 'zap', color: 'text-primary' }
           ].map(item => `
             <div class="card-stitch !py-5 !px-6 flex items-start gap-4 hover:border-primary/30 transition-all group">
               <div class="w-10 h-10 rounded-xl bg-white/5 flex-shrink-0 flex items-center justify-center ${item.color} mt-0.5 group-hover:bg-white/10 transition-colors">
@@ -1011,7 +1011,7 @@ function showProtocol() {
               <div class="flex-1">
                 <span class="text-[13px] font-display font-bold text-white block mb-1">${item.title}</span>
                 <span class="text-[11px] text-white/50 leading-relaxed block">${item.desc}</span>
-                <span class="text-[9px] text-primary/60 font-bold uppercase tracking-wider mt-2 inline-block">Acesso Digital Instantâneo</span>
+                <span class="text-[9px] text-primary/60 font-bold uppercase tracking-wider mt-2 inline-block">Guia Digital Passo a Passo</span>
               </div>
             </div>
           `).join('')}
@@ -1205,12 +1205,16 @@ function showProtocol() {
         <!-- Stacked Value -->  
         <div class="text-center mb-2 w-full">
           <div class="space-y-1 mb-4">
-            <div class="flex items-center justify-between px-2">
-              <span class="text-[12px] font-display text-white">Protocolo Apex (Ebook Principal)</span>
-              <span class="price-anchor-old text-[14px]">R$ 97,00</span>
+            <div class="flex items-center justify-between px-2 opacity-40">
+              <span class="text-[11px] font-display text-white">Guia Protocolo de Força Nível 3</span>
+              <span class="text-[11px] font-bold text-white line-through">R$ 97,00</span>
             </div>
           </div>
           <div class="h-px w-full bg-white/10 mb-4"></div>
+          <div class="flex items-center justify-between px-2 mb-2">
+            <span class="text-[11px] font-display text-white/50 uppercase tracking-wider">Valor Normal</span>
+            <span class="price-anchor-old text-[14px]">R$ 97,00</span>
+          </div>
         </div>
 
         <!-- Hero Price -->
@@ -1288,7 +1292,7 @@ function showProtocol() {
             { q: 'Funciona para qualquer idade?', a: 'Sim. O protocolo foi desenvolvido para homens de 25 a 65+ anos. Os exercícios são adaptados ao seu nível — seja iniciante ou avançado. A fisiologia masculina responde ao treino neuromuscular em qualquer faixa etária.' },
             { q: 'É seguro? Tem contraindicação?', a: 'O protocolo é 100% natural — sem remédios, sem suplementos obrigatórios, sem efeitos colaterais. São exercícios pélvicos validados pela ciência urológica. Se você tem alguma condição médica grave, recomendamos consultar seu médico.' },
             { q: 'Quando vou ver os primeiros resultados?', a: 'A maioria dos homens reporta melhorias no controle já na primeira semana. Resultados mais significativos de rigidez e duração acontecem entre 14 e 21 dias de prática consistente.' },
-            { q: 'Como funciona o acesso?', a: 'Após a confirmação do pagamento, você recebe imediatamente um link para download do kit em formato PDF. Acesso vitalício — baixe quantas vezes quiser.' },
+            { q: 'Como funciona o acesso?', a: 'Após a confirmação do pagamento, você recebe imediatamente um link para download do kit completo (3 módulos + bônus) em formato PDF. Acesso vitalício — baixe quantas vezes quiser.' },
             { q: 'E se eu não gostar? Posso pedir reembolso?', a: 'Com certeza. Você tem 7 dias de garantia incondicional. Se por qualquer motivo não estiver satisfeito, basta enviar uma mensagem e devolvemos 100% do valor. Sem burocracia, sem perguntas.' },
             { q: 'Preciso de equipamento ou academia?', a: 'Não. Todos os exercícios são feitos em casa, sem nenhum equipamento. Levam em média 10 minutos por dia. Você pode fazer a qualquer hora, em qualquer lugar.' }
           ].map((item, idx) => `
