@@ -10,7 +10,9 @@ node_modules/
 # Project Folders (Internal/Development)
 remotion-project/
 
-# Documentation & Scratch Files
+# Backup & Scratch Files
+*.bak
+*.txt
 GEMINI-Construtor-de-Sites.md.txt
 Guia Completo de Copywriting Persuasivo_ Dores, Desejos e os 7 Pecados Capitais.md
 video_script_30s_pt.md
