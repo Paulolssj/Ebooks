@@ -2758,3 +2758,15 @@ html, body {
   border-color: var(--accent);
   box-shadow: 0 0 10px rgba(52, 211, 153, 0.4);
 }
+
+.btn-apex-elite {
+  background: linear-gradient(135deg, var(--primary), #00A3FF);
+  box-shadow: 0 10px 25px -5px rgba(0, 224, 255, 0.4), 0 0 15px rgba(0, 224, 255, 0.2);
+  animation: pulse-button-elite 2s infinite ease-in-out;
+}
+
+@keyframes pulse-button-elite {
+  0% { transform: scale(1); box-shadow: 0 10px 25px -5px rgba(0, 224, 255, 0.4), 0 0 15px rgba(0, 224, 255, 0.2); }
+  50% { transform: scale(1.03); box-shadow: 0 15px 35px -5px rgba(0, 224, 255, 0.6), 0 0 25px rgba(0, 224, 255, 0.4); }
+  100% { transform: scale(1); box-shadow: 0 10px 25px -5px rgba(0, 224, 255, 0.4), 0 0 15px rgba(0, 224, 255, 0.2); }
+}

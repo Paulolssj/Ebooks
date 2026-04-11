@@ -96,7 +96,7 @@ const quizData = [
   {
     type: "visual-choice",
     question: "Análise de Tensão Pélvica: Identifique sua condição atual",
-    image: "pelvic_blood_flow_diagram_1775301438774.png",
+    image: "pelvic_blood_flow_diagram_1775301438774.webp",
     options: ["Leveza e Vigor (Fluxo Otimizado)", "Tensão Ocasional (Fluxo Regular)", "Peso e Congestão (Fluxo Restrito)", "Desconforto Constante (Fluxo Crítico)"],
     objective: "Mapeamento Biológico"
   },
@@ -111,19 +111,19 @@ const inspirations = [
   {
     step: 5, 
     title: "Sua Condição Tem Solução.",
-    image: "vitality.png", 
+    image: "vitality.webp", 
     text: "Não importa seu nível atual. Nosso algoritmo já identificou padrões nas suas respostas. Homens com sintomas semelhantes dão um basta na frustração e recuperam o vigor em semanas."
   },
   {
     step: 10, 
     title: "A Ciência da Alta Performance",
-    image: "couple.png", 
+    image: "couple.webp", 
     text: "O segredo dos homens de alta performance não são pílulas perigosas. Com bio-otimização natural, você restaura sua confiança e desperta a admiração da parceira. A sua cura definitiva está quase pronta."
   },
   {
     step: 15, 
     title: "Diagnóstico Finalizado.",
-    image: "badge.png", 
+    image: "badge.webp", 
     text: "Analisamos cada um dos seus inputs. Existe um caminho rigoroso e validado para você reativar sua performance máxima. Pare de perder oportunidades e veja sua solução exata agora."
   }
 ];
@@ -394,10 +394,16 @@ function renderStep(shouldScroll = true) {
         headerInfo.querySelector('#xy-desc').innerText = desc;
       };
 
+      padContainer.style.touchAction = 'none';
       padContainer.onmousedown = (e) => {
         handleMove(e);
         window.onmousemove = handleMove;
         window.onmouseup = () => window.onmousemove = null;
+      };
+      padContainer.ontouchstart = (e) => {
+        handleMove(e);
+        window.ontouchmove = (ev) => { ev.preventDefault(); handleMove(ev); };
+        window.ontouchend = () => window.ontouchmove = null;
       };
       
       if (selections[currentStep]) {
@@ -672,7 +678,7 @@ function showAnalyzing() {
   }
 
   window.analysisInterval = setInterval(() => {
-    progress += 2;
+    progress += 1;
     if (progress > 100) progress = 100;
     
     if (fill) fill.style.width = `${progress}%`;
@@ -690,9 +696,11 @@ function showAnalyzing() {
       }
     }
 
-    if (progress === 30) if (statusEl) statusEl.innerText = "Cruzando Dados Corporais...";
-    if (progress === 60) if (statusEl) statusEl.innerText = "Processando Algoritmos...";
-    if (progress === 90) if (statusEl) statusEl.innerText = "Finalizando Diagnóstico...";
+    if (progress === 15) if (statusEl) statusEl.innerText = "Mapeando Densidade Pélvica...";
+    if (progress === 35) if (statusEl) statusEl.innerText = "Avaliando Carga Neural...";
+    if (progress === 55) if (statusEl) statusEl.innerText = "Calculando Risco de Falha...";
+    if (progress === 75) if (statusEl) statusEl.innerText = "Gerando Protocolo Nível 3 Híbrido...";
+    if (progress === 95) if (statusEl) statusEl.innerText = "Alinhando Variáveis Individuais...";
 
     if (progress >= 100) {
       clearInterval(window.analysisInterval);
@@ -700,9 +708,9 @@ function showAnalyzing() {
       if (statusEl) statusEl.innerText = "FINALIZADO";
       const modulesEl = document.getElementById('load-modules');
       if (modulesEl) modulesEl.innerHTML = '<div class="dot-indicator"></div> Concluído';
-      setTimeout(showPlan, 600);
+      setTimeout(showPlan, 800);
     }
-  }, 40); // Faster loading for verification
+  }, 100); // 10 Sec Analysis for Higher Authority
 }
 
 function drawRadarChart() {
@@ -995,7 +1003,7 @@ function showProtocol() {
 
         <!-- Product Visual -->
         <div class="product-mockup-wrapper mb-8">
-          <img src="apex_ebook_1.png" alt="Guia Digital: Protocolo de Força Nível 3" class="product-mockup-img">
+          <img src="product_mockup.png" alt="Protocolo Apex — Kit Digital Completo" class="product-mockup-img">
           <div class="product-mockup-glow"></div>
         </div>
 
@@ -1028,7 +1036,7 @@ function showProtocol() {
           <div class="text-center">
             <div class="text-[10px] font-display font-bold text-red-500/80 uppercase tracking-widest mb-6">Sem Protocolo</div>
             <div class="relative aspect-[3/4] mb-6">
-              <img src="performance_before_sad_man_1774114625856.png" alt="Visualização do estado de estagnação sem o protocolo Apex" class="w-full h-full object-cover rounded-2xl grayscale opacity-50 shadow-inner">
+              <img src="performance_before_sad_man_1774114625856.png" class="w-full h-full object-cover rounded-2xl grayscale opacity-50 shadow-inner">
               <div class="absolute inset-0 rounded-2xl border border-white/5"></div>
             </div>
             <div class="flex justify-center gap-1.5">
@@ -1041,7 +1049,7 @@ function showProtocol() {
           <div class="text-center">
             <div class="text-[10px] font-display font-bold text-accent uppercase tracking-widest mb-6">Com Protocolo Apex</div>
             <div class="relative aspect-[3/4] mb-6">
-              <img src="performance_after_happy_couple_1774114685383.png" alt="Projeção de resultados de alta performance com o protocolo Apex em 30 dias" class="w-full h-full object-cover rounded-2xl shadow-xl border border-accent/20">
+              <img src="performance_after_happy_couple_1774114685383.png" class="w-full h-full object-cover rounded-2xl shadow-xl border border-accent/20">
               <div class="absolute inset-0 rounded-2xl shadow-[inset_0_0_20px_rgba(0,168,132,0.1)]"></div>
             </div>
             <div class="flex justify-center gap-1.5">
@@ -1124,7 +1132,7 @@ function showProtocol() {
                 <div class="chat-status-bar !bg-[#0b141a]"><span>20:53</span><div class="status-icons"><i data-lucide="signal" class="w-3 h-3"></i><i data-lucide="wifi" class="w-3 h-3"></i><i data-lucide="battery" class="w-2.5 h-2.5"></i></div></div>
                 <div class="chat-header !bg-[#202c33] !border-none !py-3">
                     <i data-lucide="arrow-left" class="w-4 h-4 mr-1"></i>
-                    <img src="user_profile_1.png" class="chat-avatar !w-9 !h-9" onerror="this.src='https://ui-avatars.com/api/?name=Mario&background=random'">
+                    <img src="user_profile_1.webp" class="chat-avatar !w-9 !h-9" onerror="this.src='https://ui-avatars.com/api/?name=Mario&background=random'" loading="lazy">
                     <div class="chat-user"><span class="chat-name !text-[15px]">Mario</span><span class="chat-status !text-[10px]">online</span></div>
                     <div class="chat-icons !opacity-100 !gap-5"><i data-lucide="video" class="w-5 h-5"></i><i data-lucide="phone" class="w-4 h-4"></i><i data-lucide="more-vertical" class="w-4 h-4"></i></div>
                 </div>
@@ -1137,14 +1145,14 @@ function showProtocol() {
             <!-- Leonardo (Messenger) -->
             <div class="chat-print chat-fb flex-shrink-0">
                 <div class="chat-status-bar !bg-black"><span>20:53</span><div class="status-icons"><i data-lucide="signal" class="w-3 h-3"></i><i data-lucide="wifi" class="w-3 h-3"></i><i data-lucide="battery" class="w-2.5 h-2.5"></i></div></div>
-                <div class="chat-header !bg-black !border-none !py-4"><i data-lucide="arrow-left" class="w-5 h-5 text-[#0084ff]"></i><img src="user_profile_2.png" class="chat-avatar !w-8 !h-8" onerror="this.src='https://ui-avatars.com/api/?name=Leonardo+Mendes&background=random'"><div class="chat-user"><span class="chat-name !text-[15px]">Leonardo Mendes</span><span class="chat-status !text-[10px]">Ativo agora</span></div><div class="chat-icons !opacity-100 !gap-4 text-[#0084ff]"><i data-lucide="phone" class="w-5 h-5 fill-current"></i><i data-lucide="video" class="w-5 h-5 fill-current"></i><i data-lucide="info" class="w-5 h-5"></i></div></div>
+                <div class="chat-header !bg-black !border-none !py-4"><i data-lucide="arrow-left" class="w-5 h-5 text-[#0084ff]"></i><img src="user_profile_2.webp" class="chat-avatar !w-8 !h-8" onerror="this.src='https://ui-avatars.com/api/?name=Leonardo+Mendes&background=random'" loading="lazy"><div class="chat-user"><span class="chat-name !text-[15px]">Leonardo Mendes</span><span class="chat-status !text-[10px]">Ativo agora</span></div><div class="chat-icons !opacity-100 !gap-4 text-[#0084ff]"><i data-lucide="phone" class="w-5 h-5 fill-current"></i><i data-lucide="video" class="w-5 h-5 fill-current"></i><i data-lucide="info" class="w-5 h-5"></i></div></div>
                 <div class="chat-body !p-0"><div class="chat-intro bg-black"><div class="chat-intro-avatar !w-20 !h-20" style="background: url('https://ui-avatars.com/api/?name=Leonardo+M&background=00E0FF&color=fff') center/cover;"></div><span class="chat-intro-name !text-[18px]">Leonardo Mendes</span><span class="chat-intro-handle">@leovazmendes</span><span class="chat-intro-meta">São amigos no Facebook</span><button class="chat-intro-action">Ver perfil</button></div><div class="text-[9px] text-white/20 text-center my-4 uppercase tracking-[0.2em]">20/10/2020 às 09:01</div><div class="message bubble-fb !ml-5 !mb-4 !bg-[#242526] !text-[13px]">Melhor investimento que fiz. A confiança mudou 100%. Vale cada centavo! ✅</div></div>
                 <div class="chat-footer p-4 flex gap-4 text-[#0084ff] border-t border-white/5 bg-black"><i data-lucide="plus-circle" class="w-5 h-5 fill-current"></i><i data-lucide="camera" class="w-5 h-5 fill-current"></i><i data-lucide="image" class="w-5 h-5 fill-current"></i><i data-lucide="mic" class="w-5 h-5 fill-current"></i><div class="flex-1 bg-[#242526] rounded-full px-4 py-1.5 text-[12px] text-white/40">Mensagem</div><i data-lucide="thumbs-up" class="w-5 h-5 fill-current"></i></div>
             </div>
             <!-- Carlos (WhatsApp) -->
             <div class="chat-print chat-wa flex-shrink-0">
                 <div class="chat-status-bar !bg-[#0b141a]"><span>20:53</span><div class="status-icons"><i data-lucide="signal" class="w-3 h-3"></i><i data-lucide="wifi" class="w-3 h-3"></i><i data-lucide="battery" class="w-2.5 h-2.5"></i></div></div>
-                <div class="chat-header !bg-[#202c33] !border-none !py-3"><i data-lucide="arrow-left" class="w-4 h-4 mr-1"></i><img src="user_profile_3.png" class="chat-avatar !w-9 !h-9" onerror="this.src='https://ui-avatars.com/api/?name=Carlos&background=random'"><div class="chat-user"><span class="chat-name !text-[15px]">Carlos Silveira</span><span class="chat-status !text-[10px]">online</span></div><div class="chat-icons !opacity-100 !gap-5"><i data-lucide="video" class="w-5 h-5"></i><i data-lucide="phone" class="w-4 h-4"></i><i data-lucide="more-vertical" class="w-4 h-4"></i></div></div>
+                <div class="chat-header !bg-[#202c33] !border-none !py-3"><i data-lucide="arrow-left" class="w-4 h-4 mr-1"></i><img src="user_profile_3.webp" class="chat-avatar !w-9 !h-9" onerror="this.src='https://ui-avatars.com/api/?name=Carlos&background=random'" loading="lazy"><div class="chat-user"><span class="chat-name !text-[15px]">Carlos Silveira</span><span class="chat-status !text-[10px]">online</span></div><div class="chat-icons !opacity-100 !gap-5"><i data-lucide="video" class="w-5 h-5"></i><i data-lucide="phone" class="w-4 h-4"></i><i data-lucide="more-vertical" class="w-4 h-4"></i></div></div>
                 <div class="chat-body !p-5 !bg-[#0b141a]"><div class="message received !text-[13px] !bg-[#202c33]">Até minha esposa comentou a diferença. Protocolo nota 10, mudou o jogo aqui em casa! 👊<div class="msg-time-wa">11:15 <i data-lucide="check-check" class="w-3 h-3 text-[#53bdeb]"></i></div></div></div>
                 <div class="chat-footer chat-wa-footer bg-[#0b141a] p-3 flex gap-2"><div class="wa-input bg-[#2a3942] rounded-full flex-1 px-3 py-2 text-[13px] text-white/30 flex items-center gap-3"><i data-lucide="smile" class="w-5 h-5"></i><span>Mensagem</span><div class="flex-1"></div><i data-lucide="paperclip" class="w-5 h-5 -rotate-45"></i><i data-lucide="camera" class="w-5 h-5"></i></div><div class="w-10 h-10 bg-[#00a884] rounded-full flex items-center justify-center"><i data-lucide="mic" class="w-5 h-5 text-black"></i></div></div>
             </div>
