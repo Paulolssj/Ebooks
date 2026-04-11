@@ -1028,7 +1028,7 @@ function showProtocol() {
           <div class="text-center">
             <div class="text-[10px] font-display font-bold text-red-500/80 uppercase tracking-widest mb-6">Sem Protocolo</div>
             <div class="relative aspect-[3/4] mb-6">
-              <img src="performance_before_sad_man_1774114625856.png" class="w-full h-full object-cover rounded-2xl grayscale opacity-50 shadow-inner">
+              <img src="performance_before_sad_man_1774114625856.png" alt="Visualização do estado de estagnação sem o protocolo Apex" class="w-full h-full object-cover rounded-2xl grayscale opacity-50 shadow-inner">
               <div class="absolute inset-0 rounded-2xl border border-white/5"></div>
             </div>
             <div class="flex justify-center gap-1.5">
@@ -1041,7 +1041,7 @@ function showProtocol() {
           <div class="text-center">
             <div class="text-[10px] font-display font-bold text-accent uppercase tracking-widest mb-6">Com Protocolo Apex</div>
             <div class="relative aspect-[3/4] mb-6">
-              <img src="performance_after_happy_couple_1774114685383.png" class="w-full h-full object-cover rounded-2xl shadow-xl border border-accent/20">
+              <img src="performance_after_happy_couple_1774114685383.png" alt="Projeção de resultados de alta performance com o protocolo Apex em 30 dias" class="w-full h-full object-cover rounded-2xl shadow-xl border border-accent/20">
               <div class="absolute inset-0 rounded-2xl shadow-[inset_0_0_20px_rgba(0,168,132,0.1)]"></div>
             </div>
             <div class="flex justify-center gap-1.5">
