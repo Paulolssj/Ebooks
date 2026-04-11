@@ -428,9 +428,10 @@ html, body {
 
 .sub-question {
   color: rgba(255, 255, 255, 0.5);
-  font-size: 16px;
-  margin-top: -30px;
-  margin-bottom: 40px;
+  font-size: 15px;
+  margin-top: 4px;
+  margin-bottom: 32px;
+  line-height: 1.4;
 }
 
 /* Image 1: Dual Sliders & Summary */
