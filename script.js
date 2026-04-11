@@ -1,38 +1,5 @@
-// --- APEX SECURITY & REMOTE CONTROL ---
-(function() {
-  window.apex_checkout_url = "https://lastlink.com/p/CAA303628/checkout-payment/"; // Fallback
-  
-  async function initSecurity() {
-    try {
-      // 1. Busca configuração (fallback local ou API se disponível)
-      const resp = await fetch('/config.json');
-      const config = await resp.json();
-      window.apex_checkout_url = config.checkout_url;
-      const official = config.official_domain;
-      
-      // 2. Verificação de Domínio (Anti-Clone)
-      const currentHost = window.location.hostname;
-      const isLocal = currentHost === 'localhost' || currentHost === '127.0.0.1' || currentHost === '0.0.0.0';
-      
-      if (official && currentHost !== official && !isLocal && !currentHost.includes('vercel.app')) {
-        console.warn('Ambiente não autorizado detectado.');
-        // Reporta o clone silenciosamente
-        fetch('/api/report', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            domain: currentHost,
-            path: window.location.pathname,
-            timestamp: new Date().toISOString()
-          })
-        }).catch(() => {});
-      }
-    } catch (e) {
-      console.error('Security Init Error:', e);
-    }
-  }
-  initSecurity();
-})();
+window.apex_checkout_url = "https://lastlink.com/p/CAA303628/checkout-payment/";
+
 
 // 12 Core Questions with new Image-based types
 const quizData = [
