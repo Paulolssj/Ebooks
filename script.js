@@ -710,7 +710,7 @@ function showAnalyzing() {
       if (modulesEl) modulesEl.innerHTML = '<div class="dot-indicator"></div> Concluído';
       setTimeout(showPlan, 800);
     }
-  }, 100); // 10 Sec Analysis for Higher Authority
+  }, 50); // 5 Sec Analysis for Better Balance
 }
 
 function drawRadarChart() {
