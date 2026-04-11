@@ -995,7 +995,7 @@ function showProtocol() {
 
         <!-- Product Visual -->
         <div class="product-mockup-wrapper mb-8">
-          <img src="product_mockup.png" alt="Protocolo Apex — Kit Digital Completo" class="product-mockup-img">
+          <img src="apex_ebook_1.png" alt="Guia Digital: Protocolo de Força Nível 3" class="product-mockup-img">
           <div class="product-mockup-glow"></div>
         </div>
 
