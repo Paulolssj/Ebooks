@@ -1169,7 +1169,7 @@ function showProtocol() {
       <!-- 8. PRICING — Oferta de Lançamento -->
       <!-- ═══════════════════════════════════════════════ -->
       <div class="card-stitch w-full mb-8 relative border-primary/10 bg-white/[0.02] flex flex-col items-center pt-12 pb-8 px-6">
-        <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-accent text-black text-[10px] font-black uppercase tracking-widest shadow-xl">⚡ Lançamento — 74% OFF</div>
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-6 py-2 rounded-full bg-accent text-black text-[11px] font-black uppercase tracking-widest shadow-2xl whitespace-nowrap w-max z-20">⚡ Lançamento — 74% OFF</div>
         
         <!-- Value Stack Badge -->
         <div class="value-stack-badge mb-6">
