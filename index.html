@@ -39,11 +39,11 @@
 
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="style.css?v=1.31">
-    <!-- Google Fonts: Inter & Outfit -->
+    <link rel="preload" as="image" href="hero_vitality_gym_collage_v3_no_text_1774109672234.webp" fetchpriority="high">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Outfit:wght@100..900&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Outfit:wght@100..900&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,900;1,400&family=Outfit:wght@400;700;900&family=Lexend:wght@400;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,900;1,400&family=Outfit:wght@400;700;900&family=Lexend:wght@400;700;800&display=swap" rel="stylesheet"></noscript>
     <!-- Styles: Tailwind, Custom -->
     <link rel="stylesheet" href="tailwind.css">
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -62,9 +62,13 @@
         <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-[0.03] pointer-events-none"></div>
 
         <div class="relative z-10 max-w-[600px] w-full text-center flex flex-col items-center gap-6">
-            <!-- Collage Container -->
             <div class="w-full">
                 <div class="hero-banner-collage rounded-[2rem] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.8)] border border-white/10 relative aspect-[16/10] md:aspect-[21/9] transition-all duration-700 hover:scale-[1.01] hover:border-primary/30">
+                    <img src="hero_vitality_gym_collage_v3_no_text_1774109672234.webp" 
+                         alt="Homem em performance física - Dr. Apex" 
+                         class="w-full h-full object-cover"
+                         fetchpriority="high"
+                         loading="eager">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10"></div>
                 </div>
             </div>
