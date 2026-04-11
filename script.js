@@ -1002,9 +1002,7 @@ function showProtocol() {
         <!-- Module Cards -->
         <div class="space-y-3">
           ${[
-            { title: 'Módulo 1 · Protocolo de Força Nível 3', desc: 'Exercícios progressivos de controle neuromuscular. Técnicas de rigidez máxima com evolução semanal.', pages: '47 páginas', icon: 'zap', color: 'text-primary' },
-            { title: 'Módulo 2 · Método Anti-Ansiedade', desc: 'Elimine a insegurança na hora H. Controle mental e técnicas de respiração para durar o quanto quiser.', pages: '32 páginas', icon: 'brain', color: 'text-accent' },
-            { title: 'Módulo 3 · Guia de Libido Explosiva', desc: 'Nutrição celular estratégica, suplementação natural e hábitos que disparam sua energia e vigor.', pages: '38 páginas', icon: 'flame', color: 'text-[#f59e0b]' }
+            { title: 'Protocolo de Força Apex (Ebook Principal)', desc: 'Exercícios progressivos de controle neuromuscular. Técnicas de rigidez máxima com evolução semanal.', icon: 'zap', color: 'text-primary' }
           ].map(item => `
             <div class="card-stitch !py-5 !px-6 flex items-start gap-4 hover:border-primary/30 transition-all group">
               <div class="w-10 h-10 rounded-xl bg-white/5 flex-shrink-0 flex items-center justify-center ${item.color} mt-0.5 group-hover:bg-white/10 transition-colors">
@@ -1013,26 +1011,10 @@ function showProtocol() {
               <div class="flex-1">
                 <span class="text-[13px] font-display font-bold text-white block mb-1">${item.title}</span>
                 <span class="text-[11px] text-white/50 leading-relaxed block">${item.desc}</span>
-                <span class="text-[9px] text-primary/60 font-bold uppercase tracking-wider mt-2 inline-block">${item.pages} · PDF Digital</span>
+                <span class="text-[9px] text-primary/60 font-bold uppercase tracking-wider mt-2 inline-block">Acesso Digital Instantâneo</span>
               </div>
             </div>
           `).join('')}
-
-          <!-- Bonus -->
-          <div class="mt-4 p-[1px] rounded-2xl bg-gradient-to-r from-primary/40 via-accent/40 to-primary/40">
-            <div class="card-stitch !rounded-2xl !border-0 !py-5 !px-6 flex items-start gap-4 bg-black">
-              <div class="w-10 h-10 rounded-xl bg-accent/10 flex-shrink-0 flex items-center justify-center text-accent mt-0.5">
-                <i data-lucide="gift" class="w-5 h-5"></i>
-              </div>
-              <div class="flex-1">
-                <div class="flex items-center gap-2 mb-1">
-                  <span class="text-[13px] font-display font-bold text-white">BÔNUS: Dashboard de Bio-Status</span>
-                  <span class="text-[8px] bg-accent/20 text-accent px-2 py-0.5 rounded-full font-black uppercase">Grátis</span>
-                </div>
-                <span class="text-[11px] text-white/50 leading-relaxed block">Planilha interativa para acompanhar sua evolução semana a semana. Veja seu progresso em tempo real.</span>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
@@ -1223,28 +1205,12 @@ function showProtocol() {
         <!-- Stacked Value -->  
         <div class="text-center mb-2 w-full">
           <div class="space-y-1 mb-4">
-            <div class="flex items-center justify-between px-2 opacity-40">
-              <span class="text-[11px] font-display text-white">Módulo 1 · Força Nível 3</span>
-              <span class="text-[11px] font-bold text-white line-through">R$ 37,00</span>
-            </div>
-            <div class="flex items-center justify-between px-2 opacity-40">
-              <span class="text-[11px] font-display text-white">Módulo 2 · Anti-Ansiedade</span>
-              <span class="text-[11px] font-bold text-white line-through">R$ 27,00</span>
-            </div>
-            <div class="flex items-center justify-between px-2 opacity-40">
-              <span class="text-[11px] font-display text-white">Módulo 3 · Libido Explosiva</span>
-              <span class="text-[11px] font-bold text-white line-through">R$ 27,00</span>
-            </div>
-            <div class="flex items-center justify-between px-2 opacity-40">
-              <span class="text-[11px] font-display text-accent font-bold">Bônus · Dashboard Bio-Status</span>
-              <span class="text-[11px] font-bold text-accent line-through">R$ 6,00</span>
+            <div class="flex items-center justify-between px-2">
+              <span class="text-[12px] font-display text-white">Protocolo Apex (Ebook Principal)</span>
+              <span class="price-anchor-old text-[14px]">R$ 97,00</span>
             </div>
           </div>
           <div class="h-px w-full bg-white/10 mb-4"></div>
-          <div class="flex items-center justify-between px-2 mb-2">
-            <span class="text-[11px] font-display text-white/50 uppercase tracking-wider">Valor Total</span>
-            <span class="price-anchor-old text-[14px]">R$ 97,00</span>
-          </div>
         </div>
 
         <!-- Hero Price -->
@@ -1322,7 +1288,7 @@ function showProtocol() {
             { q: 'Funciona para qualquer idade?', a: 'Sim. O protocolo foi desenvolvido para homens de 25 a 65+ anos. Os exercícios são adaptados ao seu nível — seja iniciante ou avançado. A fisiologia masculina responde ao treino neuromuscular em qualquer faixa etária.' },
             { q: 'É seguro? Tem contraindicação?', a: 'O protocolo é 100% natural — sem remédios, sem suplementos obrigatórios, sem efeitos colaterais. São exercícios pélvicos validados pela ciência urológica. Se você tem alguma condição médica grave, recomendamos consultar seu médico.' },
             { q: 'Quando vou ver os primeiros resultados?', a: 'A maioria dos homens reporta melhorias no controle já na primeira semana. Resultados mais significativos de rigidez e duração acontecem entre 14 e 21 dias de prática consistente.' },
-            { q: 'Como funciona o acesso?', a: 'Após a confirmação do pagamento, você recebe imediatamente um link para download do kit completo (3 módulos + bônus) em formato PDF. Acesso vitalício — baixe quantas vezes quiser.' },
+            { q: 'Como funciona o acesso?', a: 'Após a confirmação do pagamento, você recebe imediatamente um link para download do kit em formato PDF. Acesso vitalício — baixe quantas vezes quiser.' },
             { q: 'E se eu não gostar? Posso pedir reembolso?', a: 'Com certeza. Você tem 7 dias de garantia incondicional. Se por qualquer motivo não estiver satisfeito, basta enviar uma mensagem e devolvemos 100% do valor. Sem burocracia, sem perguntas.' },
             { q: 'Preciso de equipamento ou academia?', a: 'Não. Todos os exercícios são feitos em casa, sem nenhum equipamento. Levam em média 10 minutos por dia. Você pode fazer a qualquer hora, em qualquer lugar.' }
           ].map((item, idx) => `
